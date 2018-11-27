@@ -1,38 +1,38 @@
 {
-  "name": "pcit",
-  "version": "18.06.0",
+  "name": "@pcit/pcit-ui",
+  "version": "18.12.0-alpha.0",
   "author": {
     "name": "khs1994",
     "email": "khs1994@khs1994.com"
   },
-  "description": "PCIT is not PHP CI TOOLKIT",
+  "description": "PCIT Frontend UI",
   "dependencies": {
     "@pcit/pcit-js": "^18.12.0-beta.1",
+    "jquery": "^3.3.1",
+    "js-cookie": "^2.2.0",
+    "clipboard": "^2.0.4"
+  },
+  "devDependencies": {
     "@types/jquery": "^3.3.22",
-    "@types/node": "^10.12.9",
+    "@types/node": "^10.12.10",
+    "babel-eslint": "^10.0.1",
     "clean-webpack-plugin": "^1.0.0",
-    "clipboard": "^2.0.4",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-beta.4",
-    "jquery": "^3.3.1",
-    "js-cookie": "^2.2.0",
     "mini-css-extract-plugin": "^0.4.4",
+    "prettier": "^1.15.2",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.0",
     "typescript": "^3.1.6",
     "url-loader": "^1.1.2",
-    "webpack": "^4.25.1",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.8.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.14.3"
   },
   "repository": {
     "type": "git",
