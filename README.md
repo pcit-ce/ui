@@ -31,11 +31,7 @@
 * Node & NPM
 
 ```bash
-# global
-$ npm i -g cross-env
-
-# local
-$ npm install
+$ npm i
 ```
 
 ### Gulp
@@ -43,9 +39,11 @@ $ npm install
 ### webpack
 
 ```bash
+# production
+
 $ npm run webpack-pro
+# $ npm run build
 
-# or
-
-$ npm run build
+# development
+$ npm run webpack-dev
 ```

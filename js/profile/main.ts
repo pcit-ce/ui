@@ -26,7 +26,7 @@ const pcit = require('@pcit/pcit-js');
 const pcit_system = new pcit.System(token, '');
 const pcit_user = new pcit.User(token, '');
 const pcit_repo = new pcit.Repo(token, '');
-const pcit_orgs = new pcit.Orgs(token, '');
+const pcit_org = new pcit.Org(token, '');
 
 function settings(data: any) {
   let { username, type } = data;
@@ -406,7 +406,7 @@ $(document).ready(function() {
       // });
 
       (async () => {
-        let result = await pcit_orgs.list();
+        let result = await pcit_org.list();
 
         showOrg(result);
       })();
