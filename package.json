@@ -1,13 +1,13 @@
 {
   "name": "@pcit/pcit-ui",
-  "version": "18.12.0-alpha.0",
+  "version": "18.12.0-alpha.1",
   "author": {
     "name": "khs1994",
     "email": "khs1994@khs1994.com"
   },
   "description": "PCIT Frontend UI",
   "dependencies": {
-    "@pcit/pcit-js": "^18.12.0-beta.2",
+    "@pcit/pcit-js": "^18.12.0-beta.6",
     "clipboard": "^2.0.4",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0"
@@ -51,5 +51,17 @@
     "pcit",
     "cicd",
     "devops"
-  ]
+  ],
+  "files": [
+    "css",
+    "html",
+    "images",
+    "js",
+    "src",
+    "webpack.config.js"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }

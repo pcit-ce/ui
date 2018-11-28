@@ -262,7 +262,7 @@ function get_userdata(): any {
   //   });
   // });
 
-  return pcit_user.findByCurrent();
+  return pcit_user.current();
 }
 
 function click_user() {

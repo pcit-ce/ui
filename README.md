@@ -1,5 +1,8 @@
 # PCIT 前端
 
+[![npm](https://img.shields.io/npm/v/@pcit/pcit-ui.svg)](https://www.npmjs.com/package/@pcit/pcit-ui)
+[![install size](https://packagephobia.now.sh/badge?p=@pcit/pcit-ui)](https://packagephobia.now.sh/result?p=@pcit/pcit-ui)
+
 ## 前端页面
 
 * `profile` 个人主页 `/profile/github/khs1994`
