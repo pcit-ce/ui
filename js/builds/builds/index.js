@@ -8,7 +8,7 @@ module.exports = {
 
     // 没有 build 数据
     if (!data) {
-      log.show(null);
+      log.show(null, null);
 
       return;
     }
@@ -21,7 +21,7 @@ module.exports = {
 
     // jobs 为空
     if (jobs.length === 0) {
-      log.show(null);
+      log.show(null, null);
 
       return;
     }
@@ -29,8 +29,8 @@ module.exports = {
     // 只有一个 job 直接展示日志
     if (jobs.length === 1) {
       data.id = build_id;
-      let { build_log } = jobs[0];
-      log.show(build_log);
+      let { build_log, env_vars = null } = jobs[0];
+      log.show(build_log, env_vars);
 
       return;
     }

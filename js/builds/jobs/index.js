@@ -15,8 +15,10 @@ function display(job_data, build_data, url) {
 
   details.show(job_data, url, true);
 
+  let { log: job_log, env_vars = null } = job_data;
+
   // display log
-  log.show(job_data.log);
+  log.show(job_log, env_vars);
 
   // let column_el = $('#pull_requests');
 }

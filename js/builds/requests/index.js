@@ -47,7 +47,7 @@ function display(data, url) {
         ),
       )
       .append(() => {
-        return $('<div class="branch col-md-1"></div>')
+        return $('<div class="branch col-md-1 text-truncate"></div>')
           .append(branch.substring(0, 10))
           .attr('title', branch)
           .css('color', color);

@@ -127,8 +127,8 @@ module.exports = {
           .attr('event_id', id)
           .attr('job_or_build', job ? 'job' : 'build')
           .addClass('btn btn-link'),
-      )
-      .append($('<div class="env"></div>').append(env_vars));
+      );
+    // .append($('<div class="env"></div>').append(env_vars));
 
     display_element.append(div_element);
   },

@@ -221,12 +221,24 @@ tr {
 .build_log {
   white-space: pre-wrap;
   word-wrap: break-word;
-  line-height: 30px;
+  /* line-height: 30px; */
   background: #222;
   color: #f1f1f1;
   margin-top: 40px;
   margin-bottom: 20px;
   padding-bottom: 15px;
+}
+
+.build_log_item {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 30px;
+  /* background: #222; */
+  color: #f1f1f1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 1px;
+  padding-left: 10px;
 }
 
 .material-icons {
