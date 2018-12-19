@@ -1,5 +1,8 @@
 const common_status = require('../../common/status');
 const git = require('../../common/git');
+const time = require('../time');
+const formatTime = time.formatTime;
+const formatTotal = time.formatTotal;
 
 module.exports = {
   show: (data, url, job = false) => {
@@ -14,7 +17,8 @@ module.exports = {
       branch,
       committer_name,
       compare,
-      stopped_at,
+      begin_at = 0,
+      finished_at: stopped_at,
       env_vars,
     } = data;
 
@@ -27,13 +31,17 @@ module.exports = {
     status_color = common_status.getColor(status);
     let build_status = common_status.change(status);
 
+    let stopped_time;
+    let stopped_title;
+    let stopped_string;
+
     // console.log(build_status);
     if (null === stopped_at) {
-      stopped_at = 'This build is ' + build_status;
+      stopped_string = 'This build is ' + build_status;
     } else {
-      let d;
-      d = new Date(parseInt(stopped_at) * 1000);
-      stopped_at = d.toLocaleString();
+      stopped_time = new Date(parseInt(stopped_at) * 1000);
+      stopped_string = formatTime(stopped_at);
+      stopped_title = stopped_time.toLocaleString();
     }
 
     let commit_url = git.getCommitUrl(
@@ -66,9 +74,7 @@ module.exports = {
       .append(
         $('<a class="branch_url">Branch </a>')
           .append(branch)
-          .attr('href', '')
-          .attr('target', '_block')
-          .attr('title', 'View branch on GitHub'),
+          .attr({ href: '', target: '_block', title: 'View branch on GitHub' }),
       )
       .append(
         $('<div class="build_status"></div>')
@@ -78,23 +84,25 @@ module.exports = {
       .append(
         $('<a class="commit_url">Commit </a>')
           .append(commit_id.slice(0, 7))
-          .attr('title', 'View commit on GitHub')
-          .attr('href', commit_url)
-          .attr('target', '_blank'),
+          .attr({
+            title: 'View commit on GitHub',
+            href: commit_url,
+            target: '_blank',
+          }),
       );
 
-    div_element.append(
-      $('<div class="commit_message"></div>')
-        .append(commit_message)
-        .attr('title', commit_message)
-        .css('color', status_color),
-    );
-
-    div_element.append(
-      $('<div class="committer"></div>')
-        .append(committer_name)
-        .attr('title', committer_name),
-    );
+    div_element
+      .append(
+        $('<div class="commit_message"></div>')
+          .append(commit_message)
+          .attr('title', commit_message)
+          .css('color', status_color),
+      )
+      .append(
+        $('<div class="committer"></div>')
+          .append(committer_name)
+          .attr('title', committer_name),
+      );
 
     // div_element.append(
     //   $('<a class="compare"></a>')
@@ -111,7 +119,11 @@ module.exports = {
         $('<div class="build_time"></div>').append('Ran for 7 min 17 sec'),
       )
       .append(
-        $('<div class="build_time_ago"></div>').append('about 9 hours ago'),
+        $('<div class="build_time_ago"></div>')
+          .append(stopped_string)
+          .attr({
+            title: stopped_title,
+          }),
       )
       .append(
         $('<button class="cancel_or_restart"></button>')
@@ -123,13 +135,20 @@ module.exports = {
               }),
           )
           .attr('handle', button_handle)
-          .attr('title', button_title + (job ? ' job' : ' build'))
-          .attr('event_id', id)
-          .attr('job_or_build', job ? 'job' : 'build')
+          .attr({
+            title: button_title + (job ? ' job' : ' build'),
+            event_id: id,
+            job_or_build: job ? 'job' : 'build',
+          })
           .addClass('btn btn-link'),
       );
     // .append($('<div class="env"></div>').append(env_vars));
+    div_element.css({
+      display: 'none',
+    });
 
     display_element.append(div_element);
+
+    div_element.fadeIn(1000);
   },
 };

@@ -9,7 +9,10 @@ function display(data, url) {
   display_element.empty();
 
   if (0 === data.length) {
-    display_element.append(error_info('Not Build Yet !'));
+    display_element
+      .hide()
+      .append(error_info('Not Build Yet !'))
+      .fadeIn(1000);
     // display_element.innerHeight(55);
   } else {
     build.show(data, url);
@@ -33,6 +36,7 @@ module.exports = {
 
         display(result, url);
       } catch (e) {
+        console.log(e);
         display('', url);
       }
     })();

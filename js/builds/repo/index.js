@@ -7,7 +7,6 @@ vue
 
 no jquery
 */
-
 function display(repos_data) {
   $('.repo_item').append(`
 <div class="col-12 col-sm-12 col-md-1" hidden>{{ repo.rid }}</div>
@@ -33,7 +32,7 @@ function display(repos_data) {
 </div>
 <div class="col-12 col-sm-12 col-md-2" v-if="repo.webhooks_status && repo.commit_id !=='0'">
 <div class="title">COMMIT</div>
-<a target="_blank" 
+<a target="_blank"
 :href="git.getCommitUrl(repo.repo_full_name,null,repo.commit_id,repo.git_type)"
 :title="'View commit on '+git.format(repo.git_type)">
 {{ repo.commit_id.slice(0,6) }}
@@ -41,7 +40,7 @@ function display(repos_data) {
 </div>
 <div class="col-12 col-sm-12 col-md-2" v-if="repo.webhooks_status && repo.commit_id !=='0'">
 <div class="title">LAST BUILD</div>
-<a 
+<a
 v-bind:href="'/'+repo.git_type+'/'+repo.repo_full_name+'/builds/'+repo.build_id"
 :class="repo.build_status" class="message">
 # {{ repo.build_id }}
@@ -105,6 +104,8 @@ function request(git_type, username, token) {
       .then(res => res);
 
     display(username_repo_data, git_type);
+
+    $('#repos_display').fadeIn(1000);
   })();
 }
 
@@ -114,7 +115,7 @@ module.exports = {
     $('#repo').remove();
     $('.column').remove();
     $('br').remove();
-    $('#repos_display').prop('hidden', false);
+    // $('#repos_display').prop('hidden', false);
     $('#username_display').prop('hidden', false);
     request(git_type, username, token);
   },

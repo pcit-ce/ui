@@ -3,18 +3,24 @@ const git = require('../../common/git');
 const common_status = require('../../common/status');
 const error_info = require('../error/error').error_info;
 
-function display(data, url) {
+const pcit = require('@pcit/pcit-js');
+const builds = new pcit.Builds('', '');
+
+function display(data, url, append = false) {
   let display_element = $('#display');
 
-  display_element.empty();
+  !append && display_element.empty();
 
   if (0 === data.length) {
-    display_element.append(
-      error_info('No pull request builds for this repository'),
-    );
+    display_element
+      .hide()
+      .append(error_info('No pull request builds for this repository'))
+      .fadeIn(1000);
     // display_element.innerHeight(55);
   } else {
-    let ul_el = $('<ul class="pull_requests_list"></ul>');
+    let ul_el = append
+      ? $('.pull_requests_list')
+      : $('<ul class="pull_requests_list"></ul>');
 
     // display_element.height((data.length + 1) * 100);
 
@@ -70,7 +76,7 @@ function display(data, url) {
       status_color = common_status.getColor(build_status);
       build_status = common_status.change(build_status);
 
-      let li_el = $('<li></li>');
+      let li_el = $('<li class="pull_requests_list_item"></li>');
 
       li_el
         // .append($('<div class="id"></div>').append())
@@ -83,6 +89,9 @@ function display(data, url) {
         //     }),
         // )
         .css('border-left', '8px solid ' + status_color)
+        .attr({
+          'data-id': build_id,
+        })
         .append(
           $('<a class="pull_request_url"></a>')
             .append(`#PR ${pull_request_id}`)
@@ -145,10 +154,23 @@ function display(data, url) {
             .attr('job_or_build', 'build')
             .addClass('btn btn-link'),
         );
+      li_el.css({
+        display: 'none',
+      });
 
       ul_el.append(li_el);
     });
-    display_element.append(ul_el);
+
+    if (append) {
+      $('.pull_requests_list_item').fadeIn(1000);
+      return;
+    }
+
+    display_element
+      .append(ul_el)
+      .append('<button class="btn pull_requests_list_more">More</button>');
+
+    $('.pull_requests_list_item').fadeIn(1000);
   }
 }
 
@@ -164,10 +186,6 @@ module.exports = {
     //   },
     // });
 
-    const pcit = require('@pcit/pcit-js');
-
-    const builds = new pcit.Builds('', '');
-
     (async () => {
       let result = await builds.findByRepo(
         url.getGitType(),
@@ -177,6 +195,32 @@ module.exports = {
       );
 
       display(result, url);
+    })();
+  },
+  more: (url, before) => {
+    (async () => {
+      let result = await builds.findByRepo(
+        url.getGitType(),
+        url.getRepoFullName(),
+        undefined,
+        true,
+        before,
+      );
+
+      if (JSON.stringify(result) === '[]') {
+        alert('没有了呢');
+
+        $('.pull_requests_list_more')
+          .attr({
+            disabled: 'true',
+          })
+          .text('没有了呢');
+
+        return;
+      }
+
+      console.log(result);
+      display(result, url, true);
     })();
   },
 };

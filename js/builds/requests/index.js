@@ -2,23 +2,33 @@ const status = require('../../common/status');
 const git = require('../../common/git');
 const error_info = require('../error/error').error_info;
 
-function display(data, url) {
+const pcit = require('@pcit/pcit-js');
+
+function display(data, url, append = false) {
   let display_element = $('#display');
 
-  display_element.empty();
+  !append && display_element.empty();
 
   // let requests_el = $('<div class="requests"></div>');
 
   if (data.length === 0) {
-    display_element.append(error_info('Not Event receive !'));
+    display_element
+      .hide()
+      .append(error_info('Not Event receive !'))
+      .fadeIn(1000);
     // display_element.innerHeight(55);
+
     return;
   }
 
   // display_element.innerHeight(60 + data.length * 30);
 
+  let requests_el = append
+    ? $('.requests_list')
+    : $('<div class="requests_list"></div>');
+
   $.each(data, (key, value) => {
-    let requests_el_item = $('<div class="row requests_list"></div>');
+    let requests_el_item = $('<div class="row requests_list_item"></div>');
 
     let {
       id,
@@ -41,6 +51,9 @@ function display(data, url) {
 
     requests_el_item
       .css('border-left', '8px solid' + color)
+      .attr({
+        'data-id': id,
+      })
       .append(
         $('<div class="event_type col-md-1"></div>').append(
           event_type === 'pull_request' ? 'pr' : event_type,
@@ -109,10 +122,24 @@ function display(data, url) {
           .append(message.substring(0, 26))
           .attr({ title: message });
       });
-    display_element.append(requests_el_item);
+
+    requests_el_item.css({
+      display: 'none',
+    });
+
+    requests_el.append(requests_el_item);
   });
 
-  // display_element.append(requests_el);
+  if (append) {
+    $('.requests_list_item').fadeIn(1000);
+    return;
+  }
+
+  display_element
+    .append(requests_el)
+    .append('<button class="btn requests_list_more">More</button>');
+
+  $('.requests_list_item').fadeIn(1000);
 }
 
 module.exports = {
@@ -131,8 +158,6 @@ module.exports = {
     //   },
     // });
 
-    const pcit = require('@pcit/pcit-js');
-
     const repo = new pcit.Repo(token, '');
 
     (async () => {
@@ -143,7 +168,33 @@ module.exports = {
         );
         display(result, url);
       } catch (e) {
+        console.log(e);
         display('', url);
+      }
+    })();
+  },
+
+  more(url, token, before) {
+    const repo = new pcit.Repo(token, '');
+
+    (async () => {
+      try {
+        const result = await repo.requests.list(
+          url.getGitType(),
+          url.getRepoFullName(),
+          undefined,
+          before,
+        );
+
+        display(result, url, true);
+      } catch (e) {
+        alert('没有了呢');
+
+        $('.requests_list_more')
+          .attr({
+            disabled: 'true',
+          })
+          .text('没有了呢');
       }
     })();
   },

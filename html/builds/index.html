@@ -35,10 +35,12 @@
   <div class="container">
 
     <div class="column row">
-      <div id="current" class="col-md-1 text-center">Current</div>
-      <div id="branches" class="col-md-1 text-center">Branches</div>
-      <div id="builds" class="col-md-1 text-center">Builds</div>
-      <div id="pull_requests" class="col-md-1 text-center">PRs</div>
+      <div id="current" class="col-md-1 text-center main">Current</div>
+      <div id="branches" class="col-md-1 text-center main">Branches</div>
+      <div id="builds" class="col-md-1 text-center main">Builds</div>
+      <div id="pull_requests" class="col-md-1 text-center main">PRs</div>
+      <div id="buildNav" class="col-md-2 text-center main"></div>
+      <div id="jobNav" class="col-md-2 text-center main"></div>
 
       <div class="btn-group more_options text-center ml-md-auto" role="group">
         <button id="more_options" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,7 +92,7 @@
 
   </div>
 
-  <div id="repos_display" class="container" hidden>
+  <div id="repos_display" class="container" style="display: none">
     <div class="repo_item row" v-for="(repo,index) in repos_data" :class="repo.build_status">
 
     </div>

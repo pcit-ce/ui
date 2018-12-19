@@ -5,7 +5,7 @@ module.exports = {
     }
 
     if (!env) {
-      log = {};
+      env = 'this build not include global or matrix env';
     }
 
     let pre_el = $('<div class="build_log"></div>');

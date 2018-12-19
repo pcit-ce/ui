@@ -20,7 +20,9 @@ function get_env(url, token) {
 function display(data, url, token) {
   let display_element = $('#display');
 
-  display_element.empty();
+  display_element.empty().css({
+    display: 'none',
+  });
 
   let setting_is_default = data.length === 0;
   let setting_el = $('<div class="setting"></div>');
@@ -198,6 +200,8 @@ module.exports = {
       let result = await pcit_repo.settings.list(url.getRepoFullName());
 
       display(result, url, token);
+
+      $('#display').fadeIn(1000);
     })();
   },
 };

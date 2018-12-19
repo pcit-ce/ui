@@ -1,4 +1,4 @@
-.requests_list {
+.requests_list_item {
   border: 1px solid #f1f1f1;
   margin-bottom: 10px;
   /* position: relative; */
@@ -13,14 +13,14 @@
   margin-left:0;
 } */
 
-.requests_list a {
+.requests_list_item a {
   text-decoration: none;
 }
 
-.requests_list a:hover {
+.requests_list_item a:hover {
   text-decoration: underline;
 }
 
-.requests_list .branch {
+.requests_list_item .branch {
   white-space: nowrap;
 }

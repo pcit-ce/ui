@@ -2,12 +2,14 @@ const { column_span_click } = require('../common');
 const error_info = require('../error/error').error_info;
 
 function display(data) {
-  let display_element = $('#display');
-
-  display_element.empty();
+  let display_element = $('#display')
+    .empty()
+    .hide();
 
   if (0 === data.length) {
-    display_element.append(error_info('Not Build Yet !', '', '', 'primary'));
+    display_element
+      .append(error_info('Not Build Yet !', '', '', 'primary'))
+      .fadeIn(1000);
     // display_element.innerHeight(55);
   } else {
     // console.log(data);
@@ -42,6 +44,9 @@ function display(data) {
 
       display_element.append('<hr>');
     });
+
+    // display_element.slideDown(1000);
+    display_element.fadeIn(1000);
   }
 }
 

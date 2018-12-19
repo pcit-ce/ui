@@ -1,5 +1,15 @@
 const details = require('../log/details');
 const log = require('../log');
+const showBuildNav = require('../builds_history').showBuildNav;
+
+const showJobNav = job_id => {
+  $('#jobNav')
+    .empty()
+    .append('Job #' + job_id);
+
+  // build_id span 元素被选中
+  $('#jobNav').trigger('click');
+};
 
 function display(job_data, build_data, url) {
   let { build_log, id: job_id, build_id } = job_data;
@@ -13,6 +23,8 @@ function display(job_data, build_data, url) {
 
   $('#display').empty();
 
+  showBuildNav(build_id);
+  showJobNav(job_id);
   details.show(job_data, url, true);
 
   let { log: job_log, env_vars = null } = job_data;

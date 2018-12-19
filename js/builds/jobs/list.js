@@ -1,5 +1,5 @@
 const common_status = require('../../common/status');
-
+const formatTotal = require('../time').formatTotal;
 // list builds all jobs
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
     // display_el.innerHeight((jobs.length + 1) * 100);
 
     $.each(jobs, (index, job) => {
-      let { id, state, env_vars = '' } = job;
+      let { id, started_at, finished_at, state, env_vars = '' } = job;
 
       env_vars = env_vars ? env_vars : 'no matrix environment set';
 
@@ -56,7 +56,7 @@ module.exports = {
         })
         .append(() => {
           let div_el = $('<div class="job_run_time"></div>');
-          div_el.append('run time');
+          div_el.append('Run ' + formatTotal(finished_at - started_at));
 
           return div_el;
         })
@@ -74,7 +74,10 @@ module.exports = {
             .attr('job_or_build', 'job');
         })
         .attr('href', job_url + '/' + id)
-        .css('cursor', 'hand')
+        .css({
+          cursor: 'hand',
+          display: 'none',
+        })
         .attr('status_background_color', status_background_color)
         .attr('status_color', status_color);
 
@@ -82,6 +85,9 @@ module.exports = {
     });
 
     display_el.append(jobs_list_el);
+
+    // $('.job_list').slideDown(1000);
+    $('.job_list').fadeIn(1000);
 
     // display_el.css('height', (jobs.length * 10) + 'px');
 

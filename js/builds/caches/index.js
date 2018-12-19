@@ -3,9 +3,9 @@ const error_info = require('../error/error').error_info;
 function display(data) {
   let display_element = $('#display');
 
-  display_element.empty();
+  display_element.empty().hide();
 
-  display_element.append(error_info('缓存列表功能即将上线'));
+  display_element.append(error_info('缓存列表功能即将上线')).fadeIn(1500);
   // .innerHeight(55);
 }
 

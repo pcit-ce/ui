@@ -6,6 +6,14 @@ const pcit = require('@pcit/pcit-js');
 
 const repo = new pcit.Repo(token.getToken(url.getGitType()), '');
 
+const common_status = require('../common/status');
+
+const navClick = require('./navClick');
+
+const pullRequests = require('./pull_requests');
+const buildsHistory = require('./builds_history');
+const requests = require('./requests');
+
 $(document).on(
   'click',
   '.setting [name="build_pushes"],' +
@@ -289,3 +297,71 @@ $('.trigger_build_modal_button').on('click', () => {
 //     display('');
 //   },
 // });
+
+// 处理 cancel restart button 点击事件
+$(document).on(
+  'click',
+  '.job_list button,.build_data button,.builds_list button,.pull_requests_list button',
+  function() {
+    $(this).attr('disabled', 'disabled');
+
+    (async that => {
+      await common_status.buttonClick(that);
+
+      let type = url.getType();
+      navClick(type, false); // 渲染 display 页面
+      common.column_remove(); // 移除 column
+      common.column_click_handle(type); // 渲染被点击的 column
+    })($(this));
+
+    return false;
+  },
+);
+
+$('.more_options').on({
+  click: function(event) {
+    // console.log(url.getUrlWithArray());
+    let id = event.target.id;
+
+    if (id === 'more_options') {
+      return;
+    }
+
+    // if (url.getUrlWithArray().length === 8) {
+    //   return;
+    // }
+
+    navClick(id); // 渲染 display 页面
+
+    if (id === 'trigger_build') {
+      return;
+    }
+
+    common.column_remove(); // 移除其他元素
+    common.column_click_handle(id); // 增加元素
+  },
+});
+
+$(document).on('click', '.builds_list_more', function() {
+  let { id: last_id = null } = $('.builds_list li:last').data();
+
+  console.log(last_id);
+
+  buildsHistory.more(url, last_id - 1);
+});
+
+$(document).on('click', '.pull_requests_list_more', function() {
+  let { id: last_id = null } = $('.pull_requests_list li:last').data();
+
+  console.log(last_id);
+
+  pullRequests.more(url, last_id - 1);
+});
+
+$(document).on('click', '.requests_list_more', function() {
+  let { id: last_id = null } = $('.requests_list_item:last').data();
+
+  console.log(last_id);
+
+  requests.more(url, token, last_id - 1);
+});

@@ -47,7 +47,7 @@
 
   .job_list .job_run_time {
     /*background: gold;*/
-    width: 100px;
+    width: 200px;
     position: absolute;
     right: 200px;
     height: 24px;

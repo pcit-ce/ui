@@ -140,8 +140,14 @@ function list_repos(data: object) {
       })
       .append(settings);
 
+    repo_item_el.css({
+      display: 'none',
+    });
+
     repos_element.append(repo_item_el);
   });
+
+  $('.repo_item').fadeIn(1000);
 }
 
 // show org list
@@ -201,8 +207,13 @@ function showGitHubAppSettings(org_name: string, installation_id: number) {
             })
             .text('GitHub');
         })
-        .append(' 添加仓库');
+        .append(' 添加仓库')
+        .css({
+          display: 'none',
+        });
     });
+
+    $('.repo_tips').fadeIn(1000);
   })();
 }
 
@@ -222,29 +233,35 @@ function showGitHubAppInstall(uid: number) {
 
     let installation_url = result.url;
 
-    $('#repos').append(
-      $('<div class="card border-primary text-center repo_tips"></div>')
-        .append(
-          $('<div class="card-header"></div>').append(
-            '此账号或组织未安装 GitHub App',
-          ),
-        )
-        .append(
-          $('<div class="card-body text-primary"></div>')
-            .append($('<h5 class="card-title"></h5>'))
-            .append(
-              $('<p class="card-text"></p>').append(
-                '要使用 PCIT 必须安装 GitHub App，请点击下方按钮安装',
-              ),
-            )
-            .append(
-              $('<a class="btn btn-outline-primary">Activate</a>').attr({
-                href: installation_url,
-                target: '_blank',
-              }),
+    $('#repos')
+      .append(
+        $('<div class="card border-primary text-center repo_tips"></div>')
+          .append(
+            $('<div class="card-header"></div>').append(
+              '此账号或组织未安装 GitHub App',
             ),
-        ),
-    );
+          )
+          .append(
+            $('<div class="card-body text-primary"></div>')
+              .append($('<h5 class="card-title"></h5>'))
+              .append(
+                $('<p class="card-text"></p>').append(
+                  '要使用 PCIT 必须安装 GitHub App，请点击下方按钮安装',
+                ),
+              )
+              .append(
+                $('<a class="btn btn-outline-primary">Activate</a>').attr({
+                  href: installation_url,
+                  target: '_blank',
+                }),
+              ),
+          ),
+      )
+      .css({
+        display: 'none',
+      });
+
+    $('#repos').fadeIn(1000);
   })();
 }
 
@@ -311,6 +328,8 @@ function show_org(data: any, org_name: string) {
   $('.header_img').attr('src', pic ? pic : '/ico/pcit.png');
   $('.details_usernickname').text(name ? name : username);
   $('.details_username').text('@' + username);
+
+  $('.userbasicInfo').fadeIn(1000);
 
   let { installation_id, uid } = data[0];
 

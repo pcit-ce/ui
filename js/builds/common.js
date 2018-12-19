@@ -1,12 +1,15 @@
-function mouseoutMethod(event) {
-  event.target.style.color = 'black';
-  event.target.style.borderBottomStyle = 'none';
+function mouseoutMethod(el) {
+  $(el).css({
+    color: '#000',
+    'border-bottom-style': 'none',
+  });
 }
 
-// eslint-disable-next-line no-unused-vars
-function mouseoverMethod(event) {
-  event.target.style.color = 'green';
-  event.target.style.borderBottomStyle = 'solid';
+function mouseoverMethod(el) {
+  $(el).css({
+    color: 'green',
+    'border-bottom-style': 'solid',
+  });
 }
 
 function more_options_click_handler(id) {
@@ -24,28 +27,55 @@ function more_options_click_handler(id) {
 }
 
 module.exports = {
+  mouseoutMethod,
+  mouseoverMethod,
   column_span_click: id => {
     let span_el = $('column > #' + id);
     span_el.css('color', 'green');
     span_el.css('border-bottom-style', 'solid');
   },
   column_click_handle: id => {
-    let column_el = $('.column .col-md-1');
+    // build job 导航栏
+    if (-1 !== $.inArray(id, ['buildNav', 'jobNav'])) {
+      id === 'buildNav' &&
+        $('#buildNav')
+          .show()
+          .css({
+            color: 'green',
+            'border-bottom-style': 'solid',
+          });
+
+      if (id === 'jobNav') {
+        $('#buildNav').show();
+        $('#jobNav')
+          .show()
+          .css({
+            color: 'green',
+            'border-bottom-style': 'solid',
+          });
+      }
+
+      return;
+    }
+
+    let column_el = $('.column .main');
 
     if (
       -1 !==
       $.inArray(id, ['', 'settings', 'requests', 'caches', 'trigger_build'])
     ) {
       more_options_click_handler(id);
+      // 点击 more_options main 去色
       column_el.css('color', '#000000').css('border-bottom-style', 'none');
       $('.column #column_more_options').css({
         color: 'green',
         'border-bottom-style': 'solid',
       });
 
-      column_el.on({
-        mouseout(event) {
-          mouseoutMethod(event);
+      // 启用 main 导航鼠标移出事件
+      column_el.off('mouseout').on({
+        mouseout() {
+          mouseoutMethod($(this));
         },
       });
 
@@ -55,23 +85,25 @@ module.exports = {
     // 移除其他元素的颜色
     column_el.css({ color: '#000000', 'border-bottom-style': 'none' });
     // 启用其他元素的鼠标移出事件
-    column_el.on({
-      mouseout(event) {
-        mouseoutMethod(event);
+    column_el.off('mouseout').on({
+      mouseout() {
+        mouseoutMethod($(this));
       },
     });
 
     // 关闭该元素的鼠标移出事件
-    $('#' + id).off('mouseout');
+    $(`#${id}`).off('mouseout');
 
-    // 最后对被点击元素
-    id = document.getElementById(id);
-    id.style.color = 'green';
-    id.style.borderBottomStyle = 'solid';
+    // 最后对被点击元素上色
+    $(`#${id}`).css({
+      color: 'green',
+      'border-bottom-style': 'solid',
+    });
   },
   column_remove: () => {
     // 移除四个主要元素之外的元素
-    $('#build_id').remove();
+    $('#buildNav').hide();
+    $('#jobNav').hide();
     $('#column_ico').remove();
     $('#column_more_options').remove();
   },
