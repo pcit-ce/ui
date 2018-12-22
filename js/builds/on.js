@@ -256,9 +256,10 @@ $('.trigger_build_modal_button').on('click', () => {
   fetch(request_url, {
     method: 'post',
     headers: {
+      'Content-Type': 'Application/json',
       Authorization: 'token ' + token.getToken(url.getGitType()),
     },
-    body: { request: { config, branch } },
+    body: JSON.stringify({ request: { config, branch } }),
   })
     .then(res => {
       if (res.ok) {
@@ -272,12 +273,14 @@ $('.trigger_build_modal_button').on('click', () => {
       $('#trigger_build_modal').modal('hide');
       // 跳转到构建页面
       history.pushState(
-        { key_id: 'build' },
+        { key_id: 'buildNav' },
         null,
         url.getRepoFullNameUrl() + '/builds/' + res.build_id,
       );
 
-      common.column_click_handle('build'); // 渲染被点击的 column
+      location.reload();
+
+      common.column_click_handle('buildNav'); // 渲染被点击的 column
     })
     .catch(error => {
       // console.log(error);
