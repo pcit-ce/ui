@@ -42,7 +42,7 @@ const formatTime = unixTime => {
 const formatTotal = total => {
   // 秒
   if (total < 60) {
-    return `${diff} s`;
+    return `${total} s`;
   }
   // 分
   if (total < 60 * 60) {
