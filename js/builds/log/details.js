@@ -41,7 +41,7 @@ module.exports = {
     } else {
       stopped_time = new Date(parseInt(stopped_at) * 1000);
       stopped_string = formatTime(stopped_at);
-      stopped_title = stopped_time.toLocaleString();
+      stopped_title = 'Finished ' + stopped_time.toLocaleString();
     }
 
     let commit_url = git.getCommitUrl(
@@ -115,8 +115,9 @@ module.exports = {
     // );
 
     div_element
+      // 总用时
       .append(
-        $('<div class="build_time"></div>').append('Ran for 7 min 17 sec'),
+        $('<div class="build_time"></div>').append('Total time 7 min 17 sec'),
       )
       .append(
         $('<div class="build_time_ago"></div>')

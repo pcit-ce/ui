@@ -20,7 +20,17 @@ module.exports = {
     $.each(jobs, (index, job) => {
       let { id, started_at, finished_at, state, env_vars = '' } = job;
 
-      env_vars = env_vars ? env_vars : 'no matrix environment set';
+      if (env_vars) {
+        let obj = JSON.parse(env_vars);
+
+        for (let index in obj) {
+          env_vars = `${index}: ${obj[index]}`;
+
+          break;
+        }
+      } else {
+        env_vars = 'no matrix environment set';
+      }
 
       let status_color = common_status.getColor(state);
       let status_background_color = common_status.getColor(state, true);
@@ -32,33 +42,37 @@ module.exports = {
 
       let a_el = $('<a class="job_list"></a>');
 
+      let runTotalTime;
+      let runTotalTimeTitle;
+
+      if (null === finished_at) {
+        runTotalTime = 'Build is ' + state;
+      } else {
+        runTotalTime = 'Run ' + formatTotal(finished_at - started_at);
+        runTotalTimeTitle =
+          'Finished ' + new Date(finished_at * 1000).toLocaleString();
+      }
+
       a_el
         .append(() => {
-          let div_el = $('<div class="job_id"></div>');
-          div_el.append('# ' + id);
-          div_el.css('color', status_color);
-
-          return div_el;
+          return $('<div class="job_id"></div>')
+            .append('# ' + id)
+            .css('color', status_color);
         })
         .append(() => {
-          let div_el = $('<div class="job_os"></div>');
-          div_el.append('Linux');
-
-          return div_el;
+          return $('<div class="job_os"></div>').append('Linux');
         })
         .append(() => {
-          let div_el = $('<div class="job_env_vars"></div>');
-          div_el
-            .append(env_vars && env_vars.slice(0, 50))
-            .attr('title', env_vars);
-
-          return div_el;
+          return $('<div class="job_env_vars"></div>')
+            .append(env_vars)
+            .attr('title', 'click to see more setting env');
         })
         .append(() => {
-          let div_el = $('<div class="job_run_time"></div>');
-          div_el.append('Run ' + formatTotal(finished_at - started_at));
-
-          return div_el;
+          return $('<div class="job_run_time"></div>')
+            .append(runTotalTime)
+            .attr({
+              title: runTotalTimeTitle,
+            });
         })
         .append(() => {
           return $('<button class="job_cancel_or_restart" type="button"/>')

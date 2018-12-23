@@ -6,8 +6,12 @@ const formatTime = unixTime => {
   let int;
 
   // 秒
+  if (diff < 0) {
+    return '';
+  }
+
   if (diff < 60) {
-    return `${diff} s ago`;
+    return `${diff.toFixed(0)} s ago`;
   }
   // 分
   if (diff < 60 * 60) {
@@ -41,8 +45,12 @@ const formatTime = unixTime => {
 
 const formatTotal = total => {
   // 秒
+  if (total < 0) {
+    return '';
+  }
+
   if (total < 60) {
-    return `${total} s`;
+    return `${total.toFixed(0)} s`;
   }
   // 分
   if (total < 60 * 60) {
