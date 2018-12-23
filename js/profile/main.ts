@@ -246,11 +246,11 @@ function showGitHubAppInstall(uid: number) {
               .append($('<h5 class="card-title"></h5>'))
               .append(
                 $('<p class="card-text"></p>').append(
-                  '要使用 PCIT 必须安装 GitHub App，请点击下方按钮安装',
+                  '使用 PCIT 之前请先安装 GitHub App',
                 ),
               )
               .append(
-                $('<a class="btn btn-outline-primary">Activate</a>').attr({
+                $('<a class="btn btn-outline-primary">立即安装</a>').attr({
                   href: installation_url,
                   target: '_blank',
                 }),
