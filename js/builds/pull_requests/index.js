@@ -93,7 +93,9 @@ function display(data, url, append = false) {
           'data-id': build_id,
         })
         .append(
-          $('<a class="pull_request_url"></a>')
+          $(
+            '<a class="pull_request_url"><i class="material-icons md-16">build</i> </a>',
+          )
             .append(`#PR ${pull_request_id}`)
             .attr('title', 'View pull request on GitHub')
             .attr('href', pull_request_url)
@@ -112,19 +114,25 @@ function display(data, url, append = false) {
             .attr('title', committer_username),
         )
         .append(
-          $('<div class="commit_message"></div>')
+          $(
+            '<div class="commit_message"><i class="material-icons md-16">book</i> </div>',
+          )
             .append(commit_message.slice(0, 40))
             .attr('title', commit_message),
         )
         .append(
-          $('<a class="commit_id"></a>')
+          $(
+            '<a class="commit_id"><i class="material-icons md-16">call_split</i> </a>',
+          )
             .append(commit_id)
             .attr('href', commit_url)
             .attr('target', '_block')
             .attr('title', 'View commit on GitHub'),
         )
         .append(
-          $('<a class="build_status"></a>')
+          $(
+            '<a class="build_status"><i class="material-icons md-16">swap_vert</i> </a>',
+          )
             .append(
               $('<strong></strong>').append(
                 '#' + build_id + ' ' + build_status,
@@ -134,10 +142,16 @@ function display(data, url, append = false) {
             .attr('target', '_self')
             .css('color', status_color),
         )
-        .append($('<div class="build_time"></div>').append(started_at))
+        .append(
+          $(
+            '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
+          ).append(started_at),
+        )
         .append(() => {
           let date = new Date();
-          return $('<div class="build_time_ago"></div>')
+          return $(
+            '<div class="build_time_ago"><i class="material-icons md-16">alarm</i> </div>',
+          )
             .append(stopped_at)
             .attr('title', 'Finished ' + date.toLocaleString());
         })
@@ -145,7 +159,7 @@ function display(data, url, append = false) {
           $('<button class="cancel_or_restart"></button>')
             .append(
               $('<i class="material-icons"></i>').append(
-                button_handle === 'cancel' ? 'cancel' : 'refresh',
+                button_handle === 'cancel' ? 'highlignt_off' : 'refresh',
               ),
             )
             .attr('handle', button_handle)

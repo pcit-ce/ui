@@ -153,12 +153,16 @@ function display(data, url, append = false) {
           .attr('title', committer_username),
       )
       .append(
-        $('<div class="commit_message"></div>')
+        $(
+          '<div class="commit_message"><i class="material-icons md-16">book</i> </div>',
+        )
           .append(commit_message.slice(0, 40))
           .attr('title', commit_message),
       )
       .append(
-        $('<a class="commit_id"></a>')
+        $(
+          '<a class="commit_id"><i class="material-icons md-16">call_split</i> </a>',
+        )
           .append(commit_id)
           .attr({
             href: commit_url,
@@ -168,7 +172,9 @@ function display(data, url, append = false) {
           .addClass('commit_url'),
       )
       .append(
-        $('<a class="build_status"></a>')
+        $(
+          '<a class="build_status"><i class="material-icons md-16">swap_vert</i> </a>',
+        )
           .append($('<strong></strong>').append(`#${build_id} ${build_status}`))
           .attr({
             href: `${location.href}/${build_id}`,
@@ -176,9 +182,13 @@ function display(data, url, append = false) {
           })
           .css('color', status_color),
       )
-      .append($('<div class="build_time"></div>').append(started_at))
       .append(
-        $('<div></div>')
+        $(
+          '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
+        ).append(started_at),
+      )
+      .append(
+        $('<div><i class="material-icons md-16">alarm</i> </div>')
           .append(stopped_string)
           .addClass('build_time_ago')
           .attr('title', stopped_title),
@@ -187,7 +197,7 @@ function display(data, url, append = false) {
         $('<button class="cancel_or_restart"></button>')
           .append(
             $('<i class="material-icons"></i>').append(
-              button_handle === 'cancel' ? 'cancel' : 'refresh',
+              button_handle === 'cancel' ? 'highlight_off' : 'refresh',
             ),
           )
           .attr({

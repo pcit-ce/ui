@@ -72,17 +72,23 @@ module.exports = {
           .css('color', status_color),
       )
       .append(
-        $('<a class="branch_url">Branch </a>')
+        $(
+          '<a class="branch_url"><i class="material-icons md-16">book</i> Branch </a>',
+        )
           .append(branch)
           .attr({ href: '', target: '_block', title: 'View branch on GitHub' }),
       )
       .append(
-        $('<div class="build_status"></div>')
+        $(
+          '<div class="build_status"><i class="material-icons md-16">swap_vert</i> </div>',
+        )
           .append($('<strong></strong>').append('#' + id + ' ' + build_status))
           .css('color', status_color),
       )
       .append(
-        $('<a class="commit_url">Commit </a>')
+        $(
+          '<a class="commit_url"><i class="material-icons md-16">line_style</i> Commit </a>',
+        )
           .append(commit_id.slice(0, 7))
           .attr({
             title: 'View commit on GitHub',
@@ -99,7 +105,9 @@ module.exports = {
           .css('color', status_color),
       )
       .append(
-        $('<div class="committer"></div>')
+        $(
+          '<div class="committer"><i class="material-icons md-16">account_circle</i> </div>',
+        )
           .append(committer_name)
           .attr('title', committer_name),
       );
@@ -117,10 +125,14 @@ module.exports = {
     div_element
       // 总用时
       .append(
-        $('<div class="build_time"></div>').append('Total time 7 min 17 sec'),
+        $(
+          '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
+        ).append('Total time 7 min 17 sec'),
       )
       .append(
-        $('<div class="build_time_ago"></div>')
+        $(
+          '<div class="build_time_ago"><i class="material-icons md-16">alarm</i> </div>',
+        )
           .append(stopped_string)
           .attr({
             title: stopped_title,
@@ -131,9 +143,7 @@ module.exports = {
           .append(
             $('<i></i>')
               .addClass('material-icons')
-              .append(() => {
-                return button_handle === 'cancel' ? 'cancel' : 'refresh';
-              }),
+              .append(button_handle === 'cancel' ? 'highlight_off' : 'refresh'),
           )
           .attr('handle', button_handle)
           .attr({

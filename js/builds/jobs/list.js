@@ -60,15 +60,21 @@ module.exports = {
             .css('color', status_color);
         })
         .append(() => {
-          return $('<div class="job_os"></div>').append('Linux');
+          return $(
+            '<div class="job_os"><i class="material-icons md-16">computer</i> </div>',
+          ).append('Linux');
         })
         .append(() => {
-          return $('<div class="job_env_vars"></div>')
+          return $(
+            '<div class="job_env_vars"><i class="material-icons md-16">code</i> </div>',
+          )
             .append(env_vars)
             .attr('title', 'click to see more setting env');
         })
         .append(() => {
-          return $('<div class="job_run_time"></div>')
+          return $(
+            '<div class="job_run_time"><i class="material-icons md-16">alarm</i> </div>',
+          )
             .append(runTotalTime)
             .attr({
               title: runTotalTimeTitle,
@@ -76,11 +82,11 @@ module.exports = {
         })
         .append(() => {
           return $('<button class="job_cancel_or_restart" type="button"/>')
-            .append(() => {
-              return $('<i class="material-icons"></i>').append(() => {
-                return button_handle === 'cancel' ? 'cancel' : 'refresh';
-              });
-            })
+            .append(
+              $('<i class="material-icons"></i>').append(
+                button_handle === 'cancel' ? 'highlight_off' : 'refresh',
+              ),
+            )
             .addClass('btn btn-link')
             .attr('handle', button_handle)
             .attr('title', button_title + ' job')
