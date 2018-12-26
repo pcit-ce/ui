@@ -348,7 +348,13 @@ $('.more_options').on({
 $(document).on('click', '.builds_list_more', function() {
   let { id: last_id = null } = $('.builds_list li:last').data();
 
-  console.log(last_id);
+  // console.log(last_id);
+
+  if (last_id === 1) {
+    buildsHistory.more(url, 0, false);
+
+    return;
+  }
 
   buildsHistory.more(url, last_id - 1);
 });
@@ -356,7 +362,13 @@ $(document).on('click', '.builds_list_more', function() {
 $(document).on('click', '.pull_requests_list_more', function() {
   let { id: last_id = null } = $('.pull_requests_list li:last').data();
 
-  console.log(last_id);
+  // console.log(last_id);
+
+  if (last_id === 1) {
+    pullRequests.more(url, 0, false);
+
+    return;
+  }
 
   pullRequests.more(url, last_id - 1);
 });
@@ -364,7 +376,13 @@ $(document).on('click', '.pull_requests_list_more', function() {
 $(document).on('click', '.requests_list_more', function() {
   let { id: last_id = null } = $('.requests_list_item:last').data();
 
-  console.log(last_id);
+  // console.log(last_id);
+
+  if (last_id === 1) {
+    requests.more(url, token, 0, false);
+
+    return;
+  }
 
   requests.more(url, token, last_id - 1);
 });

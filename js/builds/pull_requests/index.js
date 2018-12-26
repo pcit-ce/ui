@@ -197,15 +197,17 @@ module.exports = {
       display(result, url);
     })();
   },
-  more: (url, before) => {
+  more: (url, before, request = true) => {
     (async () => {
-      let result = await builds.findByRepo(
-        url.getGitType(),
-        url.getRepoFullName(),
-        undefined,
-        true,
-        before,
-      );
+      let result = request
+        ? await builds.findByRepo(
+            url.getGitType(),
+            url.getRepoFullName(),
+            undefined,
+            true,
+            before,
+          )
+        : [];
 
       if (JSON.stringify(result) === '[]') {
         alert('没有了呢');

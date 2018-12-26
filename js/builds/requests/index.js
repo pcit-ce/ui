@@ -174,12 +174,16 @@ module.exports = {
     })();
   },
 
-  more(url, token, before) {
+  more(url, token, before, request = true) {
     const repo = new pcit.Repo(token, '');
 
     (async () => {
       try {
-        const result = await repo.requests.list(
+        if (!request) {
+          throw new Error('');
+        }
+
+        result = await repo.requests.list(
           url.getGitType(),
           url.getRepoFullName(),
           undefined,

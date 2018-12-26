@@ -303,15 +303,17 @@ module.exports = {
     // });
   },
 
-  more(url, before) {
+  more(url, before, request = true) {
     (async () => {
-      let result = await pcit_builds.findByRepo(
-        url.getGitType(),
-        url.getRepoFullName(),
-        undefined,
-        false,
-        before,
-      );
+      let result = request
+        ? await pcit_builds.findByRepo(
+            url.getGitType(),
+            url.getRepoFullName(),
+            undefined,
+            false,
+            before,
+          )
+        : [];
 
       if (JSON.stringify(result) === '[]') {
         alert('没有了呢');
