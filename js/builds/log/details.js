@@ -52,7 +52,7 @@ module.exports = {
 
     let div_element = $('<div class="build_data"></div>').css(
       'border-left',
-      '8px solid ' + status_color,
+      '10px solid ' + status_color,
     );
 
     // div_element.append(() => {

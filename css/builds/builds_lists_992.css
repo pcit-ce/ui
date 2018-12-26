@@ -1,43 +1,57 @@
 @media screen and (max-width: 992px) {
   .builds_list li {
-    height: 250px;
+    height: 265px;
+  }
+
+  .builds_list .event_type {
+    left: 1px;
+    height: 20px;
   }
 
   .builds_list .branch {
-    width: auto;
-    top: 55px;
-    left: 29px;
+    width: 100px;
+    top: 75px;
+    left: 30px;
+    text-align: left;
+    height: 20px;
   }
 
   .builds_list .committer {
-    width: auto;
-    top: 85px;
-    left: 29px;
+    width: 100px;
+    top: 101px;
+    left: 12px;
+    height: 20px;
   }
 
   .builds_list .commit_message {
+    padding-top: 0;
     left: 29px;
-    top: 100px;
+    top: 125px;
+    height: 20px;
   }
 
   .builds_list .commit_url {
-    left: -27px;
-    top: 150px;
+    left: -16px;
+    top: 165px;
+    height: 20px;
   }
 
   .builds_list .build_status {
-    left: 150px;
-    top: 25px;
+    left: 0;
+    top: 55px;
+    height: 20px;
   }
 
   .builds_list .build_time {
     left: 29px;
-    top: 170px;
+    top: 185px;
+    height: 20px;
   }
 
   .builds_list .build_time_ago {
     left: 29px;
-    top: 200px;
+    top: 215px;
+    height: 20px;
   }
 
   .builds_list .cancel_or_restart {

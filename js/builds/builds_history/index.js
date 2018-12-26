@@ -136,7 +136,7 @@ function display(data, url, append = false) {
     // });
 
     li_el
-      .css('border-left', '8px solid' + status_color)
+      .css('border-left', '10px solid' + status_color)
       .attr({
         'data-id': build_id,
       })
@@ -172,9 +172,7 @@ function display(data, url, append = false) {
           .addClass('commit_url'),
       )
       .append(
-        $(
-          '<a class="build_status"><i class="material-icons md-16">swap_vert</i> </a>',
-        )
+        $('<a class="build_status"></a>')
           .append($('<strong></strong>').append(`#${build_id} ${build_status}`))
           .attr({
             href: `${location.href}/${build_id}`,

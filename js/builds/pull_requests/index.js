@@ -88,14 +88,12 @@ function display(data, url, append = false) {
         //       border: '1px solid' + status_color,
         //     }),
         // )
-        .css('border-left', '8px solid ' + status_color)
+        .css('border-left', '10px solid ' + status_color)
         .attr({
           'data-id': build_id,
         })
         .append(
-          $(
-            '<a class="pull_request_url"><i class="material-icons md-16">build</i> </a>',
-          )
+          $('<a class="pull_request_url"></a>')
             .append(`#PR ${pull_request_id}`)
             .attr('title', 'View pull request on GitHub')
             .attr('href', pull_request_url)
@@ -130,9 +128,7 @@ function display(data, url, append = false) {
             .attr('title', 'View commit on GitHub'),
         )
         .append(
-          $(
-            '<a class="build_status"><i class="material-icons md-16">swap_vert</i> </a>',
-          )
+          $('<a class="build_status"></a>')
             .append(
               $('<strong></strong>').append(
                 '#' + build_id + ' ' + build_status,
