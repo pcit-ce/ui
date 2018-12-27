@@ -104,6 +104,12 @@
   font-size: 18px;
 }
 
+@media screen and (max-width: 992px) {
+  .fixedAd {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .build_data {
     height: 220px;
