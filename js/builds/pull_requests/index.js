@@ -176,9 +176,13 @@ function display(data, url, append = false) {
       return;
     }
 
-    display_element
-      .append(ul_el)
-      .append('<button class="btn pull_requests_list_more">More</button>');
+    display_element.append(ul_el).append(
+      $('<button class="pull_requests_list_more btn">More</button>')
+        .addClass('btn-success')
+        .attr({
+          title: '点击加载更多',
+        }),
+    );
 
     $('.pull_requests_list_item').fadeIn(1000);
   }
@@ -226,6 +230,8 @@ module.exports = {
           .attr({
             disabled: 'true',
           })
+          .removeClass('btn-success')
+          .addClass('btn-light')
           .text('没有了呢');
 
         return;

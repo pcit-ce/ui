@@ -142,9 +142,13 @@ function display(data, url, append = false) {
     return;
   }
 
-  display_element
-    .append(requests_el)
-    .append('<button class="btn requests_list_more">More</button>');
+  display_element.append(requests_el).append(
+    $('<button class="requests_list_more btn">More</button>')
+      .addClass('btn-success')
+      .attr({
+        title: '点击加载更多',
+      }),
+  );
 
   $('.requests_list_item').fadeIn(1000);
 }
@@ -205,6 +209,8 @@ module.exports = {
           .attr({
             disabled: 'true',
           })
+          .removeClass('btn-success')
+          .addClass('btn-light')
           .text('没有了呢');
       }
     })();

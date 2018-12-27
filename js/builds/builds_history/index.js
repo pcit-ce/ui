@@ -26,7 +26,7 @@ function display(data, url, append = false) {
 
   if (0 === data.length) {
     display_element
-      .hide()
+      .empty()
       .append(build_not_find('Not Build Yet !', '', ''))
       .fadeIn(1000);
 
@@ -217,9 +217,15 @@ function display(data, url, append = false) {
     return;
   }
 
-  display_element
-    .append(ul_el)
-    .append('<button class="builds_list_more btn">More</button>');
+  display_element.append(ul_el).append(
+    $(
+      '<button class="builds_list_more btn btn-success" type="button">More</button>',
+    ).attr({
+      'data-toggle': 'tooltip',
+      'data-placement': 'bottom',
+      title: '点击加载更多',
+    }),
+  );
 
   $('.builds_list_item').fadeIn(1000);
 
@@ -328,7 +334,12 @@ module.exports = {
         $('.builds_list_more')
           .attr({
             disabled: 'true',
+            title: '没有了呢',
+            'data-toggle': 'tooltip',
+            'data-placement': 'bottom',
           })
+          .removeClass('btn-success')
+          .addClass('btn-light')
           .text('没有了呢');
         return;
       }

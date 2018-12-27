@@ -14,6 +14,7 @@ const pullRequests = require('./pull_requests');
 const buildsHistory = require('./builds_history');
 const requests = require('./requests');
 
+// 设置 input
 $(document).on(
   'click',
   '.setting [name="build_pushes"],' +
@@ -53,10 +54,17 @@ $(document).on(
   },
 );
 
+// env delete
 $(document).on('click', '.env_list_item .delete', function() {
+  // console.log(
+  //   $(this)
+  //     .parent()
+  //     .data(),
+  // );
+
   let env_id = $(this)
     .parent()
-    .attr('env_id');
+    .data('env_id');
   $(this)
     .parent()
     .remove();
@@ -84,6 +92,7 @@ $(document).on('click', '.env_list_item .delete', function() {
   return false;
 });
 
+// env add
 $(document).on('click', '.new_env input[name="is_public"]', function() {
   let that = $(this);
 
@@ -111,7 +120,7 @@ $(document).on('click', '.new_env button', function() {
     .prev()
     .val();
 
-  console.log(is_public);
+  // console.log(is_public);
   // console.log(value);
   // console.log(name);
 
@@ -144,33 +153,35 @@ $(document).on('click', '.new_env button', function() {
 
   (async () => {
     let id = await getData();
-    console.log(id);
+    // console.log(id);
     // 增加列表
     let env_el = $('.env_list_item:nth-last-of-type(2)');
 
-    let env_item_el = $('<form class="env_list_item form-inline"></form>').attr(
+    let env_item_el = $('<form class="env_list_item form-inline"></form>').data(
       {
         env_id: id,
         public: is_public,
       },
     );
 
+    value = is_public === '0' ? '************' : value;
+
     env_item_el
-      .append(() => {
-        return $(
-          '<input class="env_name form-control" type="text" readonly/>',
-        ).attr('placeholder', name);
-      })
-      .append(() => {
-        return $(
-          '<input class="env_value form-control" type="text" readonly/>',
-        ).attr('placeholder', value);
-      })
-      .append(() => {
-        return $(
-          '<button class="delete btn btn-light btn-xs"></button>',
-        ).append('Delete');
-      });
+      .append(
+        $('<input class="env_name form-control" type="text" readonly/>').attr({
+          placeholder: name,
+        }),
+      )
+      .append(
+        $(`<input class="env_value form-control" type="text" readonly/>`).attr({
+          placeholder: value,
+        }),
+      )
+      .append(
+        $('<button class="delete btn btn-light btn-xs"></button>').append(
+          'Delete',
+        ),
+      );
 
     env_el.after(env_item_el);
 

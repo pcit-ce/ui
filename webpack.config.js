@@ -1,5 +1,6 @@
 // https://github.com/fouber/blog/issues/6
 // v4 https://segmentfault.com/a/1190000014247030
+// https://segmentfault.com/a/1190000015237322
 
 // const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -141,13 +142,13 @@ let config = {
     // v4 add, replace CommonsChunkPlugin
 
     // 首先，在新版本的 webpack 会默认对代码进行拆分，拆分的规则是：
-    // 模块被重复引用或者来自 node_modules 中的模块
+    // 模块被重复引用或者来自 node_modules 中的模块(模块被引入的次数必须大于1次)
     // 在压缩前最小为 30kb
     // 在按需加载时，请求数量小于等于 5
     // 在初始化加载时，请求数量小于等于 3
 
     splitChunks: {
-      // miniSize: 0,
+      minSize: 0,
       cacheGroups: {
         vendors: {
           test: /node_modules/,
@@ -159,10 +160,13 @@ let config = {
           test: /pcit.js/,
           priority: -10, // 表示缓存的优先级；
           minSize: 0, // 形成一个新代码块最小的体积, 30000
-          chunks: 'initial', // 表示显示块的范围,必须三选一： "initial" | "all" | "async"(默认就是async)
+          chunks: 'all', // 表示显示块的范围,必须三选一： "initial" | "all" | "async"(默认)
+          // async，表示只会提取异步加载模块的公共代码，
+          // initial 表示只会提取初始入口模块的公共代码，
+          // all表示同时提取前两者的代码。
           minChunks: 1, // 表示被引用次数，默认为 1
-          maxAsyncRequests: 1, // 最大的按需(异步)加载次数，默认为 1
-          maxInitialRequests: 1, // 最大的初始化加载次数，默认为 1
+          maxAsyncRequests: 5, // 最大的按需(异步)加载次数，默认为 1
+          maxInitialRequests: 3, // 最大的初始化加载次数，默认为 1
           // reuseExistingChunk: // 使用已经存在的块，即如果满足条件的块已经存在就使用已有的，不再创建一个新的块。
         },
       },

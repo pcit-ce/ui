@@ -71,7 +71,7 @@ const formatTotal = total => {
     return int <= 1 ? 'a day' : int + ' days';
   }
 
-  throw new Error('你的构建总时间突破天际啦！');
+  return '-';
 };
 
 module.exports = {

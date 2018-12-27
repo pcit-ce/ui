@@ -79,9 +79,7 @@ module.exports = {
           .attr({ href: '', target: '_block', title: 'View branch on GitHub' }),
       )
       .append(
-        $(
-          '<div class="build_status"><i class="material-icons md-16">swap_vert</i> </div>',
-        )
+        $('<div class="build_status"></div>')
           .append($('<strong></strong>').append('#' + id + ' ' + build_status))
           .css('color', status_color),
       )

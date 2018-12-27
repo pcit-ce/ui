@@ -89,68 +89,65 @@ function display(data, url, token) {
 
   get_env(url, token).then(result => {
     // display_element.innerHeight(400 + result.length * 50);
-    env_el.append($('<form class="env_list_item form-inline"></form>').hide());
+    let env_list_item = $('<form class="env_list_item form-inline"></form>');
+    env_el.append(env_list_item.hide());
+
     $.each(result, (index, data) => {
       let { id, name, public: is_public, value } = data;
 
       let env_item_el = $(
         '<form class="env_list_item form-inline"></form>',
-      ).attr({
+      ).data({
         env_id: id,
         public: is_public,
       });
 
       env_item_el
-        .append(() => {
-          return $(
-            '<input type="text" class="env_name form-control" readonly/>',
-          ).attr('placeholder', name);
-        })
-        .append(() => {
-          return $('<input class="env_value form-control" readonly/>').attr(
-            'placeholder',
-            is_public === '1' ? value : '************',
-          );
-        })
-        .append(() => {
-          return $(
-            '<button class="delete btn btn-light btn-xs"></button>',
-          ).append('Delete');
-        });
+        .append(
+          $(
+            '<input type="text" class="env_name form-control mb-2" readonly/>',
+          ).attr({
+            placeholder: name,
+          }),
+        )
+        .append(
+          $('<input class="env_value form-control mb-2" readonly/>').attr({
+            placeholder: is_public === '1' ? value : '************',
+          }),
+        )
+        .append(
+          $(
+            '<button class="delete btn btn-light btn-xs mb-2"></button>',
+          ).append('Delete'),
+        );
 
       env_el.append(env_item_el);
     });
 
     env_el.append(() => {
       return $('<form class="new_env form-inline"></form>')
-        .append(() => {
-          return $(
+        .append(
+          $(
             '<input class="name form-control" type="text" placeholder="name" />',
-          );
-        })
-        .append(() => {
-          return $(
+          ),
+        )
+        .append(
+          $(
             '<input class="value form-control" type="text" placeholder="value" />',
-          );
-        })
-        .append(() => {
-          return $(
+          ),
+        )
+        .append(
+          $(
             '<label class="is_public"><input type="radio" name="is_public" value="0" /></label>',
-          ).append('Public Value');
-        })
-        .append(() => {
-          return $('<button class="btn btn-light"></button>').append('Add');
-        });
+          ).append('Public Value'),
+        )
+        .append($('<button class="btn btn-light"></button>').append('Add'));
     });
   });
 
   cron_el
-    .append(() => {
-      return $('<div class="setting_title"></div>').append('Cron Jobs');
-    })
-    .append(() => {
-      return $('<label>计划构建功能即将上线</label>');
-    });
+    .append($('<div class="setting_title"></div>').append('Cron Jobs'))
+    .append($('<label>计划构建功能即将上线</label>'));
 
   setting_el.append(general_el, auto_cancellation, env_el, cron_el);
 
