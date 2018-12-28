@@ -84,7 +84,7 @@ let config = {
       template: path.resolve('./html/builds/index.html'),
       filename: path.resolve('../public/builds/index.html'),
       showErrors: true,
-      chunks: ['builds', 'noIE','ad'], // 只插入指定的 js
+      chunks: ['builds', 'noIE', 'ad'], // 只插入指定的 js
       // v4
       minify: true,
     }),
@@ -92,7 +92,7 @@ let config = {
       template: path.resolve('./html/login/index.html'),
       filename: path.resolve('../public/login/index.html'),
       showErrors: true,
-      chunks: ['login', 'noIE','ad'], // 只包括指定的 js
+      chunks: ['login', 'noIE', 'ad'], // 只包括指定的 js
       minify: true,
     }),
     new HtmlWebpackPlugin({
@@ -106,7 +106,7 @@ let config = {
       template: path.resolve('./html/profile/index.html'),
       filename: path.resolve('../public/profile/index.html'),
       showErrors: true,
-      chunks: ['profile', 'noIE','ad'], // 只包括指定的 js
+      chunks: ['profile', 'noIE', 'ad'], // 只包括指定的 js
       minify: true,
     }),
     new HtmlWebpackPlugin({

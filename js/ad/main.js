@@ -26,7 +26,8 @@ let ad = [
     src:
       'https://user-images.githubusercontent.com/16733187/50481566-4c2f2c00-0a1d-11e9-95aa-4f7ac4c29a2a.jpg',
     title: '阿里云学生专享服务器 ￥9.5/月',
-    url: 'https://promotion.aliyun.com/ntms/act/campus2018.html?utm_content=se_1000442301&userCode=8lx5zmtu',
+    url:
+      'https://promotion.aliyun.com/ntms/act/campus2018.html?utm_content=se_1000442301&userCode=8lx5zmtu',
   },
   {
     src:
@@ -48,18 +49,18 @@ let ad = [
   },
 ];
 
-let showAd = (index) => {
+let showAd = index => {
   $('.fixedAd').remove();
 
-  if($(document).width() < 1426 ){
+  if ($(document).width() < 1426) {
     return;
   }
 
-  if(index === undefined){
-    index = Math.floor(Math.random() * (ad.length));
+  if (index === undefined) {
+    index = Math.floor(Math.random() * ad.length);
   }
 
-  let {src,title,url} = ad[index];
+  let { src, title, url } = ad[index];
 
   url = url === null ? src : url;
 
