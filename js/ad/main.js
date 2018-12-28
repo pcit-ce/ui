@@ -2,7 +2,7 @@ let ad = [
   {
     src:
       'https://user-images.githubusercontent.com/16733187/50481394-34a37380-0a1c-11e9-9f92-91bf6c74d06d.jpg',
-    title: '微信扫码赞助本项目(点击查看大图)',
+    title: '微信扫码赞助 PCIT(点击查看大图)',
     url: null,
   },
   {
@@ -44,7 +44,7 @@ let ad = [
   {
     src:
       'https://user-images.githubusercontent.com/16733187/50481566-4c2f2c00-0a1d-11e9-95aa-4f7ac4c29a2a.jpg',
-    title: '企业赞助 ￥500/月，您的 Log 将随机展示到本站',
+    title: '企业赞助 PCIT ￥500/月，您的 Log 将随机展示到本站',
     url: 'mailto:ci@khs1994.com',
   },
 ];
