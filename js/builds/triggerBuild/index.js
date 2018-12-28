@@ -14,7 +14,7 @@ function display(url) {
     );
 
     // branches 列表为空，则为 master
-    data = data === [] ? ['master'] : data;
+    data = JSON.stringify(data) === '[]' ? ['master'] : data;
 
     // 填充 branches 列表
     $.each(data, (index, key) => {
