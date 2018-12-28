@@ -30,7 +30,7 @@
   .build_data .build_status {
     position: absolute;
     left: 30px;
-    top: 220px;
+    top: 225px;
   }
 
   .build_data .build_time {

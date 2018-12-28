@@ -22,7 +22,7 @@
 .job_list .job_id {
   /*background: red;*/
   width: 100px;
-  height: 24px;
+  height: 36px;
   position: absolute;
   padding-top: 10px;
 }
@@ -32,8 +32,8 @@
   width: 100px;
   position: absolute;
   left: 120px;
-  height: 24px;
-  padding-top: 10px;
+  height: 36px;
+  padding-top: 5px;
 }
 
 @media screen and (min-width: 992px) {
@@ -44,8 +44,8 @@
     /*background: yellow;*/
     position: absolute;
     left: 240px;
-    padding-top: 10px;
-    height: 24px;
+    padding-top: 5px;
+    height: 36px;
   }
 
   .job_list .job_run_time {
@@ -53,8 +53,8 @@
     width: 200px;
     position: absolute;
     right: 200px;
-    height: 24px;
-    padding-top: 10px;
+    height: 36px;
+    padding-top: 5px;
   }
 
   .job_list .job_cancel_or_restart {
@@ -79,7 +79,7 @@
   .job_list .job_run_time {
     position: absolute;
     left: 400px;
-    margin-top: 10px;
+    padding-top: 5px;
   }
 
   .job_list .job_cancel_or_restart {
