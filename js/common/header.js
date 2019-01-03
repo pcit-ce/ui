@@ -14,6 +14,7 @@ module.exports.show = () => {
   <span class="navbar-toggler-icon"></span>
 </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" target="_blank" href="//ci.khs1994.com/changelog">CHANGELOG</a>
@@ -32,7 +33,26 @@ module.exports.show = () => {
         </li>
         <li class="nav-item">
           <a class="nav-link" target="_blank" href="https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61">
-          Try Kubernetes</a></div>
+          Try Kubernetes</a>
+        </li>
+
+        <li class="nav-item dropdown userHeader" style="display:none">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="rounded" src="" style="width:20px;height:20px"/>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item username disabled" >Welcome </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item profile">个人中心</a>
+          <a class="dropdown-item settings">设置</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item invite">邀请好友</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item logout">注销</a>
+        </li>
+
+        <li class="nav-item login" style="display:none">
+        <a class="nav-link" href="/login">登录</a>
         </li>
     </ul>
     </div>

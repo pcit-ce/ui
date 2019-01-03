@@ -8,18 +8,16 @@ const common = require('./common');
 const token = require('../common/token');
 
 const navClick = require('./navClick');
-const changeUrl = require('./changeUrl');
+// const changeUrl = require('./changeUrl');
 const showRepoTitle = require('./showRepoTitle');
+const handleHeader = require('./handleHeader');
 
 header.show();
 footer.show();
 
-require('./on');
+handleHeader(token.getToken(url.getGitType()), url.getGitType());
 
-// 游客模式 隐藏部分按钮
-if (!token.getToken(url.getGitType())) {
-  $('.more_options .auth').remove();
-}
+require('./on');
 
 // https://www.cnblogs.com/yangzhi/p/3576520.html
 $('.column .main').on({
@@ -29,7 +27,6 @@ $('.column .main').on({
     let id = el[0].id;
 
     // console.log(id);
-    console.log(id);
     if (-1 === $.inArray(id, ['buildNav', 'jobNav'])) {
       navClick(id);
     }
@@ -55,7 +52,7 @@ $(document).ready(() => {});
 // =
 
 jQuery(document).ready(function() {
-  console.log('ready');
+  // console.log('ready');
 
   let type = url.getType();
 
@@ -79,6 +76,11 @@ jQuery(document).ready(function() {
   common.column_click_handle(type); // 渲染被点击的 column
   // changeUrl(type, true);
 });
+
+// 游客模式 隐藏部分按钮
+if (!token.getToken(url.getGitType())) {
+  $('.more_options .auth').remove();
+}
 
 // 处理回退事件
 window.onpopstate = event => {

@@ -7,3 +7,43 @@ body {
     'HanHei SC', 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'PingFang SC',
     'Helvetica Neue', 'Helvetica', 'Arial', tahoma, sans-serif;
 }
+
+body {
+  /*
+   * 滚动条页面抖动
+   * bootstrap 模态窗口抖动
+   * @see https://blog.csdn.net/zh_rey/article/details/77531224
+   * @see https://blog.csdn.net/sinat_23668639/article/details/49489793
+   */
+  padding-left: calc(100vw - 100%);
+}
+
+header {
+  margin-left: -20px;
+}
+
+.navbar-brand {
+  margin-left: 20px;
+}
+
+#navbarDropdownMenuLink {
+  color: hsla(0, 0%, 100%, 0.75);
+}
+
+#navbarDropdownMenuLink:hover {
+  color: #dcdddd;
+}
+
+@media screen and (min-width: 990px) {
+  header .userHeader {
+    margin-left: auto;
+  }
+
+  header .login {
+    margin-left: auto;
+  }
+
+  header .mr-auto {
+    width: 100%;
+  }
+}

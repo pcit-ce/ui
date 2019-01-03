@@ -1,7 +1,6 @@
 'use strict';
 
 const css = require('../../css/profile.css');
-
 const header = require('../common/header');
 const footer = require('../common/footer');
 const git = require('../common/git');
@@ -10,17 +9,19 @@ const title = require('../common/title');
 
 const ClipboardJS = require('clipboard');
 const Cookies = require('js-cookie');
+const handleHeader = require('../builds/handleHeader');
+let url_array = location.href.split('/');
+let git_type = url_array[4];
+// eslint-disable-next-line no-undef
+let token = Cookies.get(git_type + '_api_token');
 
 header.show();
 footer.show();
 
-let ci_host = 'https://' + location.host + '/';
-let url_array = location.href.split('/');
-let git_type = url_array[4];
-let username = url_array[5];
+handleHeader(token, git_type);
 
-// eslint-disable-next-line no-undef
-let token = Cookies.get(git_type + '_api_token');
+let ci_host = 'https://' + location.host + '/';
+let username = url_array[5];
 
 const pcit = require('@pcit/pcit-js');
 const pcit_system = new pcit.System(token, '');
