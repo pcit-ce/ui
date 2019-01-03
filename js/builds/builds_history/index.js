@@ -4,9 +4,7 @@ const builds = require('../builds');
 const common_status = require('../../common/status');
 const build_not_find = require('../error/error').error_info;
 const formatTime = require('../time').formatTime;
-
 const pcit = require('@pcit/pcit-js');
-
 const pcit_builds = new pcit.Builds('', '');
 
 const showBuildNav = (build_id, trigger = false) => {
@@ -124,6 +122,7 @@ function display(data, url, append = false) {
     } = common_status.getButton(build_status);
     status_color = common_status.getColor(build_status);
     build_status = common_status.change(build_status);
+    const className = common_status.getClassName(build_status);
 
     // li_el.append(() => {
     //   let div_element = $('<div class="build_id"></div>');
@@ -136,7 +135,7 @@ function display(data, url, append = false) {
     // });
 
     li_el
-      .css('border-left', '10px solid' + status_color)
+      .addClass(className)
       .attr({
         'data-id': build_id,
       })
@@ -345,7 +344,7 @@ module.exports = {
         return;
       }
 
-      console.log(result);
+      // console.log(result);
       display(result, url, true);
     })();
   },

@@ -24,3 +24,24 @@
 .requests_list_item .branch {
   white-space: nowrap;
 }
+
+/*  */
+.requests_list_item.passed {
+  border-left: 10px solid #39aa56;
+}
+
+.requests_list_item.failed {
+  border-left: 10px solid #db4545;
+}
+
+.requests_list_item.errored {
+  border-left: 10px solid #db4545;
+}
+
+.requests_list_item.default {
+  border-left: 10px solid #edde3f;
+}
+
+.requests_list_item.canceled {
+  border-left: 10px solid #9d9d9d;
+}

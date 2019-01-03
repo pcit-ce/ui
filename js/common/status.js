@@ -35,6 +35,16 @@ module.exports = {
     return getColor(status, backgroud);
   },
 
+  getClassName(status) {
+    let className = 'default';
+
+    if (-1 !== $.inArray(status, ['passed', 'failed', 'canceled', 'errored'])) {
+      className = status;
+    }
+
+    return className;
+  },
+
   change: status => {
     switch (status) {
       case 'in_progress':

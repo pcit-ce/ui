@@ -49,8 +49,10 @@ function display(data, url, append = false) {
         ? status.getColor('error')
         : status.getColor('success');
 
+    const className = build_status === 'skip' ? 'errored' : 'passed';
+
     requests_el_item
-      .css('border-left', '8px solid' + color)
+      .addClass(className)
       .attr({
         'data-id': id,
       })

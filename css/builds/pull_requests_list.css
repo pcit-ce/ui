@@ -32,6 +32,26 @@
 /**/
 /*}*/
 
+.pull_requests_list_item.passed {
+  border-left: 10px solid #39aa56;
+}
+
+.pull_requests_list_item.failed {
+  border-left: 10px solid #db4545;
+}
+
+.pull_requests_list_item.errored {
+  border-left: 10px solid #db4545;
+}
+
+.pull_requests_list_item.default {
+  border-left: 10px solid #edde3f;
+}
+
+.pull_requests_list_item.canceled {
+  border-left: 10px solid #9d9d9d;
+}
+
 .pull_requests_list .build_id {
   /*background: red;*/
   height: 100px;
@@ -60,7 +80,7 @@
   /*float: left;*/
   position: absolute;
   left: 110px;
-  top: 0;
+  top: 5px;
   font-size: 18px;
 }
 
@@ -71,7 +91,7 @@
   /*float: left;*/
   position: absolute;
   left: 110px;
-  top: 50px;
+  top: 55px;
 }
 
 .pull_requests_list .commit_message {
@@ -108,7 +128,7 @@
   /*float: left;*/
   position: absolute;
   left: 532px;
-  top: 5px;
+  top: 9px;
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;
