@@ -43,6 +43,25 @@ module.exports = {
     return commitUrl;
   },
 
+  getBranchUrl: (username, repo, branch, gitType = 'github') => {
+    let branchUrl;
+
+    let repo_full_name = repo ? username + '/' + repo : username;
+
+    switch (gitType) {
+      case 'github':
+        branchUrl = 'https://github.com/' + repo_full_name + '/tree/' + branch;
+        break;
+
+      case 'gitee':
+        branchUrl = `https://gitee.com/${repo_full_name}/tree/${branch}`;
+
+        break;
+    }
+
+    return branchUrl;
+  },
+
   getPullRequestUrl: (username, repo, pull_request_id, gitType = 'github') => {
     let prUrl;
 

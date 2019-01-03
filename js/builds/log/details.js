@@ -50,6 +50,8 @@ module.exports = {
       commit_id,
     );
 
+    let branchUrl = git.getBranchUrl(url.getUsername(), url.getRepo(), branch);
+
     let div_element = $('<div class="build_data"></div>').css(
       'border-left',
       '10px solid ' + status_color,
@@ -76,7 +78,11 @@ module.exports = {
           '<a class="branch_url"><i class="material-icons md-16">book</i> Branch </a>',
         )
           .append(branch)
-          .attr({ href: '', target: '_block', title: 'View branch on GitHub' }),
+          .attr({
+            href: branchUrl,
+            target: '_block',
+            title: 'View branch on GitHub',
+          }),
       )
       .append(
         $('<div class="build_status"></div>')

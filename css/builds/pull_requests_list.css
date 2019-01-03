@@ -24,7 +24,7 @@
   border: 2px solid #f4f4f4;
   border-left: none;
   margin-bottom: 10px;
-  height: 100px;
+  height: 102px;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@
   /*float: left;*/
   position: absolute;
   left: 110px;
-  top: 55px;
+  top: 53px;
 }
 
 .pull_requests_list .commit_message {
