@@ -27,7 +27,7 @@ header {
 }
 
 #navbarDropdownMenuLink {
-  color: hsla(0, 0%, 100%, 0.75);
+  color: #fff;
 }
 
 #navbarDropdownMenuLink:hover {
