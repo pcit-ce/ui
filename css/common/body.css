@@ -53,3 +53,7 @@ header {
     margin-left: 19px;
   }
 }
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}

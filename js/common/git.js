@@ -79,4 +79,8 @@ module.exports = {
 
     return prUrl;
   },
+
+  getIcoUrl(gitType = 'github') {
+    return '/ico/' + gitType + '.png';
+  },
 };

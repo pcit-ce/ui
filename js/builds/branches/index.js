@@ -8,7 +8,9 @@ function display(data) {
 
   if (0 === data.length) {
     display_element
-      .append(error_info('Not Build Yet !', '', '', 'primary'))
+      .append(
+        error_info('Not Build Yet, branches not find !', '', '', 'primary'),
+      )
       .fadeIn(1000);
     // display_element.innerHeight(55);
   } else {
