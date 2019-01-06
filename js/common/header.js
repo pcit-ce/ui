@@ -1,4 +1,4 @@
-module.exports.show = () => {
+const show = () => {
   //   $('header').append(`
   // <span class="ico"><img class="rounded" alt='pcit' title="PCIT IS A PHP CI TOOLKIT" id="pcit_ico" src="/ico/pcit.png"/></span>
   // <span class="docs"><a href="//docs.ci.khs1994.com" target="_blank">Documentation</a></span>
@@ -41,6 +41,7 @@ module.exports.show = () => {
           <img class="rounded" src="" style="width:20px;height:20px"/>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item gitType disabled">Git Powered By </a>
           <a class="dropdown-item username disabled" >Welcome </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item profile">个人中心</a>
@@ -59,3 +60,5 @@ module.exports.show = () => {
     </div>
   </nav>`);
 };
+
+module.exports.show = show;

@@ -1,4 +1,7 @@
 import '../../css/login.css';
+const header = require('../common/header');
+
+header.show();
 
 /* eslint-disable no-undef */
 

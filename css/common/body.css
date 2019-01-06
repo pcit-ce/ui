@@ -23,7 +23,7 @@ header {
 }
 
 .navbar-brand {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 #navbarDropdownMenuLink {
@@ -51,6 +51,10 @@ header {
 @media screen and (max-width: 990px) {
   #navbarSupportedContent {
     margin-left: 19px;
+  }
+
+  .navbar-brand {
+    margin-left: 20px;
   }
 }
 
