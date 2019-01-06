@@ -76,12 +76,12 @@ function display_username(username_data, git_type = 'github') {
   new Vue({
     el: '#username_display',
     data: {
-      pic: username_data.pic,
+      pic: username_data.pic || '/ico/pcit.png',
       username: username_data.username,
     },
     methods: {
       git_url: function() {
-        return git.getUrl(this.username, git_type);
+        return git.getUrl(this.username, '', git_type);
       },
     },
   });

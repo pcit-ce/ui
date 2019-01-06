@@ -13,12 +13,14 @@ module.exports = {
     let url;
     switch (gitType) {
       case 'github':
-        url = 'https://github.com';
+        url = `https://github.com/${username}`;
         break;
       case 'gitee':
-        url = 'https://gitee.com';
+        url = `https://gitee.com/${username}`;
         break;
     }
+
+    url = repo ? `${url}/${repo}` : url;
 
     return url;
   },

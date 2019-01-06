@@ -30,11 +30,7 @@ const showRepoTitle = () => {
             }),
         )
         .attr({
-          href: [
-            git.getUrl(url.getUsername(), url.getRepo(), url.getGitType()),
-            url.getUsername(),
-            url.getRepo(),
-          ].join('/'),
+          href: git.getUrl(url.getUsername(), url.getRepo(), url.getGitType()),
           target: '_block',
         })
         .css({
