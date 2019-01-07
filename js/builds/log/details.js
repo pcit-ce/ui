@@ -135,7 +135,7 @@ module.exports = {
       )
       .append(
         $(
-          '<div class="build_time_ago"><i class="material-icons md-16">alarm</i> </div>',
+          '<div class="build_time_ago"><i class="material-icons md-16">event_note</i> </div>',
         )
           .append(stopped_string)
           .attr({

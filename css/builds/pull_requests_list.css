@@ -71,6 +71,7 @@
   top: 0;
   text-align: center;
   padding-top: 25px;
+  text-transform: uppercase;
 }
 
 .pull_requests_list .branch {

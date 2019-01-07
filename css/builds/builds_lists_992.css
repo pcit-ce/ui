@@ -8,6 +8,7 @@
     left: 23px;
     height: 20px;
     text-align: left;
+    text-transform: capitalize;
   }
 
   .builds_list .build_status {

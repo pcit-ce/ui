@@ -153,7 +153,7 @@ function display(data, url, append = false) {
       )
       .append(
         $(
-          '<div class="commit_message"><i class="material-icons md-16">book</i> </div>',
+          '<div class="commit_message"><i class="material-icons md-16">all_inclusive</i> </div>',
         )
           .append(commit_message.slice(0, 40))
           .attr('title', commit_message),
@@ -185,7 +185,7 @@ function display(data, url, append = false) {
         ).append(started_at),
       )
       .append(
-        $('<div><i class="material-icons md-16">alarm</i> </div>')
+        $('<div><i class="material-icons md-16">event_note</i> </div>')
           .append(stopped_string)
           .addClass('build_time_ago')
           .attr('title', stopped_title),

@@ -114,7 +114,7 @@ function display(data, url, append = false) {
         )
         .append(
           $(
-            '<div class="commit_message"><i class="material-icons md-16">book</i> </div>',
+            '<div class="commit_message"><i class="material-icons md-16">all_inclusive</i> </div>',
           )
             .append(commit_message.slice(0, 40))
             .attr('title', commit_message),
@@ -147,7 +147,7 @@ function display(data, url, append = false) {
         .append(() => {
           let date = new Date();
           return $(
-            '<div class="build_time_ago"><i class="material-icons md-16">alarm</i> </div>',
+            '<div class="build_time_ago"><i class="material-icons md-16">event_note</i> </div>',
           )
             .append(stopped_at)
             .attr('title', 'Finished ' + date.toLocaleString());
