@@ -100,7 +100,7 @@
   position: absolute;
   /*float: left;*/
   left: 239px;
-  padding-top: 10px;
+  padding-top: 6px;
   color: #666666;
   text-align: left;
 }
@@ -129,7 +129,7 @@
   /*float: left;*/
   position: absolute;
   left: 550px;
-  top: 8px;
+  top: 12px;
   text-align: center;
   font-weight: 500;
 }
@@ -142,7 +142,7 @@
   /*float: left;*/
   position: absolute;
   left: 773px;
-  top: 2px;
+  top: 7px;
   /*padding-left: 100px;*/
   color: #666666;
   /*text-align: center;*/
@@ -152,11 +152,11 @@
   font-size: 16px;
   /*background: blueviolet;*/
   width: 200px;
-  height: 50px;
+  height: 51px;
   /*float: left;*/
   position: absolute;
   left: 773px;
-  top: 50px;
+  top: 51px;
   /*padding-left: 100px;*/
   color: #666666;
   /*text-align: center;*/

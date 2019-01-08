@@ -29,7 +29,7 @@
 
   .pull_requests_list .commit_message {
     padding-top: 0;
-    left: -6px;
+    left: -1px;
     top: 130px;
     height: 20px;
     text-align: left;
