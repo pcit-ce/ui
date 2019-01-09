@@ -1,0 +1,7 @@
+language: node_js
+
+pipeline:
+
+  script:
+    commands:
+      - echo "this build powered by PCIT"

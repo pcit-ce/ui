@@ -94,14 +94,14 @@ function display(data, url, append = false) {
         let day = time > 1 ? Math.round(time) : '1';
 
         return $(
-          '<div class="created_at col-md-2"><i class="material-icons md-16">alarm</i> </div>',
+          '<div class="created_at col-md-2"><i class="material-icons md-16">event_note</i> </div>',
         )
           .append(day + ' days ago')
           .attr('title', new Date(created_at * 1000).toLocaleString());
       })
       .append(() => {
         return $(
-          '<div class="commit_message col-md-3 text-truncate"><i class="material-icons md-16">book</i> </div>',
+          '<div class="commit_message col-md-3 text-truncate"><i class="material-icons md-16">all_inclusive</i> </div>',
         )
           .append(commit_message)
           .attr('title', commit_message);
