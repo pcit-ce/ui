@@ -114,10 +114,10 @@
   /*left: 110px;*/
   top: 60px;
   margin-top: -10px;
-  text-align: center;
+  text-align: left;
   color: #666666;
   font-size: 13px;
-  left: 550px;
+  left: 555px;
   white-space: nowrap;
 }
 
@@ -128,9 +128,9 @@
   /*background: aqua;*/
   /*float: left;*/
   position: absolute;
-  left: 550px;
+  left: 555px;
   top: 12px;
-  text-align: center;
+  text-align: left;
   font-weight: 500;
 }
 

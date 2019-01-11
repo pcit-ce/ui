@@ -1,3 +1,5 @@
+// unixTime is php time()
+// js time = php time() * 1000
 const formatTime = unixTime => {
   const nowTime = new Date().getTime();
 

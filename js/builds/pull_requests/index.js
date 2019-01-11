@@ -2,6 +2,8 @@ const { column_span_click } = require('../common');
 const git = require('../../common/git');
 const common_status = require('../../common/status');
 const error_info = require('../error/error').error_info;
+const formatTime = require('../time').formatTime;
+const formatTotal = require('../time').formatTotal;
 
 const pcit = require('@pcit/pcit-js');
 const builds = new pcit.Builds('', '');
@@ -33,7 +35,7 @@ function display(data, url, append = false) {
         commit_message,
         commit_id,
         build_status,
-        started_at,
+        total_time,
         finished_at: stopped_at,
       } = status;
 
@@ -51,20 +53,21 @@ function display(data, url, append = false) {
 
       commit_id = commit_id.substr(0, 7);
 
-      if (null == started_at) {
-        started_at = 'Pending';
+      if (null == total_time || total_time <= 0) {
+        total_time = 'Pending';
       } else {
-        let d;
-        d = new Date(started_at * 1000);
-        started_at = d.toLocaleString();
+        total_time = formatTotal(total_time);
       }
+
+      let stopped_at_title;
 
       if (null == stopped_at) {
         stopped_at = 'Pending';
       } else {
         let d;
         d = new Date(stopped_at * 1000);
-        stopped_at = d.toLocaleString();
+        stopped_at = formatTime(stopped_at);
+        stopped_at_title = d.toLocaleString();
       }
 
       let status_color;
@@ -96,9 +99,11 @@ function display(data, url, append = false) {
         .append(
           $('<a class="pull_request_url"></a>')
             .append(`#PR ${pull_request_id}`)
-            .attr('title', 'View pull request on GitHub')
-            .attr('href', pull_request_url)
-            .attr('target', '_block')
+            .attr({
+              title: 'View pull request on GitHub',
+              href: pull_request_url,
+              target: '_block',
+            })
             .css('color', status_color),
         )
         .append(
@@ -121,12 +126,14 @@ function display(data, url, append = false) {
         )
         .append(
           $(
-            '<a class="commit_id"><i class="material-icons md-16">call_split</i> </a>',
+            '<a class="commit_id"><i class="material-icons md-16">linear_scale</i> </a>',
           )
             .append(commit_id)
-            .attr('href', commit_url)
-            .attr('target', '_block')
-            .attr('title', 'View commit on GitHub'),
+            .attr({
+              href: commit_url,
+              target: '_block',
+              title: 'View commit on GitHub',
+            }),
         )
         .append(
           $('<a class="build_status"></a>')
@@ -135,23 +142,24 @@ function display(data, url, append = false) {
                 '#' + build_id + ' ' + build_status,
               ),
             )
-            .attr('href', `${repo_full_name_url}/builds/${build_id}`)
-            .attr('target', '_self')
+            .attr({
+              href: `${repo_full_name_url}/builds/${build_id}`,
+              target: '_self',
+            })
             .css('color', status_color),
         )
         .append(
           $(
             '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
-          ).append(started_at),
+          ).append(total_time),
         )
-        .append(() => {
-          let date = new Date();
-          return $(
+        .append(
+          $(
             '<div class="build_time_ago"><i class="material-icons md-16">event_note</i> </div>',
           )
             .append(stopped_at)
-            .attr('title', 'Finished ' + date.toLocaleString());
-        })
+            .attr('title', stopped_at_title),
+        )
         .append(
           $('<button class="cancel_or_restart"></button>')
             .append(
@@ -159,10 +167,12 @@ function display(data, url, append = false) {
                 button_handle === 'cancel' ? 'highlignt_off' : 'refresh',
               ),
             )
-            .attr('handle', button_handle)
-            .attr('title', button_title + ' build')
-            .attr('event_id', build_id)
-            .attr('job_or_build', 'build')
+            .attr({
+              handle: button_handle,
+              title: button_title + ' build',
+              event_id: build_id,
+              job_or_build: 'build',
+            })
             .addClass('btn btn-link'),
         );
       li_el.css({
@@ -238,7 +248,7 @@ module.exports = {
         return;
       }
 
-      console.log(result);
+      // console.log(result);
       display(result, url, true);
     })();
   },

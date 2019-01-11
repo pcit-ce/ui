@@ -160,7 +160,7 @@ function display(data, url, append = false) {
       )
       .append(
         $(
-          '<a class="commit_id"><i class="material-icons md-16">call_split</i> </a>',
+          '<a class="commit_id"><i class="material-icons md-16">linear_scale</i> </a>',
         )
           .append(commit_id)
           .attr({
