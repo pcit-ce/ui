@@ -1,7 +1,33 @@
 language: node_js
 
+cache:
+  directories:
+    - node_modules
+
 pipeline:
 
-  script:
+  install:
+    image: khs1994/node:git
     commands:
-      - echo "this build powered by PCIT"
+      - npm install --registry=https://registry.npm.taobao.org --cache=/tmp/pcit_cache/npm
+
+  script:
+    command:
+      - npm run build
+      - cp -r ../public .
+      - ls -la
+
+  deploy_s3:
+    when:
+      status: success
+      event: ['push']
+    settings:
+      provider: s3
+      local_dir: public
+      upload_dir: ui/nightly/${PCIT_COMMIT}
+      region: 'us-east-1'
+      access_key_id: ${S3_ACCESS_KEY_ID}
+      secret_access_key: ${S3_SECRET_ACCESS_KEY}
+      bucket: pcit
+      endpoint: https://storage.khs1994.com
+      minio: true

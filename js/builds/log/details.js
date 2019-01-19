@@ -91,7 +91,7 @@ module.exports = {
       )
       .append(
         $(
-          '<a class="commit_url"><i class="material-icons md-16">line_style</i> Commit </a>',
+          '<a class="commit_url"><i class="material-icons md-16">linear_scale</i> Commit </a>',
         )
           .append(commit_id.slice(0, 7))
           .attr({

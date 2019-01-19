@@ -58,7 +58,7 @@
 }
 
 #more_options {
-  color: black;
+  color: #fff;
   border: 1px solid;
   width: 105px;
   text-decoration: none;
@@ -251,4 +251,8 @@ tr {
 
 .material-icons {
   color: #666666;
+}
+
+.navMarginLeft {
+  margin-left: 15px;
 }
