@@ -26,6 +26,8 @@
   margin-bottom: 10px;
   height: 102px;
   text-align: center;
+  width: 99%;
+  left: 10px;
 }
 
 /*.pull_requests_list .id {*/
@@ -54,7 +56,7 @@
 
 .pull_requests_list .build_id {
   /*background: red;*/
-  height: 100px;
+  height: 100%;
   width: 10px;
   /*float: left;*/
   margin-left: -10px;

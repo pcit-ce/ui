@@ -52,10 +52,11 @@ function display(data, url, append = false) {
     const className = build_status === 'skip' ? 'errored' : 'passed';
 
     requests_el_item
-      .addClass(className)
+      // .addClass(className)
       .attr({
         'data-id': id,
       })
+      .append($('<div class="status_bar"></div>').addClass(className))
       .append(
         $('<div class="event_type col-md-1"></div>').append(
           event_type === 'pull_request' ? 'pr' : event_type,

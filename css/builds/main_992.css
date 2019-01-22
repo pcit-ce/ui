@@ -1,12 +1,14 @@
 @media screen and (max-width: 992px) {
-  .build_data {
-    height: 400px;
-  }
-
   .build_data .branch {
     width: auto;
     max-width: 80%;
     left: -40px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .build_data {
+    height: 400px;
   }
 
   .build_data .commit_url {

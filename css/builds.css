@@ -72,6 +72,8 @@
   border-right: 2px solid #f4f4f4;
   /* height: 220px; */
   /* margin-left: 10px; */
+  left: 10px;
+  width: 99%;
 }
 
 .build_data a {
@@ -86,7 +88,7 @@
 .build_data .build_id {
   background: red;
   width: 10px;
-  height: 221px;
+  height: 100%;
   margin-left: -10px;
   border-top: 1px solid red;
   margin-top: -1px;
@@ -98,11 +100,16 @@
   position: absolute;
   width: 100px;
   height: 30px;
-  left: -20px;
   top: 10px;
   padding-left: 50px;
   font-size: 18px;
   max-width: 50%;
+}
+
+@media screen and (min-width: 992px) {
+  .build_data .branch {
+    left: -20px;
+  }
 }
 
 @media screen and (max-width: 992px) {

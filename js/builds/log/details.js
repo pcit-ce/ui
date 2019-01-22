@@ -52,21 +52,17 @@ module.exports = {
 
     let branchUrl = git.getBranchUrl(url.getUsername(), url.getRepo(), branch);
 
-    let div_element = $('<div class="build_data"></div>').css(
-      'border-left',
-      '10px solid ' + status_color,
-    );
-
-    // div_element.append(() => {
-    //   let build_id_element = $('<div class="build_id"></div>');
-    //   build_id_element.append('').css({
-    //     background: status_color,
-    //     border: '1px solid ' + status_color,
-    //   });
-    //   return build_id_element;
-    // });
+    let div_element = $('<div class="build_data"></div>');
 
     div_element
+      .append(
+        $('<div class="build_id"></div>')
+          .append('')
+          .css({
+            background: status_color,
+            border: '1px solid ' + status_color,
+          }),
+      )
       .append(
         $('<div class="branch text-truncate"></div>')
           .append($('<strong></strong>').append(branch.slice(0, 7)))

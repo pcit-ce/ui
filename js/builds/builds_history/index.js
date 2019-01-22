@@ -122,20 +122,17 @@ function display(data, url, append = false) {
     } = common_status.getButton(build_status);
     status_color = common_status.getColor(build_status);
     build_status = common_status.change(build_status);
-    const className = common_status.getClassName(build_status);
+    // const className = common_status.getClassName(build_status);
 
-    // li_el.append(() => {
-    //   let div_element = $('<div class="build_id"></div>');
-    //   div_element.append('').css({
-    //     background: status_color,
-    //     border: '1px solid' + status_color,
-    //   });
-    //
-    //   return div_element;
-    // });
+    li_el.append(
+      $('<div class="build_id"></div>').css({
+        background: status_color,
+        border: '1px solid' + status_color,
+      }),
+    );
 
     li_el
-      .addClass(className)
+      // .addClass(className)
       .attr({
         'data-id': build_id,
       })

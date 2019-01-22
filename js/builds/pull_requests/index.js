@@ -78,21 +78,19 @@ function display(data, url, append = false) {
       } = common_status.getButton(build_status);
       status_color = common_status.getColor(build_status);
       build_status = common_status.change(build_status);
-      const className = common_status.getClassName(build_status);
+      // const className = common_status.getClassName(build_status);
 
       let li_el = $('<li class="pull_requests_list_item"></li>');
 
       li_el
         // .append($('<div class="id"></div>').append())
-        // .append(
-        //   $('<div class="build_id"></div>')
-        //     .append('')
-        //     .css({
-        //       background: status_color,
-        //       border: '1px solid' + status_color,
-        //     }),
-        // )
-        .addClass(className)
+        .append(
+          $('<div class="build_id"></div>').css({
+            background: status_color,
+            border: '1px solid' + status_color,
+          }),
+        )
+        // .addClass(className)
         .attr({
           'data-id': build_id,
         })

@@ -50,9 +50,9 @@
 .builds_list .build_id {
   font-size: 16px;
   width: 10px;
-  height: 100px;
+  height: 100%;
   /*float: left;*/
-  margin-left: -10px;
+  /* margin-left: -10px; */
   position: absolute;
 }
 
@@ -67,7 +67,7 @@
   padding-top: 25px;
   text-transform: capitalize;
   text-align: left;
-  left: 10px;
+  left: 20px;
 }
 
 .builds_list .branch {
