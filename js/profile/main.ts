@@ -94,12 +94,18 @@ function copyToken() {
 }
 
 // show repos
-function list_repos(data: object) {
+function list_repos(reposData: any) {
   let repos_element = $('#repos');
 
   repos_element.empty();
 
-  $.each(data, function(num: number, repo: any) {
+  let reposArr: any[] = [];
+
+  for (let repo of reposData) {
+    repo.build_id ? reposArr.unshift(repo) : reposArr.push(repo);
+  }
+
+  $.each(reposArr, function(num: number, repo: any) {
     let repo_item_el = $('<div class="repo_item row"></div>');
     let { webhooks_status: status, repo_full_name: repo_name } = repo;
 
@@ -148,7 +154,7 @@ function list_repos(data: object) {
     repos_element.append(repo_item_el);
   });
 
-  $('.repo_item').fadeIn(1000);
+  $('.repo_item').fadeIn(500);
 }
 
 // show org list
@@ -214,7 +220,7 @@ function showGitHubAppSettings(org_name: string, installation_id: number) {
         });
     });
 
-    $('.repo_tips').fadeIn(1000);
+    $('.repo_tips').fadeIn(500);
   })();
 }
 
@@ -262,7 +268,7 @@ function showGitHubAppInstall(uid: number) {
         display: 'none',
       });
 
-    $('#repos').fadeIn(1000);
+    $('#repos').fadeIn(500);
   })();
 }
 
@@ -330,7 +336,7 @@ function show_org(data: any, org_name: string) {
   $('.details_usernickname').text(name ? name : username);
   $('.details_username').text('@' + username);
 
-  $('.userbasicInfo').fadeIn(1000);
+  $('.userbasicInfo').fadeIn(500);
 
   let { installation_id, uid } = data[0];
 

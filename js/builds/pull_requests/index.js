@@ -17,7 +17,7 @@ function display(data, url, append = false) {
     display_element
       .hide()
       .append(error_info('No pull request builds for this repository'))
-      .fadeIn(1000);
+      .fadeIn(500);
     // display_element.innerHeight(55);
   } else {
     let ul_el = append
@@ -97,7 +97,7 @@ function display(data, url, append = false) {
           'data-id': build_id,
         })
         .append(
-          $('<a class="pull_request_url"></a>')
+          $('<a class="pull_request_url text-truncate"></a>')
             .append(`#PR ${pull_request_id}`)
             .attr({
               title: 'View pull request on GitHub',
@@ -107,19 +107,19 @@ function display(data, url, append = false) {
             .css('color', status_color),
         )
         .append(
-          $('<div class="branch"></div>')
+          $('<div class="branch text-truncate"></div>')
             .append($('<strong></strong>').append(branch))
             .attr('title', branch)
             .css('color', status_color),
         )
         .append(
-          $('<div class="committer"></div>')
+          $('<div class="committer text-truncate"></div>')
             .append(committer_username)
             .attr('title', committer_username),
         )
         .append(
           $(
-            '<div class="commit_message"><i class="material-icons md-16">all_inclusive</i> </div>',
+            '<div class="commit_message text-truncate"><i class="material-icons md-16">all_inclusive</i> </div>',
           )
             .append(commit_message.slice(0, 40))
             .attr('title', commit_message),
@@ -183,7 +183,7 @@ function display(data, url, append = false) {
     });
 
     if (append) {
-      $('.pull_requests_list_item').fadeIn(1000);
+      $('.pull_requests_list_item').fadeIn(500);
       return;
     }
 
@@ -195,7 +195,7 @@ function display(data, url, append = false) {
         }),
     );
 
-    $('.pull_requests_list_item').fadeIn(1000);
+    $('.pull_requests_list_item').fadeIn(500);
   }
 }
 

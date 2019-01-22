@@ -107,7 +107,7 @@ module.exports = {
     display_el.append(jobs_list_el);
 
     // $('.job_list').slideDown(1000);
-    $('.job_list').fadeIn(1000);
+    $('.job_list').fadeIn(500);
 
     // display_el.css('height', (jobs.length * 10) + 'px');
 

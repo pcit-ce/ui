@@ -26,7 +26,7 @@ function display(data, url, append = false) {
     display_element
       .empty()
       .append(build_not_find('Not Build Yet !', '', ''))
-      .fadeIn(1000);
+      .fadeIn(500);
 
     return;
   }
@@ -49,7 +49,7 @@ function display(data, url, append = false) {
             'The build not exist.',
           ),
         )
-        .fadeIn(1000);
+        .fadeIn(500);
       // display_element.innerHeight(55);
       return;
     }
@@ -141,19 +141,19 @@ function display(data, url, append = false) {
       })
       .append($('<div class="event_type"></div>').append(event_type))
       .append(
-        $('<div class="branch"></div>')
+        $('<div class="branch text-truncate"></div>')
           .append($('<strong></strong>').append(branch.slice(0, 10)))
           .attr('title', branch)
           .css('color', status_color),
       )
       .append(
-        $('<div class="committer"></div>')
+        $('<div class="committer text-truncate"></div>')
           .append(committer_username)
           .attr('title', committer_username),
       )
       .append(
         $(
-          '<div class="commit_message"><i class="material-icons md-16">all_inclusive</i> </div>',
+          '<div class="commit_message text-truncate"><i class="material-icons md-16">all_inclusive</i> </div>',
         )
           .append(commit_message.slice(0, 40))
           .attr('title', commit_message),
@@ -212,7 +212,7 @@ function display(data, url, append = false) {
   });
 
   if (append) {
-    $('.builds_list_item').fadeIn(1000);
+    $('.builds_list_item').fadeIn(500);
     return;
   }
 
@@ -226,7 +226,7 @@ function display(data, url, append = false) {
     }),
   );
 
-  $('.builds_list_item').fadeIn(1000);
+  $('.builds_list_item').fadeIn(500);
 
   // 按钮点击事件 already move to main.js
   // $('.builds_list button').on({
@@ -298,7 +298,7 @@ module.exports = {
         display_element
           .hide()
           .append(build_not_find('Not Build Yet !', '', ''))
-          .fadeIn(1000);
+          .fadeIn(500);
       }
     })();
 

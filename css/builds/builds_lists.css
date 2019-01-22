@@ -57,7 +57,7 @@
 }
 
 .builds_list .event_type {
-  font-size: 18px;
+  font-size: 15px;
   width: 100px;
   height: 100px;
   /*background: red;*/
@@ -66,30 +66,33 @@
   position: absolute;
   padding-top: 25px;
   text-transform: capitalize;
+  text-align: left;
+  left: 10px;
 }
 
 .builds_list .branch {
   font-size: 18px;
-  width: 50px;
+  width: auto;
   height: 50px;
   /*background: orange;*/
   /*float: left;*/
-  text-align: center;
+  text-align: left;
   position: absolute;
-  left: 130px;
+  left: 100px;
   top: 8px;
 }
 
 .builds_list .committer {
   font-size: 16px;
-  width: 50px;
+  width: auto;
   height: 50px;
   /*background: red;*/
   /*float: left;*/
-  text-align: center;
+  text-align: left;
   position: absolute;
-  left: 130px;
+  left: 100px;
   top: 53px;
+  max-width: 10%;
 }
 
 .builds_list .commit_message {

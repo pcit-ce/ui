@@ -68,14 +68,14 @@ module.exports = {
 
     div_element
       .append(
-        $('<div class="branch"></div>')
+        $('<div class="branch text-truncate"></div>')
           .append($('<strong></strong>').append(branch.slice(0, 7)))
           .attr('title', branch)
           .css('color', status_color),
       )
       .append(
         $(
-          '<a class="branch_url"><i class="material-icons md-16">book</i> Branch </a>',
+          '<a class="branch_url text-truncate"><i class="material-icons md-16">book</i> Branch </a>',
         )
           .append(branch)
           .attr({
@@ -103,14 +103,14 @@ module.exports = {
 
     div_element
       .append(
-        $('<div class="commit_message"></div>')
+        $('<div class="commit_message text-truncate"></div>')
           .append(commit_message)
           .attr('title', commit_message)
           .css('color', status_color),
       )
       .append(
         $(
-          '<div class="committer"><i class="material-icons md-16">account_circle</i> </div>',
+          '<div class="committer text-truncate"><i class="material-icons md-16">account_circle</i> </div>',
         )
           .append(committer_name)
           .attr('title', committer_name),
@@ -164,6 +164,6 @@ module.exports = {
 
     display_element.append(div_element);
 
-    div_element.fadeIn(1000);
+    div_element.fadeIn(500);
   },
 };

@@ -3,53 +3,62 @@
     height: 400px;
   }
 
+  .build_data .branch {
+    width: auto;
+    max-width: 80%;
+    left: -40px;
+  }
+
   .build_data .commit_url {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 100px;
   }
 
   .build_data .compare {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 130px;
   }
 
   .build_data .branch_url {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 160px;
+    max-width: 80%;
   }
 
   .build_data .committer {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 190px;
+    max-width: 80%;
   }
 
   .build_data .build_status {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 225px;
   }
 
   .build_data .build_time {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 250px;
   }
 
   .build_data .build_time_ago {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 280px;
   }
 
   .build_data .commit_message {
     position: absolute;
     top: 40px;
-    left: 30px;
+    left: 10px;
     font-size: 18px;
+    max-width: 80%;
   }
 
   .build_data .cancel_or_restart {
@@ -63,7 +72,7 @@
     /*background: red;*/
     position: absolute;
     /* bottom: 10px; */
-    left: 30px;
+    left: 10px;
     /* height: 30px; */
     /* width: 900px; */
     /* width:auto; */

@@ -8,6 +8,12 @@ vue
 no jquery
 */
 function display(repos_data) {
+  let reposArr = [];
+
+  for (let repo of repos_data) {
+    repo.build_id ? reposArr.unshift(repo) : reposArr.push(repo);
+  }
+
   $('.repo_item').append(`
 <div class="col-12 col-sm-12 col-md-1" hidden>{{ repo.rid }}</div>
 <div class="col-12 col-sm-12 col-md-3">
@@ -56,7 +62,7 @@ v-bind:href="'/'+repo.git_type+'/'+repo.repo_full_name+'/builds/'+repo.build_id"
   new Vue({
     el: '#repos_display',
     data: {
-      repos_data,
+      reposArr,
       git,
     },
     methods: {},
@@ -105,7 +111,7 @@ function request(git_type, username, token) {
 
     display(username_repo_data, git_type);
 
-    $('#repos_display').fadeIn(1000);
+    $('#repos_display').fadeIn(500);
   })();
 }
 

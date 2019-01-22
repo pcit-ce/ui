@@ -119,27 +119,15 @@
 }
 
 @media screen and (max-width: 446px) {
-  /* .job_list .job_run_time {
-    position: absolute;
-    left: 200px;
-    margin-top: 10px;
-  } */
-
-  .job_list .job_os {
-    /*background: orange;*/
-    /* left: 80px; */
+  .job_list .job_id {
+    left: -10px;
   }
 
-  /* .job_list .job_env_vars {
-    left: 30px;
-    position: absolute;
-    top: 60px;
-    word-wrap: break-word;
-    display: none;
-  } */
+  .job_list .job_env_vars {
+    left: 18px;
+  }
 
-  .job_list .job_cancel_or_restart {
-    /*background: rebeccapurple;*/
-    /* top: 5px; */
+  .job_list .job_run_time {
+    left: 18px;
   }
 }

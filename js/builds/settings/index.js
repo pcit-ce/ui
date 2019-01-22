@@ -198,7 +198,7 @@ module.exports = {
 
       display(result, url, token);
 
-      $('#display').fadeIn(1000);
+      $('#display').fadeIn(500);
     })();
   },
 };

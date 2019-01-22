@@ -61,17 +61,18 @@
 }
 
 .pull_requests_list .pull_request_url {
-  font-size: 18px;
+  font-size: 15px;
   /*background: yellow;*/
   height: 100px;
-  width: 100px;
+  width: 90px;
   /*float: left;*/
   position: absolute;
   left: 10px;
   top: 0;
-  text-align: center;
+  text-align: left;
   padding-top: 25px;
   text-transform: uppercase;
+  white-space: pre;
 }
 
 .pull_requests_list .branch {
@@ -83,16 +84,19 @@
   left: 110px;
   top: 5px;
   font-size: 18px;
+  text-align: left;
 }
 
 .pull_requests_list .committer {
   /*background: aqua;*/
   height: 50px;
-  width: 100px;
+  width: auto;
   /*float: left;*/
   position: absolute;
   left: 110px;
   top: 53px;
+  text-align: left;
+  max-width: 10%;
 }
 
 .pull_requests_list .commit_message {

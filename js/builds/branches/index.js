@@ -11,7 +11,7 @@ function display(data) {
       .append(
         error_info('Not Build Yet, branches not find !', '', '', 'primary'),
       )
-      .fadeIn(1000);
+      .fadeIn(500);
     // display_element.innerHeight(55);
   } else {
     // console.log(data);
@@ -48,7 +48,7 @@ function display(data) {
     });
 
     // display_element.slideDown(1000);
-    display_element.fadeIn(1000);
+    display_element.fadeIn(500);
   }
 }
 

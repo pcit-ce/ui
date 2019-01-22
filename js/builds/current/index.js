@@ -12,7 +12,7 @@ function display(data, url) {
     display_element
       .hide()
       .append(error_info('Not Build Yet !'))
-      .fadeIn(1000);
+      .fadeIn(500);
     // display_element.innerHeight(55);
   } else {
     build.show(data, url);

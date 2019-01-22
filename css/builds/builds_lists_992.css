@@ -6,7 +6,7 @@
 
   .builds_list .event_type {
     left: 23px;
-    height: 20px;
+    height: 30px;
     text-align: left;
     text-transform: capitalize;
   }
@@ -14,52 +14,53 @@
   .builds_list .build_status {
     left: 23px;
     top: 55px;
-    height: 20px;
+    height: 30px;
     text-align: left;
   }
 
   .builds_list .branch {
-    width: 100px;
+    width: auto;
     top: 75px;
     left: 23px;
-    height: 20px;
+    height: 30px;
     text-align: left;
+    max-width: 80%;
   }
 
   .builds_list .committer {
-    width: 100px;
     top: 101px;
     left: 23px;
-    height: 20px;
+    height: 30px;
     text-align: left;
+    max-width: 80%;
   }
 
   .builds_list .commit_message {
     padding-top: 0;
     left: 20px;
     top: 125px;
-    height: 20px;
+    height: 30px;
     text-align: left;
   }
 
   .builds_list .commit_url {
     left: 20px;
     top: 165px;
-    height: 20px;
+    height: 30px;
     text-align: left;
   }
 
   .builds_list .build_time {
     left: 20px;
     top: 185px;
-    height: 20px;
+    height: 30px;
     text-align: left;
   }
 
   .builds_list .build_time_ago {
     left: 20px;
     top: 215px;
-    height: 20px;
+    height: 30px;
     text-align: left;
   }
 

@@ -102,6 +102,7 @@
   top: 10px;
   padding-left: 50px;
   font-size: 18px;
+  max-width: 50%;
 }
 
 @media screen and (max-width: 992px) {
@@ -119,11 +120,13 @@
     /*background: bisque;*/
     position: absolute;
     height: 30px;
-    width: 500px;
+    width: auto;
     left: 80px;
     top: 12px;
     padding-left: 20px;
     font-size: 16px;
+    height: 50px;
+    max-width: 40%;
   }
 
   .build_data .commit_url {
@@ -152,23 +155,25 @@
   .build_data .branch_url {
     /*background: red;*/
     position: absolute;
-    width: 300px;
+    width: auto;
     height: 30px;
     left: 10px;
     top: 90px;
     padding-left: 50px;
     font-size: 15px;
+    max-width: 50%;
   }
 
   .build_data .committer {
     /*background: lightgoldenrodyellow;*/
     position: absolute;
     height: 30px;
-    width: 200px;
+    width: auto;
     left: 10px;
     bottom: 50px;
     padding-left: 50px;
     font-size: 15px;
+    max-width: 50%;
   }
 
   .build_data .build_status {

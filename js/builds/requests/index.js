@@ -15,7 +15,7 @@ function display(data, url, append = false) {
     display_element
       .hide()
       .append(error_info('Not Event receive !'))
-      .fadeIn(1000);
+      .fadeIn(500);
     // display_element.innerHeight(55);
 
     return;
@@ -140,7 +140,7 @@ function display(data, url, append = false) {
   });
 
   if (append) {
-    $('.requests_list_item').fadeIn(1000);
+    $('.requests_list_item').fadeIn(500);
     return;
   }
 
@@ -152,7 +152,7 @@ function display(data, url, append = false) {
       }),
   );
 
-  $('.requests_list_item').fadeIn(1000);
+  $('.requests_list_item').fadeIn(500);
 }
 
 module.exports = {
