@@ -11,7 +11,13 @@ const getHost = () => {
 };
 
 const getUrlWithArray = () => {
-  return getUrl().split('/');
+  let url = getUrl();
+  const length = url.length;
+  if (url[length - 1] === '/') {
+    url = url.substr(0, length - 1);
+  }
+
+  return url.split('/');
 };
 
 const getGitType = () => {

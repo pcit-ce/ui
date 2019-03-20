@@ -13,6 +13,6 @@ try {
     <a>火狐浏览器</a> |
     <a href="Microsoft-edge:` +
       location.href +
-      `">EDGE</a> 打开</h1>`,
+      '">EDGE</a> 打开</h1>',
   );
 }
