@@ -1,6 +1,8 @@
+import pcit from '@pcit/pcit-js';
+
 const details = require('../log/details');
 const log = require('../log');
-const showBuildNav = require('../builds_history').showBuildNav;
+import { showBuildNav } from '../builds_history';
 
 const showJobNav = job_id => {
   $('#jobNav')
@@ -35,13 +37,12 @@ function display(job_data, build_data, url) {
   // let column_el = $('#pull_requests');
 }
 
-module.exports = {
+export default {
   handle: url => {
     let job_id = url.getUrlWithArray()[7];
 
-    const pcit = require('@pcit/pcit-js');
-    const jobs = new pcit.Jobs('', '/api');
-    const builds = new pcit.Builds('', '/api');
+    const jobs = new pcit('', '/api').jobs;
+    const builds = new pcit('', '/api').builds;
 
     (async () => {
       let job_data = await jobs.find(job_id);

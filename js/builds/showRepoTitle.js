@@ -1,6 +1,6 @@
 const git = require('../common/git');
 const title = require('./title');
-const url = require('./url');
+import url from './url';
 
 const showRepoTitle = () => {
   let content = jQuery('<h1 class="repo_title"></h1>');
@@ -21,8 +21,9 @@ const showRepoTitle = () => {
             .append(git_format)
             .css({
               float: 'left',
-              width: '50px',
-              height: '50px',
+              width: '36px',
+              height: '36px',
+              'margin-top': '10px',
             })
             .attr({
               title: 'View Repository on ' + git_format,
@@ -72,4 +73,4 @@ const showRepoTitle = () => {
   $('#repo').append(content);
 };
 
-module.exports = showRepoTitle;
+export default showRepoTitle;

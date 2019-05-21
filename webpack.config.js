@@ -32,7 +32,7 @@ let config = {
     demo: path.resolve('./js/demo/main.js'),
     sse: path.resolve('./js/sse/main.js'),
     websocket: path.resolve('./js/websocket/main.js'),
-    noIE: path.resolve('./js/noIE.js'),
+    noIE: path.resolve('./js/library/noIE.js'),
     ad: path.resolve('./js/ad/main.js'),
   },
   output: {
@@ -58,8 +58,10 @@ let config = {
     // }),
 
     // https://github.com/johnagan/clean-webpack-plugin
-    new CleanWebpackPlugin('assets', {
-      root: __dirname + '/../public/',
+    new CleanWebpackPlugin({
+      dry: false,
+      cleanOnceBeforeBuildPatterns: [__dirname + '/../public/assets/**/*'],
+      dangerouslyAllowCleanPatternsOutsideProject: true,
     }),
 
     // 将 js css 插入到 html
@@ -258,7 +260,7 @@ let config = {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
-    // config.devtool = 'source-map';
+    config.devtool = 'source-map';
   }
 
   if (argv.mode === 'production') {

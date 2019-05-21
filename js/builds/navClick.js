@@ -1,19 +1,19 @@
-const current = require('./current');
-const branches = require('./branches');
-const builds_history = require('./builds_history');
-const pull_requests = require('./pull_requests');
-const settings = require('./settings');
-const requests = require('./requests');
-const caches = require('./caches');
-const trigger_build = require('./triggerBuild');
-const jobs = require('./jobs');
-const repo = require('./repo');
+import current from './current';
+import branches from './branches';
+import builds_history from './builds_history';
+import pull_requests from './pull_requests';
+import settings from './settings';
+import requests from './requests';
+import caches from './caches';
+import trigger_build from './triggerBuild';
+import jobs from './jobs';
+import repo from './repo';
 
-const url = require('./url');
+import url from './url';
 
 const token = require('../common/token');
 
-const changeUrl = require('./changeUrl');
+import changeUrl from './changeUrl';
 
 const navClick = (id, change_url = true) => {
   if (id === 'buildNav') {
@@ -74,4 +74,4 @@ const navClick = (id, change_url = true) => {
   }
 };
 
-module.exports = navClick;
+export default navClick;

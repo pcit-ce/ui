@@ -68,7 +68,7 @@ const getBaseTitle = () => {
   );
 };
 
-module.exports = {
+export default {
   getUrl,
   getUrlWithArray,
   getHost,

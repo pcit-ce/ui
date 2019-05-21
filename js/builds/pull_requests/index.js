@@ -5,8 +5,8 @@ const error_info = require('../error/error').error_info;
 const formatTime = require('../time').formatTime;
 const formatTotal = require('../time').formatTotal;
 
-const pcit = require('@pcit/pcit-js');
-const builds = new pcit.Builds('', '');
+import pcit from '@pcit/pcit-js';
+const builds = new pcit('', '').builds;
 
 function display(data, url, append = false) {
   let display_element = $('#display');
@@ -197,7 +197,7 @@ function display(data, url, append = false) {
   }
 }
 
-module.exports = {
+export default {
   handle: url => {
     column_span_click('pull_requests');
 

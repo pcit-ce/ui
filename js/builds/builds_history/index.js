@@ -4,10 +4,10 @@ const builds = require('../builds');
 const common_status = require('../../common/status');
 const build_not_find = require('../error/error').error_info;
 const formatTime = require('../time').formatTime;
-const pcit = require('@pcit/pcit-js');
-const pcit_builds = new pcit.Builds('', '');
+import pcit from '@pcit/pcit-js';
+const pcit_builds = new pcit('', '').builds;
 
-const showBuildNav = (build_id, trigger = false) => {
+export const showBuildNav = (build_id, trigger = false) => {
   $('#buildNav')
     .empty()
     .append('Build #' + build_id)
@@ -233,7 +233,7 @@ function display(data, url, append = false) {
   // })
 }
 
-module.exports = {
+export default {
   showBuildNav,
   handle: url => {
     let build_id;

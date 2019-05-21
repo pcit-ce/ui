@@ -31,22 +31,20 @@
 
 ## 前端构建工具
 
-* Node & NPM
+### Node & NPM
 
 ```bash
 $ npm i
 ```
-
-### Gulp
 
 ### webpack
 
 ```bash
 # production
 
-$ npm run webpack-pro
+$ npm run webpack:pro
 # $ npm run build
 
 # development
-$ npm run webpack-dev
+$ npm run webpack:dev
 ```

@@ -1,4 +1,4 @@
-const pcit = require('@pcit/pcit-js');
+import pcit from '@pcit/pcit-js';
 
 function get_env(url, token) {
   // return new Promise(resolve => {
@@ -12,7 +12,7 @@ function get_env(url, token) {
   //     },
   //   });
   // });
-  const pcit_repo = new pcit.Repo(token.getToken(url.getGitType()), '');
+  const pcit_repo = new pcit(token.getToken(url.getGitType()), '').repo;
 
   return pcit_repo.env.list(url.getRepoFullName());
 }
@@ -177,7 +177,7 @@ function display(data, url, token) {
   }
 }
 
-module.exports = {
+export default {
   handle: (url, token) => {
     // console.log(location.href);
     // $.ajax({
@@ -191,7 +191,7 @@ module.exports = {
     //   },
     // });
 
-    const pcit_repo = new pcit.Repo(token.getToken(url.getGitType()), '');
+    const pcit_repo = new pcit(token.getToken(url.getGitType()), '').repo;
 
     (async () => {
       let result = await pcit_repo.settings.list(url.getRepoFullName());

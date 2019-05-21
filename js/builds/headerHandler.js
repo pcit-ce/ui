@@ -1,7 +1,7 @@
-const pcit = require('@pcit/pcit-js');
+import pcit from '@pcit/pcit-js';
 const git = require('../common/git');
 
-module.exports = function handleHeader(token, gitType = 'github') {
+export default function headerHandler(token, gitType = 'github') {
   if (!token) {
     $('header .userHeader').hide();
     $('header .login').show();
@@ -11,7 +11,7 @@ module.exports = function handleHeader(token, gitType = 'github') {
   $('header .login').hide();
   $('header .gitType').append(git.format(gitType));
 
-  new pcit.User(token, '/api').current().then(res => {
+  new pcit(token, '/api').user.current().then(res => {
     let { username, pic } = res[0];
 
     $('header .profile').attr({
@@ -30,4 +30,4 @@ module.exports = function handleHeader(token, gitType = 'github') {
   });
 
   $('header .userHeader').show();
-};
+}

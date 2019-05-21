@@ -1,3 +1,5 @@
+import pcit from '@pcit/pcit-js';
+
 const { column_span_click } = require('../common');
 
 const build = require('../builds');
@@ -19,13 +21,11 @@ function display(data, url) {
   }
 }
 
-module.exports = {
+export default {
   handle: url => {
     column_span_click('current');
 
-    const pcit = require('@pcit/pcit-js');
-
-    const builds = new pcit.Builds('', '');
+    const builds = new pcit('', '').builds;
 
     (async () => {
       try {

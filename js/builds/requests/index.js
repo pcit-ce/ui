@@ -2,7 +2,7 @@ const status = require('../../common/status');
 const git = require('../../common/git');
 const error_info = require('../error/error').error_info;
 
-const pcit = require('@pcit/pcit-js');
+import pcit from '@pcit/pcit-js';
 
 function display(data, url, append = false) {
   let display_element = $('#display');
@@ -156,7 +156,7 @@ function display(data, url, append = false) {
   $('.requests_list_item').fadeIn(500);
 }
 
-module.exports = {
+export default {
   handle: (url, token) => {
     // $.ajax({
     //   type: 'get',
@@ -172,7 +172,7 @@ module.exports = {
     //   },
     // });
 
-    const repo = new pcit.Repo(token, '');
+    const repo = new pcit(token, '').repo;
 
     (async () => {
       try {
@@ -189,7 +189,7 @@ module.exports = {
   },
 
   more(url, token, before, request = true) {
-    const repo = new pcit.Repo(token, '');
+    const repo = new pcit(token, '').repo;
 
     (async () => {
       try {

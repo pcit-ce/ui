@@ -2,7 +2,7 @@
 // https://developer.mozilla.org/zh-CN/docs/Web/API/History_API
 // 标题参数目前无效
 
-const url = require('./url');
+import url from './url';
 
 const changeUrl = (id, replace = false) => {
   if ('trigger_build' === id) {
@@ -41,4 +41,4 @@ const changeUrl = (id, replace = false) => {
   }
 };
 
-module.exports = changeUrl;
+export default changeUrl;

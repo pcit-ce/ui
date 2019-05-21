@@ -56,19 +56,19 @@ const formatTotal = total => {
   }
   // 分
   if (total < 60 * 60) {
-    int = Math.floor(total / 60);
+    let int = Math.floor(total / 60);
 
     return int <= 1 ? ' a minute' : int + ' minutes';
   }
   // 时
   if (total < 60 * 60 * 24) {
-    int = Math.floor(total / 60 / 60);
+    let int = Math.floor(total / 60 / 60);
 
     return int <= 1 ? ' a hour' : int + ' hours';
   }
   // 天
   if (total < 60 * 60 * 24 * 30) {
-    int = Math.floor(total / 60 / 60 / 24);
+    let int = Math.floor(total / 60 / 60 / 24);
 
     return int <= 1 ? 'a day' : int + ' days';
   }

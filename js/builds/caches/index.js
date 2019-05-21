@@ -1,3 +1,5 @@
+import pcit from '@pcit/pcit-js';
+
 const error_info = require('../error/error').error_info;
 
 function display(data) {
@@ -9,7 +11,7 @@ function display(data) {
   // .innerHeight(55);
 }
 
-module.exports = {
+export default {
   handle: (url, token) => {
     // console.log(location.href);
     // $.ajax({
@@ -23,8 +25,7 @@ module.exports = {
     //   },
     // });
 
-    const pcit = require('@pcit/pcit-js');
-    const pcit_repo = new pcit.Repo(token.getToken(url.getGitType()), '');
+    const pcit_repo = new pcit(token.getToken(url.getGitType()), '').repo;
 
     (async () => {
       let result = await pcit_repo.caches.list(url.getRepoFullName());

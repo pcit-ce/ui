@@ -1,10 +1,10 @@
+import pcit from '@pcit/pcit-js';
+
 function display(url) {
   // 移除之前的元素
   $('#branches_list option').remove();
 
-  const pcit = require('@pcit/pcit-js');
-
-  const pcit_repo = new pcit.Repo('', '');
+  const pcit_repo = new pcit('', '').repo;
 
   // 获取分支列表
   (async () => {
@@ -26,6 +26,6 @@ function display(url) {
   })();
 }
 
-module.exports = {
+export default {
   handle: url => display(url),
 };

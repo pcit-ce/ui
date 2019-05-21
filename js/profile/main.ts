@@ -9,7 +9,7 @@ const title = require('../common/title');
 
 const ClipboardJS = require('clipboard');
 const Cookies = require('js-cookie');
-const handleHeader = require('../builds/handleHeader');
+const headerHandler = require('../builds/headerHandler');
 let url_array = location.href.split('/');
 let git_type = url_array[4];
 // eslint-disable-next-line no-undef
@@ -18,16 +18,16 @@ let token = Cookies.get(git_type + '_api_token');
 header.show();
 footer.show();
 
-handleHeader(token, git_type);
+headerHandler(token, git_type);
 
 let ci_host = 'https://' + location.host + '/';
 let username = url_array[5];
 
-const pcit = require('@pcit/pcit-js');
-const pcit_system = new pcit.System(token, '');
-const pcit_user = new pcit.User(token, '');
-const pcit_repo = new pcit.Repo(token, '');
-const pcit_org = new pcit.Org(token, '');
+import pcit from '@pcit/pcit-js';
+const pcit_system = new pcit(token, '').system;
+const pcit_user = new pcit(token, '').user;
+const pcit_repo = new pcit(token, '').repo;
+const pcit_org = new pcit(token, '').org;
 
 function settings(data: any) {
   let { username, type } = data;

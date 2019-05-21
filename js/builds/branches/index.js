@@ -1,5 +1,7 @@
 const { column_span_click } = require('../common');
 const error_info = require('../error/error').error_info;
+import pcit from '@pcit/pcit-js';
+// const pcit = require('@pcit/pcit-js');
 
 function display(data) {
   let display_element = $('#display')
@@ -52,11 +54,10 @@ function display(data) {
   }
 }
 
-module.exports = {
+export default {
   handle: url => {
     column_span_click('branches');
-    const pcit = require('@pcit/pcit-js');
-    const repo = new pcit.Repo('', '/api');
+    const repo = new pcit('', '/api').repo;
 
     (async () => {
       try {

@@ -2,20 +2,20 @@ import '../../css/builds.css';
 
 const header = require('../common/header');
 const footer = require('../common/footer');
-const url = require('./url');
+import url from './url';
 
 const common = require('./common');
 const token = require('../common/token');
 
-const navClick = require('./navClick');
+import navClick from './navClick';
 // const changeUrl = require('./changeUrl');
-const showRepoTitle = require('./showRepoTitle');
-const handleHeader = require('./handleHeader');
+import showRepoTitle from './showRepoTitle';
+import headerHandler from './headerHandler';
 
 header.show();
 footer.show();
 
-handleHeader(token.getToken(url.getGitType()), url.getGitType());
+headerHandler(token.getToken(url.getGitType()), url.getGitType());
 
 require('./on');
 

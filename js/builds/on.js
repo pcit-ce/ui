@@ -1,18 +1,17 @@
-const url = require('./url');
+import url from './url';
 const common = require('./common');
 const title = require('./title');
 const token = require('../common/token');
-const pcit = require('@pcit/pcit-js');
+import pcit from '@pcit/pcit-js';
 
-const repo = new pcit.Repo(token.getToken(url.getGitType()), '');
+const repo = new pcit(token.getToken(url.getGitType()), '').repo;
 
 const common_status = require('../common/status');
 
-const navClick = require('./navClick');
-
-const pullRequests = require('./pull_requests');
-const buildsHistory = require('./builds_history');
-const requests = require('./requests');
+import navClick from './navClick';
+import pullRequests from './pull_requests';
+import buildsHistory from './builds_history';
+import requests from './requests';
 
 // 设置 input
 $(document).on(
@@ -32,7 +31,7 @@ $(document).on(
 
     // 发起请求
 
-    const repo = new pcit.Repo(token.getToken(url.getGitType()), '');
+    const repo = new pcit(token.getToken(url.getGitType()), '').repo;
 
     repo.settings.update(
       url.getRepoFullName(),
