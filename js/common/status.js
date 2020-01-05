@@ -1,5 +1,5 @@
 const token = require('./token');
-const url = require('../builds/url');
+const url = require('../builds/url').default;
 const ucfirst = require('../common/util').ucfirst;
 
 function buttonChange(handle) {

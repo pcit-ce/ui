@@ -12,7 +12,7 @@ export default function headerHandler(token, gitType = 'github') {
   $('header .gitType').append(git.format(gitType));
 
   new pcit(token, '/api').user.current().then(res => {
-    let { username, pic } = res[0];
+    let { username, pic } = res;
 
     $('header .profile').attr({
       href: location.origin + '/profile/' + gitType + '/' + username,

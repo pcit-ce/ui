@@ -63,12 +63,12 @@ module.exports = {
             border: '1px solid ' + status_color,
           }),
       )
-      .append(
-        $('<div class="branch text-truncate"></div>')
-          .append($('<strong></strong>').append(branch.slice(0, 7)))
-          .attr('title', branch)
-          .css('color', status_color),
-      )
+      // .append(
+      //   $('<div class="branch text-truncate"></div>')
+      //     .append($('<strong></strong>').append(branch.slice(0, 7)))
+      //     .attr('title', branch)
+      //     .css('color', status_color),
+      // )
       .append(
         $(
           '<a class="branch_url text-truncate"><i class="material-icons md-16">book</i> Branch </a>',

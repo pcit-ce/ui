@@ -1,6 +1,6 @@
 'use strict';
 
-const css = require('../../css/profile.css');
+import '../../css/profile.css';
 const header = require('../common/header');
 const footer = require('../common/footer');
 const git = require('../common/git');
@@ -9,7 +9,7 @@ const title = require('../common/title');
 
 const ClipboardJS = require('clipboard');
 const Cookies = require('js-cookie');
-const headerHandler = require('../builds/headerHandler');
+import headerHandler from '../builds/headerHandler';
 let url_array = location.href.split('/');
 let git_type = url_array[4];
 // eslint-disable-next-line no-undef
@@ -299,7 +299,7 @@ function click_user() {
   (async () => {
     let data = await get_userdata();
 
-    let { installation_id, uid, username, name, pic } = data[0];
+    let { installation_id, uid, username, name, pic } = data;
 
     let repo_data = await get_user_repos();
 
@@ -326,11 +326,11 @@ function click_user() {
 }
 
 function show_org(data: any, org_name: string) {
-  if (data[0] === undefined) {
+  if (data === undefined) {
     return;
   }
 
-  let { pic, username, name } = data[0];
+  let { pic, username, name } = data;
 
   $('.header_img').attr('src', pic ? pic : '/ico/pcit.png');
   $('.details_usernickname').text(name ? name : username);
@@ -338,7 +338,7 @@ function show_org(data: any, org_name: string) {
 
   $('.userbasicInfo').fadeIn(500);
 
-  let { installation_id, uid } = data[0];
+  let { installation_id, uid } = data;
 
   (async () => {
     // let org_data = await new Promise(resolve => {
@@ -414,9 +414,9 @@ $(document).ready(function() {
   (async () => {
     let data = await get_userdata();
 
-    settings(data[0]);
+    settings(data);
 
-    let { installation_id, username: api_username, uid } = data[0];
+    let { installation_id, username: api_username, uid } = data;
 
     if (api_username === username) {
       // $.ajax({
