@@ -14,8 +14,10 @@ pipeline:
   script:
     command:
       - npm run build
+      - mkdir -p ../public
       - cp -r ../public .
       - ls -la
+      - ls -la public
 
   deploy_s3:
     image: pcit/s3
