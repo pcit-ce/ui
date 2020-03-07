@@ -18,7 +18,7 @@ const changeUrl = (id, replace = false) => {
     history.pushState({ key_id: id }, null, url.getRepoFullNameUrl());
   } else {
     if (replace) {
-      if (8 === url.getUrlWithArray().length) {
+      if (6 === url.getUrlWithArray().length) {
         history.replaceState({ key_id: id }, null, null);
 
         return;

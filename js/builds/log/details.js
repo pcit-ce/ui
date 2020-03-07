@@ -97,6 +97,19 @@ module.exports = {
           }),
       );
 
+    let commit_message_array = commit_message.split('\n');
+
+    let signed = false;
+
+    commit_message_array.forEach((element, index, arr) => {
+      if (element.substr(0, 14) === 'Signed-off-by:') {
+        signed = element.substr(15);
+        arr.splice(index, 1);
+      }
+    });
+
+    commit_message = commit_message_array.join('\n');
+
     div_element
       .append(
         $('<div class="commit_message text-truncate"></div>')
@@ -109,7 +122,12 @@ module.exports = {
           '<div class="committer text-truncate"><i class="material-icons md-16">account_circle</i> </div>',
         )
           .append(committer_name)
-          .attr('title', committer_name),
+          .attr(
+            'title',
+            signed
+              ? `COMMIT BY ${committer_name}\nSIGNED  BY ${signed}`
+              : `COMMIT BY ${committer_name}`,
+          ),
       );
 
     // div_element.append(

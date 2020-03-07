@@ -17,7 +17,7 @@ footer.show();
 
 headerHandler(token.getToken(url.getGitType()), url.getGitType());
 
-require('./on');
+require('./event');
 
 // https://www.cnblogs.com/yangzhi/p/3576520.html
 $('.column .main').on({
@@ -58,7 +58,7 @@ jQuery(document).ready(function() {
 
   showRepoTitle();
 
-  if (url.getUrlWithArray().length === 8) {
+  if (url.getUrlWithArray().length === 6) {
     type =
       url.getUrlWithArray().slice(-2)[0] === 'builds' ? 'buildNav' : 'jobNav';
   }
@@ -68,7 +68,7 @@ jQuery(document).ready(function() {
   common.column_remove(); // 移除其他 nav
   navClick(type, false); // 渲染 display 页面
 
-  if (url.getUrlWithArray().length === 5) {
+  if (url.getUrlWithArray().length === 4) {
     // repo 页面
     return;
   }

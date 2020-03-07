@@ -18,11 +18,11 @@ pipeline:
       - ls -la
 
   deploy_s3:
+    image: pcit/s3
     when:
       status: success
       event: ['push']
     settings:
-      provider: s3
       local_dir: public
       upload_dir: ui/nightly/${PCIT_COMMIT}
       region: 'us-east-1'

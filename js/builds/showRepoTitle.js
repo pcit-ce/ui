@@ -40,7 +40,7 @@ const showRepoTitle = () => {
     )
     .append(
       $('<a class="h1_username">')
-        .append('&nbsp;' + url.getUsername())
+        .append(url.getUsername())
         .attr({
           href: [url.getHost(), url.getGitType(), url.getUsername()].join('/'),
         }),

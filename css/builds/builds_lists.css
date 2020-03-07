@@ -78,7 +78,7 @@
   /*float: left;*/
   text-align: left;
   position: absolute;
-  left: 100px;
+  left: 60px;
   top: 8px;
 }
 
@@ -90,7 +90,7 @@
   /*float: left;*/
   text-align: left;
   position: absolute;
-  left: 100px;
+  left: 60px;
   top: 53px;
   max-width: 10%;
 }
@@ -102,7 +102,7 @@
   /*background: yellow;*/
   position: absolute;
   /*float: left;*/
-  left: 239px;
+  left: 190px;
   padding-top: 6px;
   color: #666666;
   text-align: left;
@@ -145,7 +145,7 @@
   /*float: left;*/
   position: absolute;
   left: 820px;
-  top: 7px;
+  top: 51px;
   /*padding-left: 100px;*/
   color: #666666;
   /*text-align: center;*/
@@ -159,7 +159,7 @@
   /*float: left;*/
   position: absolute;
   left: 820px;
-  top: 51px;
+  top: 7px;
   /*padding-left: 100px;*/
   color: #666666;
   /*text-align: center;*/

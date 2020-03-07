@@ -10,19 +10,45 @@ footer {
   padding-top: 85px;
 }
 
-footer a {
-  text-decoration: none;
-  color: #636b6f;
-}
-
 footer .about,
 .help,
-.legal,
+.developer,
 .status {
   margin-bottom: 20px;
 }
 
+footer strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+footer a {
+  text-decoration: none;
+  color: #586069;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
 footer a:hover {
   text-decoration: underline;
-  color: #636b6f;
+  color: #0366d6;
+}
+
+/* header */
+
+.nav-item .nav-link {
+  font-weight: 600;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+.navbar-brand {
+  font-weight: 1000;
+  font-size: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  margin-top: -9px;
 }

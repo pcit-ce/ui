@@ -37,7 +37,7 @@ function display(data, url, append = false) {
 
   // console.log(url_array);
 
-  if (8 === url_array.length) {
+  if (6 === url_array.length) {
     // 展示某个 build 详情
     if (0 === data.length || 'error' === data) {
       display_element
@@ -84,6 +84,19 @@ function display(data, url, append = false) {
 
     commit_message = tag ? tag : commit_message;
 
+    let commit_message_array = commit_message.split('\n');
+
+    let signed = false;
+
+    commit_message_array.forEach((element, index, arr) => {
+      if (element.substr(0, 14) === 'Signed-off-by:') {
+        signed = element.substr(15);
+        arr.splice(index, 1);
+      }
+    });
+
+    commit_message = commit_message_array.join('\n');
+
     let commit_url = git.getCommitUrl(
       url.getUsername(),
       url.getRepo(),
@@ -122,6 +135,7 @@ function display(data, url, append = false) {
     } = common_status.getButton(build_status);
     status_color = common_status.getColor(build_status);
     build_status = common_status.change(build_status);
+    let build_status_icon = common_status.getIcon(build_status);
     // const className = common_status.getClassName(build_status);
 
     li_el.append(
@@ -136,7 +150,7 @@ function display(data, url, append = false) {
       .attr({
         'data-id': build_id,
       })
-      .append($('<div class="event_type"></div>').append(event_type))
+      .append($('<div class="event_type"></div>').append(build_status_icon))
       .append(
         $('<div class="branch text-truncate"></div>')
           .append($('<strong></strong>').append(branch.slice(0, 10)))
@@ -146,18 +160,23 @@ function display(data, url, append = false) {
       .append(
         $('<div class="committer text-truncate"></div>')
           .append(committer_username)
-          .attr('title', committer_username),
+          .attr(
+            'title',
+            signed
+              ? `COMMIT BY ${committer_username},\nSIGNED  BY ${signed}`
+              : `COMMIT BY ${committer_username}`,
+          ),
       )
       .append(
         $(
-          '<div class="commit_message text-truncate"><i class="material-icons md-16">all_inclusive</i> </div>',
+          '<div class="commit_message text-truncate"><svg t="1583509372477" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="39924" width="20" height="20"><path d="M863.573333 102.4 160.426667 102.4C109.226667 102.4 68.266667 143.36 68.266667 197.973333l0 508.586667c0 51.2 40.96 95.573333 92.16 95.573333l191.146667 0c6.826667 0 13.653333 3.413333 17.066667 6.826667l75.093333 81.92c17.066667 20.48 40.96 30.72 68.266667 30.72s51.2-10.24 68.266667-30.72l75.093333-81.92c3.413333-6.826667 10.24-6.826667 17.066667-6.826667l191.146667 0c51.2 0 92.16-40.96 92.16-95.573333L955.733333 197.973333C955.733333 143.36 914.773333 102.4 863.573333 102.4zM887.466667 706.56c0 13.653333-10.24 27.306667-23.893333 27.306667l-191.146667 0c-27.306667 0-51.2 10.24-68.266667 30.72l-75.093333 81.92c-10.24 10.24-27.306667 10.24-34.133333 0l-75.093333-81.92c-17.066667-20.48-40.96-30.72-68.266667-30.72L160.426667 733.866667c-13.653333 0-23.893333-10.24-23.893333-27.306667L136.533333 197.973333C136.533333 180.906667 146.773333 170.666667 160.426667 170.666667l703.146667 0C877.226667 170.666667 887.466667 180.906667 887.466667 197.973333L887.466667 706.56z" p-id="39925" fill="#666666"></path><path d="M508.586667 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39926" fill="#666666"></path><path d="M720.213333 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39927" fill="#666666"></path><path d="M300.373333 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39928" fill="#666666"></path></svg> </div>',
         )
           .append(commit_message.slice(0, 40))
           .attr('title', commit_message),
       )
       .append(
         $(
-          '<a class="commit_id"><i class="material-icons md-16">linear_scale</i> </a>',
+          '<a class="commit_id"><svg t="1583505654549" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5464" width="20" height="20"><path d="M528.298667 589.994667c-165.034667 0-219.136 66.304-236.8 110.08a147.541333 147.541333 0 1 1-107.093334-3.413334V286.72a147.370667 147.370667 0 1 1 98.304 0v259.925333c43.178667-31.914667 106.069333-55.04 196.437334-55.04 131.242667 0 174.933333-65.792 189.184-109.568a147.370667 147.370667 0 1 1 203.946666-136.106666c0 65.877333-43.264 122.88-102.741333 140.544-12.8 70.314667-60.416 203.434667-241.237333 203.434666zM233.472 786.517333a49.152 49.152 0 1 0 0 98.304 49.152 49.152 0 0 0 0-98.304z m0-687.786666a49.152 49.152 0 1 0 0 98.133333 49.152 49.152 0 0 0 0-98.133333z m491.349333 98.133333a49.152 49.152 0 1 0 0 98.304 49.152 49.152 0 0 0 0-98.218667z" p-id="5465" fill="#666666"></path></svg> </a>',
         )
           .append(commit_id)
           .attr({
@@ -240,8 +259,8 @@ export default {
     let url_array = url.getUrlWithArray();
     let display_element = $('#display');
 
-    if (8 === url_array.length) {
-      build_id = url_array[7];
+    if (6 === url_array.length) {
+      build_id = url_array[5];
     } else {
       column_span_click('builds');
     }

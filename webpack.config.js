@@ -34,6 +34,8 @@ let config = {
     websocket: path.resolve('./js/websocket/main.js'),
     noIE: path.resolve('./js/library/noIE.js'),
     ad: path.resolve('./js/ad/main.js'),
+    tongji: path.resolve('./js/tongji/mod.js'),
+    vue: path.resolve('./js/vue/main.ts'),
   },
   output: {
     path: devMode
@@ -52,11 +54,12 @@ let config = {
     inline: true,
     hot: true,
   },
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': JSON.stringify('production'),
-    // }),
-
     // https://github.com/johnagan/clean-webpack-plugin
     new CleanWebpackPlugin({
       dry: false,
@@ -65,12 +68,13 @@ let config = {
     }),
 
     // 将 js css 插入到 html
+    // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebpackPlugin({
       title: 'Demo',
       template: path.resolve('./html/demo/source.html'), // 模板地址
       filename: path.resolve('../public/demo/index.html'),
       showErrors: true,
-      chunks: ['demo'], // 只包括指定的 js
+      chunks: ['tongji', 'demo'], // 只包括指定的 js
       // excludeChunks: ['demo'], // 排除指定的 js
       minify: {
         // removeAttributeQuotes: true, // 移除属性的引号
@@ -86,7 +90,15 @@ let config = {
       template: path.resolve('./html/builds/index.html'),
       filename: path.resolve('../public/builds/index.html'),
       showErrors: true,
-      chunks: ['builds', 'noIE', 'ad'], // 只插入指定的 js
+      chunks: ['tongji', 'builds', 'noIE', 'ad'], // 只插入指定的 js
+      // v4
+      minify: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./html/vue/index.html'),
+      filename: path.resolve('../public/vue/index.html'),
+      showErrors: true,
+      chunks: ['vue'], // 只插入指定的 js
       // v4
       minify: true,
     }),
@@ -94,21 +106,21 @@ let config = {
       template: path.resolve('./html/login/index.html'),
       filename: path.resolve('../public/login/index.html'),
       showErrors: true,
-      chunks: ['login', 'noIE', 'ad'], // 只包括指定的 js
+      chunks: ['tongji', 'login', 'noIE', 'ad'], // 只包括指定的 js
       minify: true,
     }),
     new HtmlWebpackPlugin({
       template: path.resolve('./html/login/hello.html'),
       filename: path.resolve('../public/login/hello.html'),
       showErrors: true,
-      chunks: ['login', 'noIE'], // 只包括指定的 js
+      chunks: ['tongji', 'login', 'noIE'], // 只包括指定的 js
       minify: true,
     }),
     new HtmlWebpackPlugin({
       template: path.resolve('./html/profile/index.html'),
       filename: path.resolve('../public/profile/index.html'),
       showErrors: true,
-      chunks: ['profile', 'noIE', 'ad'], // 只包括指定的 js
+      chunks: ['tongji', 'profile', 'noIE', 'ad'], // 只包括指定的 js
       minify: true,
     }),
     new HtmlWebpackPlugin({
@@ -129,10 +141,11 @@ let config = {
       template: path.resolve('./html/index.html'),
       filename: path.resolve('../public/index.html'),
       showErrors: true,
-      chunks: ['index*'], // 只包括指定的 js
+      chunks: ['tongji', 'index*'], // 只包括指定的 js
       minify: true,
     }),
     // 分离 css 文件
+    // https://github.com/webpack-contrib/mini-css-extract-plugin
     new MiniCssExtractPlugin({
       filename: 'css/[name]_[chunkhash].css',
       chunkFilename: '[id].css',

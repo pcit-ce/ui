@@ -20,6 +20,10 @@ footer {
 #userinfo .my_account {
   color: rgb(157, 157, 157);
   margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 #details {
@@ -34,6 +38,12 @@ footer {
   cursor: pointer;
   margin-bottom: 0;
   padding-bottom: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #sync {
@@ -64,11 +74,16 @@ footer {
 
 #orgs .organization {
   color: rgb(157, 157, 157);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .miss_org_title {
   color: rgb(157, 157, 157);
   text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .org_tips {
@@ -79,7 +94,17 @@ footer {
   height: 50px;
   cursor: pointer;
   padding-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
   /* background-color: #f4f9f9;  */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#orgs .org_name:hover {
+  color: #0366d6;
 }
 
 #repos {
@@ -94,6 +119,9 @@ footer {
   line-height: 60px;
   font-size: 25px;
   color: rgb(3, 102, 214);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #repos .repo_full_name:hover {

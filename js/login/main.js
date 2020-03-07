@@ -53,7 +53,7 @@ new Vue({
   el: '.coding-login-button',
   methods: {
     clickMethod: () => {
-      alert('即将支持，敬请期待！请使用其他方式登录');
+      coding();
     },
   },
 });

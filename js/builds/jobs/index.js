@@ -39,19 +39,48 @@ function display(job_data, build_data, url) {
 
 export default {
   handle: url => {
-    let job_id = url.getUrlWithArray()[7];
+    let job_id = url.getUrlWithArray()[5];
 
     const jobs = new pcit('', '/api').jobs;
     const builds = new pcit('', '/api').builds;
 
     (async () => {
       let job_data = await jobs.find(job_id);
-
       let { build_id } = job_data;
-
       let build_data = await builds.find(build_id);
-
       display(job_data, build_data, url);
+
+      // sse
+      let sse = new EventSource(`${location.origin}/api/job/${job_id}?sse=1`);
+
+      sse.onmessage = async function(evt) {
+        let { data: job_data, lastEventId, readyState } = evt;
+
+        let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
+        log.show(job_log, env_vars);
+
+        let { hash } = location;
+
+        if (hash) {
+          $(`.build_log_item${hash}`).attr('open', true);
+        }
+      };
+
+      // close sse
+      sse.addEventListener('close', evt => {
+        let { data: job_data, lastEventId, readyState } = evt;
+
+        let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
+        log.show(job_log, env_vars);
+
+        let { hash } = location;
+
+        if (hash) {
+          $(`.build_log_item${hash}`).attr('open', true);
+        }
+
+        sse.close();
+      });
     })();
   },
 };

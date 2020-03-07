@@ -5,8 +5,13 @@ function connectSSE() {
     document.getElementById('sse').innerHTML = 'open';
   };
 
-  sse.onmessage = function(evt) {
-    document.getElementById('sse').innerHTML = evt.data;
+  sse.onmessage = async function(evt) {
+    document.getElementById('sse').innerHTML = `
+data: ${evt.data} <br>
+lastEventId: ${evt.lastEventId} <br>
+readyState: ${sse.readyState} <br>
+`;
+
     clearTimeout(reconnectTimeout);
   };
 
@@ -15,7 +20,7 @@ function connectSSE() {
   };
 
   // 对应服务器发来的消息的 event: foo 字段
-  sse.addEventListener('fooEvent', event => {
+  sse.addEventListener('foo', event => {
     document.getElementById('sse').innerHTML = 'foo event ' + event.data;
     sse.close();
 
@@ -27,6 +32,11 @@ function connectSSE() {
     reconnectTimeout = setTimeout(() => {
       connectSSE();
     }, reconnectTime - currentTime);
+  });
+
+  sse.addEventListener('close', () => {
+    console.log('sse close');
+    sse.close();
   });
 }
 

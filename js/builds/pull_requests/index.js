@@ -39,6 +39,19 @@ function display(data, url, append = false) {
         finished_at: stopped_at,
       } = status;
 
+      let commit_message_array = commit_message.split('\n');
+
+      let signed = false;
+
+      commit_message_array.forEach((element, index, arr) => {
+        if (element.substr(0, 14) === 'Signed-off-by:') {
+          signed = element.substr(15);
+          arr.splice(index, 1);
+        }
+      });
+
+      commit_message = commit_message_array.join('\n');
+
       let username = url.getUsername();
       let repo = url.getRepo();
       let repo_full_name_url = url.getRepoFullNameUrl();
@@ -113,7 +126,12 @@ function display(data, url, append = false) {
         .append(
           $('<div class="committer text-truncate"></div>')
             .append(committer_username)
-            .attr('title', committer_username),
+            .attr(
+              'title',
+              signed
+                ? `COMMIT BY ${committer_username},\nSIGNED  BY ${signed}`
+                : `COMMIT BY ${committer_username}`,
+            ),
         )
         .append(
           $(

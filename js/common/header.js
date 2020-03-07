@@ -33,7 +33,7 @@ const show = () => {
         </li>
         <li class="nav-item">
           <a class="nav-link" target="_blank" href="https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61">
-          Try Kubernetes</a>
+          Kubernetes</a>
         </li>
 
         <li class="nav-item dropdown userHeader" style="display:none">
@@ -44,16 +44,16 @@ const show = () => {
           <a class="dropdown-item gitType disabled">Git Powered By </a>
           <a class="dropdown-item username disabled" >Welcome </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item profile">个人中心</a>
-          <a class="dropdown-item settings">设置</a>
+          <a class="dropdown-item profile">Profile</a>
+          <a class="dropdown-item settings">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item invite">邀请好友</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item logout">注销</a>
+          <a class="dropdown-item logout">Sign out</a>
         </li>
 
         <li class="nav-item login" style="display:none">
-        <a class="nav-link" href="/login">登录</a>
+        <a class="nav-link" href="/login">Sign in</a>
         </li>
     </ul>
     </div>

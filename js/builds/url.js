@@ -1,8 +1,8 @@
 const git = require('../common/git');
 const app = require('../common/app');
 
-const getUrl = () => {
-  return location.href;
+const getPathname = () => {
+  return location.pathname;
 };
 
 const getHost = () => {
@@ -11,25 +11,21 @@ const getHost = () => {
 };
 
 const getUrlWithArray = () => {
-  let url = getUrl();
-  const length = url.length;
-  if (url[length - 1] === '/') {
-    url = url.substr(0, length - 1);
-  }
+  let url = getPathname();
 
   return url.split('/');
 };
 
 const getGitType = () => {
-  return getUrlWithArray()[3];
+  return getUrlWithArray()[1];
 };
 
 const getUsername = () => {
-  return getUrlWithArray()[4];
+  return getUrlWithArray()[2];
 };
 
 const getRepo = () => {
-  return getUrlWithArray()[5];
+  return getUrlWithArray()[3];
 };
 
 const getRepoFullName = () => {
@@ -45,17 +41,17 @@ const getRepoFullNameUrl = () => {
 };
 
 const getJobId = () => {
-  return getUrlWithArray()[7];
+  return getUrlWithArray()[5];
 };
 
 const getType = () => {
-  let type_from_url = getUrlWithArray()[6];
+  let type_from_url = getUrlWithArray()[4];
 
-  if (5 === getUrlWithArray().length) {
+  if (3 === getUrlWithArray().length) {
     return 'repo';
   }
 
-  if (6 === getUrlWithArray().length) {
+  if (4 === getUrlWithArray().length) {
     return 'current';
   }
 
@@ -69,7 +65,7 @@ const getBaseTitle = () => {
 };
 
 export default {
-  getUrl,
+  getPathname,
   getUrlWithArray,
   getHost,
   getGitType,
