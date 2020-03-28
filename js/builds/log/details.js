@@ -60,7 +60,7 @@ export default {
 
     let job_id = null;
 
-    if (jobs.length === 1) {
+    if (jobs && jobs.length === 1) {
       job_id = jobs[0]['id'];
     }
 
