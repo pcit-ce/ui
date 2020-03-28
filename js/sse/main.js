@@ -1,11 +1,11 @@
 function connectSSE() {
   let sse = new EventSource('/sse/server');
   let reconnectTimeout;
-  sse.onopen = function() {
+  sse.onopen = function () {
     document.getElementById('sse').innerHTML = 'open';
   };
 
-  sse.onmessage = async function(evt) {
+  sse.onmessage = async function (evt) {
     document.getElementById('sse').innerHTML = `
 data: ${evt.data} <br>
 lastEventId: ${evt.lastEventId} <br>
@@ -15,12 +15,12 @@ readyState: ${sse.readyState} <br>
     clearTimeout(reconnectTimeout);
   };
 
-  sse.onerror = function() {
+  sse.onerror = function () {
     document.getElementById('sse').innerHTML = 'error';
   };
 
   // 对应服务器发来的消息的 event: foo 字段
-  sse.addEventListener('foo', event => {
+  sse.addEventListener('foo', (event) => {
     document.getElementById('sse').innerHTML = 'foo event ' + event.data;
     sse.close();
 

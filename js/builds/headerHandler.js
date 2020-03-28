@@ -11,7 +11,7 @@ export default function headerHandler(token, gitType = 'github') {
   $('header .login').hide();
   $('header .gitType').append(git.format(gitType));
 
-  new pcit(token, '/api').user.current().then(res => {
+  new pcit(token, '/api').user.current().then((res) => {
     let { username, pic } = res;
 
     $('header .profile').attr({

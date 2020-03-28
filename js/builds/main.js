@@ -51,7 +51,7 @@ $(document).ready(() => {});
 
 // =
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
   // console.log('ready');
 
   let type = url.getType();
@@ -83,7 +83,7 @@ if (!token.getToken(url.getGitType())) {
 }
 
 // 处理回退事件
-window.onpopstate = event => {
+window.onpopstate = (event) => {
   let id = event.state.key_id;
   // console.log(id);
 

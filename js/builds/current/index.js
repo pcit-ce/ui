@@ -11,10 +11,7 @@ function display(data, url) {
   display_element.empty();
 
   if (0 === data.length) {
-    display_element
-      .hide()
-      .append(error_info('Not Build Yet !'))
-      .fadeIn(500);
+    display_element.hide().append(error_info('Not Build Yet !')).fadeIn(500);
     // display_element.innerHeight(55);
   } else {
     build.show(data, url);
@@ -22,7 +19,7 @@ function display(data, url) {
 }
 
 export default {
-  handle: url => {
+  handle: (url) => {
     column_span_click('current');
 
     const builds = new pcit('', '').builds;

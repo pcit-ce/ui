@@ -86,7 +86,7 @@ function display_username(username_data, git_type = 'github') {
       username: username_data.username,
     },
     methods: {
-      git_url: function() {
+      git_url: function () {
         return git.getUrl(this.username, '', git_type);
       },
     },
@@ -98,16 +98,16 @@ function request(git_type, username, token) {
     let username_data = await fetch(
       '/api/user/' + [git_type, username].join('/'),
     )
-      .then(res => res.json())
-      .then(res => res);
+      .then((res) => res.json())
+      .then((res) => res);
 
     display_username(username_data);
 
     let username_repo_data = await fetch(
       '/api/repos/' + [git_type, username].join('/'),
     )
-      .then(res => res.json())
-      .then(res => res);
+      .then((res) => res.json())
+      .then((res) => res);
 
     display(username_repo_data, git_type);
 

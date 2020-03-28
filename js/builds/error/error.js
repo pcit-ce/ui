@@ -8,24 +8,12 @@ function error_info(
   return $('<div></div>')
     .addClass('card mb-12 text-center')
     .addClass('border-' + border_type)
-    .append(
-      $('<div></div>')
-        .addClass('card-header')
-        .append(header),
-    )
+    .append($('<div></div>').addClass('card-header').append(header))
     .append(
       $('<div></div>')
         .addClass('card-body text-' + text_type)
-        .append(
-          $('<h5></h5>')
-            .addClass('card-title')
-            .append(title),
-        )
-        .append(
-          $('<p></p>')
-            .addClass('card-text text-center')
-            .append(content),
-        )
+        .append($('<h5></h5>').addClass('card-title').append(title))
+        .append($('<p></p>').addClass('card-text text-center').append(content))
         .append(
           $('<a></a>')
             .addClass('btn btn-outline-primary')

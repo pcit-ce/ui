@@ -20,7 +20,7 @@ $(document).on(
     '.setting [name="build_pull_requests"],' +
     '.setting [name="auto_cancel_branch_builds"],' +
     '.setting [name="auto_cancel_pull_request_builds"]',
-  function() {
+  function () {
     let that = $(this);
 
     that.attr('value') === '1'
@@ -54,23 +54,19 @@ $(document).on(
 );
 
 // env delete
-$(document).on('click', '.env_list_item .delete', function() {
+$(document).on('click', '.env_list_item .delete', function () {
   // console.log(
   //   $(this)
   //     .parent()
   //     .data(),
   // );
 
-  let env_id = $(this)
-    .parent()
-    .data('env_id');
-  $(this)
-    .parent()
-    .remove();
+  let env_id = $(this).parent().data('env_id');
+  $(this).parent().remove();
 
   // 发起请求
   (() => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       $.ajax({
         type: 'delete',
         url:
@@ -92,7 +88,7 @@ $(document).on('click', '.env_list_item .delete', function() {
 });
 
 // env add
-$(document).on('click', '.new_env input[name="is_public"]', function() {
+$(document).on('click', '.new_env input[name="is_public"]', function () {
   let that = $(this);
 
   // console.log(that.attr('value') === '0');
@@ -104,20 +100,10 @@ $(document).on('click', '.new_env input[name="is_public"]', function() {
   // console.log(that.prop('checked'));
 });
 
-$(document).on('click', '.new_env button', function() {
-  let is_public = $(this)
-    .prev()
-    .children()
-    .attr('value');
-  let value = $(this)
-    .prev()
-    .prev()
-    .val();
-  let name = $(this)
-    .prev()
-    .prev()
-    .prev()
-    .val();
+$(document).on('click', '.new_env button', function () {
+  let is_public = $(this).prev().children().attr('value');
+  let value = $(this).prev().prev().val();
+  let name = $(this).prev().prev().prev().val();
 
   // console.log(is_public);
   // console.log(value);
@@ -125,7 +111,7 @@ $(document).on('click', '.new_env button', function() {
 
   // 发起请求
   function getData() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let result = repo.env.create(
         url.getRepoFullName(),
         '',
@@ -194,7 +180,7 @@ $(document).on('click', '.new_env button', function() {
 $(document).on(
   'input porpertychange',
   '.general input[name="maximum_number_of_builds"]',
-  function() {
+  function () {
     let value = $(this).val();
 
     if (value.length === 0) {
@@ -230,7 +216,7 @@ $(document).on(
 
 // 事件捕获 从父元素到子元素传递
 // 事件冒泡 点击了 子元素 会向上传递 即也点击了父元素
-$('.column').click(function(event) {
+$('.column').click(function (event) {
   let id = event.target.id;
 
   // console.log('事件冒泡 ' + id);
@@ -271,14 +257,14 @@ $('.trigger_build_modal_button').on('click', () => {
     },
     body: JSON.stringify({ request: { config, branch } }),
   })
-    .then(res => {
+    .then((res) => {
       if (res.ok) {
         return res.json();
       } else {
         return Promise.reject('wrong!');
       }
     })
-    .then(res => {
+    .then((res) => {
       // 关闭模态窗口
       $('#trigger_build_modal').modal('hide');
       // 跳转到构建页面
@@ -292,7 +278,7 @@ $('.trigger_build_modal_button').on('click', () => {
 
       common.column_click_handle('buildNav'); // 渲染被点击的 column
     })
-    .catch(error => {
+    .catch((error) => {
       // console.log(error);
     });
 });
@@ -315,10 +301,10 @@ $('.trigger_build_modal_button').on('click', () => {
 $(document).on(
   'click',
   '.job_list button,.build_data button,.builds_list button,.pull_requests_list button',
-  function() {
+  function () {
     $(this).attr('disabled', 'disabled');
 
-    (async that => {
+    (async (that) => {
       await common_status.buttonClick(that);
 
       let type = url.getType();
@@ -332,7 +318,7 @@ $(document).on(
 );
 
 $('.more_options').on({
-  click: function(event) {
+  click: function (event) {
     // console.log(url.getUrlWithArray());
     let id = event.target.id;
 
@@ -355,7 +341,7 @@ $('.more_options').on({
   },
 });
 
-$(document).on('click', '.builds_list_more', function() {
+$(document).on('click', '.builds_list_more', function () {
   let { id: last_id = null } = $('.builds_list li:last').data();
 
   // console.log(last_id);
@@ -369,7 +355,7 @@ $(document).on('click', '.builds_list_more', function() {
   buildsHistory.more(url, last_id - 1);
 });
 
-$(document).on('click', '.pull_requests_list_more', function() {
+$(document).on('click', '.pull_requests_list_more', function () {
   let { id: last_id = null } = $('.pull_requests_list li:last').data();
 
   // console.log(last_id);
@@ -383,7 +369,7 @@ $(document).on('click', '.pull_requests_list_more', function() {
   pullRequests.more(url, last_id - 1);
 });
 
-$(document).on('click', '.requests_list_more', function() {
+$(document).on('click', '.requests_list_more', function () {
   let { id: last_id = null } = $('.requests_list_item:last').data();
 
   // console.log(last_id);

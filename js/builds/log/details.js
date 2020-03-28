@@ -60,8 +60,8 @@ export default {
 
     let job_id = null;
 
-    if(jobs.length === 1){
-       job_id = jobs[0]['id'];
+    if (jobs.length === 1) {
+      job_id = jobs[0]['id'];
     }
 
     div_element
@@ -80,9 +80,7 @@ export default {
       //     .css('color', status_color),
       // )
       .append(
-        $(
-          `<a class="branch_url text-truncate">${branch_icon} Branch </a>`,
-        )
+        $(`<a class="branch_url text-truncate">${branch_icon} Branch </a>`)
           .append(branch)
           .attr({
             href: branchUrl,
@@ -92,15 +90,15 @@ export default {
       )
       .append(
         $('<div class="build_status"></div>')
-          .append($('<strong></strong>').append(
-            '#' + (job_id ? `${id}-${job_id}` : id) + ' ' + build_status)
+          .append(
+            $('<strong></strong>').append(
+              '#' + (job_id ? `${id}-${job_id}` : id) + ' ' + build_status,
+            ),
           )
           .css('color', status_color),
       )
       .append(
-        $(
-          `<a class="commit_url">${commit_icon} Commit </a>`,
-        )
+        $(`<a class="commit_url">${commit_icon} Commit </a>`)
           .append(commit_id.slice(0, 7))
           .attr({
             title: 'View commit on GitHub',

@@ -49,7 +49,7 @@ let ad = [
   },
 ];
 
-let showAd = index => {
+let showAd = (index) => {
   $('.fixedAd').remove();
 
   if ($(document).width() < 1426) {
@@ -72,12 +72,10 @@ let showAd = index => {
         }),
       )
       .append(
-        $('<div></div>')
-          .append(title)
-          .css({
-            'margin-top': '1px',
-            'text-align': 'center',
-          }),
+        $('<div></div>').append(title).css({
+          'margin-top': '1px',
+          'text-align': 'center',
+        }),
       )
       .css({
         position: 'fixed',

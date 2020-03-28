@@ -1,5 +1,5 @@
 module.exports = {
-  format: gittype => {
+  format: (gittype) => {
     switch (gittype) {
       case 'github':
         return 'GitHub';

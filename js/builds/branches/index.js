@@ -5,9 +5,7 @@ import pcit from '@pcit/pcit-js';
 import branch_icon from '../../icon/branch';
 
 function display(data) {
-  let display_element = $('#display')
-    .empty()
-    .hide();
+  let display_element = $('#display').empty().hide();
 
   if (0 === data.length) {
     display_element
@@ -21,10 +19,10 @@ function display(data) {
 
     // display_element.innerHeight(data.length * 20);
 
-    $.each(data, function(num, branch) {
-      display_element.append(branch_icon+branch);
+    $.each(data, function (num, branch) {
+      display_element.append(branch_icon + branch);
 
-      $.each(status, function(id, status) {
+      $.each(status, function (id, status) {
         id = id.replace('k', '');
 
         let stopped_at = status[3];
@@ -56,7 +54,7 @@ function display(data) {
 }
 
 export default {
-  handle: url => {
+  handle: (url) => {
     column_span_click('branches');
     const repo = new pcit('', '/api').repo;
 

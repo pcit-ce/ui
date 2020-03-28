@@ -113,7 +113,7 @@ module.exports = {
 
     // 鼠标移入 job list 背景变色
     $('.job_list').on({
-      mousemove: function() {
+      mousemove: function () {
         let that = $(this);
         let background_color = that.attr('status_background_color');
         let border_color = that.attr('status_color');
@@ -122,7 +122,7 @@ module.exports = {
           .css('background', background_color)
           .css('border-left', '5px solid ' + border_color);
       },
-      mouseout: function() {
+      mouseout: function () {
         let that = $(this);
 
         that.css('background', 'none').css('border-left', '5px solid white');

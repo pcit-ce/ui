@@ -27,5 +27,5 @@ function display(url) {
 }
 
 export default {
-  handle: url => display(url),
+  handle: (url) => display(url),
 };

@@ -53,12 +53,10 @@ function settings(data: any) {
       $('<p></p>')
         .append('使用 PCIT API 请访问')
         .append(
-          $('<a></a>')
-            .append('https://api.ci.khs1994.com')
-            .attr({
-              href: 'https://api.ci.khs1994.com',
-              target: '_blank',
-            }),
+          $('<a></a>').append('https://api.ci.khs1994.com').attr({
+            href: 'https://api.ci.khs1994.com',
+            target: '_blank',
+          }),
         )
         .append(() =>
           $('<input/>').attr({
@@ -87,7 +85,7 @@ function copyToken() {
   // eslint-disable-next-line no-undef
   let clipboard = new ClipboardJS('.copy_token');
 
-  clipboard.on('success', function(e: any) {
+  clipboard.on('success', function (e: any) {
     console.info('Action:', e.action);
     console.info('Text:', e.text);
     console.info('Trigger:', e.trigger);
@@ -108,7 +106,7 @@ function list_repos(reposData: any) {
     repo.build_id ? reposArr.unshift(repo) : reposArr.push(repo);
   }
 
-  $.each(reposArr, function(num: number, repo: any) {
+  $.each(reposArr, function (num: number, repo: any) {
     let repo_item_el = $('<div class="repo_item row"></div>');
     let { webhooks_status: status, repo_full_name: repo_name } = repo;
 
@@ -183,12 +181,10 @@ function showOrg(data: any) {
 
     $('#miss_org').append(
       $('<p class="org_tips">找不到组织?请点击 </p>').append(
-        $('<a></a>')
-          .append('授权')
-          .attr({
-            href: oauth_url.url,
-            target: '_black',
-          }),
+        $('<a></a>').append('授权').attr({
+          href: oauth_url.url,
+          target: '_black',
+        }),
       ),
     );
   })();
@@ -417,7 +413,7 @@ function get_user_repos() {
   return pcit_repo.list();
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   (async () => {
     let data = await get_userdata();
 
@@ -473,22 +469,17 @@ $(document).ready(function() {
 
     $('.tip').after(
       $('<p></p>').append(
-        $('<a></a>')
-          .append('<button>授权</button>')
-          .attr({
-            href: oauth_client_url,
-            target: '_blank',
-          }),
+        $('<a></a>').append('<button>授权</button>').attr({
+          href: oauth_client_url,
+          target: '_blank',
+        }),
       ),
     );
   })();
 });
 
-$('#sync').on('click', function() {
-  $(this)
-    .empty()
-    .append('账户信息同步中')
-    .attr('disabled', 'disabled');
+$('#sync').on('click', function () {
+  $(this).empty().append('账户信息同步中').attr('disabled', 'disabled');
 
   $(this).after(
     $('<div></div>')
@@ -537,7 +528,7 @@ $('#sync').on('click', function() {
   progress(97, 30000);
 });
 
-$(document).on('click', '.org_name', function() {
+$(document).on('click', '.org_name', function () {
   $('#username').css({ 'background-color': 'white', color: '#666' });
 
   $('#orgs .org_name').css({ 'background-color': 'white', color: '#666' });
@@ -552,14 +543,14 @@ $(document).on('click', '.org_name', function() {
   click_org($(this).attr('org_name'));
 });
 
-$('#userinfo').click(function(event) {
+$('#userinfo').click(function (event) {
   let username = event.target.innerHTML;
   click_user();
 });
 
 // append 添加元素绑定事件
 // https://www.cnblogs.com/liubaojing/p/8383960.html
-$('#repos').on('click', '.open_or_close', function() {
+$('#repos').on('click', '.open_or_close', function () {
   let status = $(this).text();
   let repo = $(this).attr('repo_name');
   let that = $(this);
@@ -571,10 +562,7 @@ $('#repos').on('click', '.open_or_close', function() {
       dataType: 'json',
       contentType: 'application/json;charset=utf-8',
       success(data) {
-        that
-          .text('toggle_off')
-          .css('color', 'black')
-          .attr('title', 'activate');
+        that.text('toggle_off').css('color', 'black').attr('title', 'activate');
         // console.log(data);
       },
     });

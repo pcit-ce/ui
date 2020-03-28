@@ -50,7 +50,7 @@ module.exports = {
 
     for (let pipeline in log_obj) {
       let log = log_obj[pipeline];
-      if(log === null){
+      if (log === null) {
         log = '';
       }
       let line = log.split('\n');
@@ -78,8 +78,9 @@ module.exports = {
 
         content = ansi_convert.toHtml(content);
 
-        let build_step_log_line = `<span class="build_log_item_line">${index +
-          1}</span>`;
+        let build_step_log_line = `<span class="build_log_item_line">${
+          index + 1
+        }</span>`;
         let build_step_log_time = `<code class="build_log_item_time">${time}</code>`;
         let build_step_log_content = `<code class="build_log_item_content">${content}</code>`;
 
@@ -104,7 +105,7 @@ module.exports = {
       let job_id = location.pathname.split('/').pop();
       let arr = [];
 
-      $('.build_log_item').on('toggle', null, res => {
+      $('.build_log_item').on('toggle', null, (res) => {
         let el_id = res.currentTarget.id;
 
         if (arr[el_id] === undefined) {
@@ -127,7 +128,7 @@ module.exports = {
     let job_id = location.pathname.split('/').pop();
     let arr = [];
 
-    $('.build_log_item').on('toggle', null, res => {
+    $('.build_log_item').on('toggle', null, (res) => {
       let el_id = res.currentTarget.id;
 
       if (arr[el_id] === undefined) {

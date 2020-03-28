@@ -29,30 +29,26 @@ function more_options_click_handler(id) {
 module.exports = {
   mouseoutMethod,
   mouseoverMethod,
-  column_span_click: id => {
+  column_span_click: (id) => {
     let span_el = $('column > #' + id);
     span_el.css('color', 'green');
     span_el.css('border-bottom-style', 'solid');
   },
-  column_click_handle: id => {
+  column_click_handle: (id) => {
     // build job 导航栏
     if (-1 !== $.inArray(id, ['buildNav', 'jobNav'])) {
       id === 'buildNav' &&
-        $('#buildNav')
-          .show()
-          .css({
-            color: 'green',
-            'border-bottom-style': 'solid',
-          });
+        $('#buildNav').show().css({
+          color: 'green',
+          'border-bottom-style': 'solid',
+        });
 
       if (id === 'jobNav') {
         $('#buildNav').show();
-        $('#jobNav')
-          .show()
-          .css({
-            color: 'green',
-            'border-bottom-style': 'solid',
-          });
+        $('#jobNav').show().css({
+          color: 'green',
+          'border-bottom-style': 'solid',
+        });
       }
 
       return;

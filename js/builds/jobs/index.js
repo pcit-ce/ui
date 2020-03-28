@@ -4,7 +4,7 @@ import details from '../log/details';
 const log = require('../log');
 import { showBuildNav } from '../builds_history';
 
-const showJobNav = job_id => {
+const showJobNav = (job_id) => {
   $('#jobNav')
     .empty()
     .append('Job #' + job_id);
@@ -38,7 +38,7 @@ function display(job_data, build_data, url) {
 }
 
 export default {
-  handle: url => {
+  handle: (url) => {
     let job_id = url.getUrlWithArray()[5];
 
     const jobs = new pcit('', '/api').jobs;
@@ -53,7 +53,7 @@ export default {
       // sse
       let sse = new EventSource(`${location.origin}/api/job/${job_id}?sse=1`);
 
-      sse.onmessage = async function(evt) {
+      sse.onmessage = async function (evt) {
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
@@ -67,7 +67,7 @@ export default {
       };
 
       // close sse
-      sse.addEventListener('close', evt => {
+      sse.addEventListener('close', (evt) => {
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);

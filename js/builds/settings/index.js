@@ -87,7 +87,7 @@ function display(data, url, token) {
     );
   });
 
-  get_env(url, token).then(result => {
+  get_env(url, token).then((result) => {
     // display_element.innerHeight(400 + result.length * 50);
     let env_list_item = $('<form class="env_list_item form-inline"></form>');
     env_el.append(env_list_item.hide());

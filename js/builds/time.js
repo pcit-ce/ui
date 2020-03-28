@@ -1,6 +1,6 @@
 // unixTime is php time()
 // js time = php time() * 1000
-const formatTime = unixTime => {
+const formatTime = (unixTime) => {
   const nowTime = new Date().getTime();
 
   const diff = nowTime / 1000 - unixTime;
@@ -45,7 +45,7 @@ const formatTime = unixTime => {
   return int <= 1 ? ' a year ago' : int + ' years ago';
 };
 
-const formatTotal = total => {
+const formatTotal = (total) => {
   // 秒
   if (total < 0) {
     return '';

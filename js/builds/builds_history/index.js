@@ -70,7 +70,7 @@ function display(data, url, append = false) {
   let ul_el = append ? $('.builds_list') : $('<ul class="builds_list"></ul>');
   // display_element.innerHeight((i + 1) * 100);
   // display_element.innerHeight(i * 100);
-  $.each(data, function(id, status) {
+  $.each(data, function (id, status) {
     i--;
 
     let {
@@ -89,9 +89,9 @@ function display(data, url, append = false) {
     // commit_message = tag ? tag : commit_message;
     let commit_message_array;
 
-    try{
+    try {
       commit_message_array = commit_message.split('\n');
-    }catch(e){
+    } catch (e) {
       return;
     }
 
@@ -186,9 +186,7 @@ function display(data, url, append = false) {
       )
       .append(
         $('<a class="commit_id"> </a>')
-          .append(
-            commit_icon + commit_id,
-          )
+          .append(commit_icon + commit_id)
           .attr({
             href: commit_url,
             title: 'View commit on GitHub',
@@ -264,7 +262,7 @@ function display(data, url, append = false) {
 
 export default {
   showBuildNav,
-  handle: url => {
+  handle: (url) => {
     let build_id;
     let url_array = url.getUrlWithArray();
     let display_element = $('#display');
