@@ -1,11 +1,15 @@
 const { column_span_click } = require('../common');
 const git = require('../../common/git');
-const builds = require('../builds');
+import builds from '../builds';
 const common_status = require('../../common/status');
 const build_not_find = require('../error/error').error_info;
 const formatTime = require('../time').formatTime;
 import pcit from '@pcit/pcit-js';
 const pcit_builds = new pcit('', '').builds;
+
+import branch_icon from '../../icon/branch';
+import tag_icon from '../../icon/tag';
+import commit_icon from '../../icon/commit';
 
 export const showBuildNav = (build_id, trigger = false) => {
   $('#buildNav')
@@ -82,9 +86,14 @@ function display(data, url, append = false) {
       tag,
     } = status;
 
-    commit_message = tag ? tag : commit_message;
+    // commit_message = tag ? tag : commit_message;
+    let commit_message_array;
 
-    let commit_message_array = commit_message.split('\n');
+    try{
+      commit_message_array = commit_message.split('\n');
+    }catch(e){
+      return;
+    }
 
     let signed = false;
 
@@ -153,7 +162,8 @@ function display(data, url, append = false) {
       .append($('<div class="event_type"></div>').append(build_status_icon))
       .append(
         $('<div class="branch text-truncate"></div>')
-          .append($('<strong></strong>').append(branch.slice(0, 10)))
+          .append(event_type === 'tag' ? tag_icon : branch_icon)
+          .append(event_type === 'tag' ? tag : branch.slice(0, 10))
           .attr('title', branch)
           .css('color', status_color),
       )
@@ -175,10 +185,10 @@ function display(data, url, append = false) {
           .attr('title', commit_message),
       )
       .append(
-        $(
-          '<a class="commit_id"><svg t="1583505654549" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5464" width="20" height="20"><path d="M528.298667 589.994667c-165.034667 0-219.136 66.304-236.8 110.08a147.541333 147.541333 0 1 1-107.093334-3.413334V286.72a147.370667 147.370667 0 1 1 98.304 0v259.925333c43.178667-31.914667 106.069333-55.04 196.437334-55.04 131.242667 0 174.933333-65.792 189.184-109.568a147.370667 147.370667 0 1 1 203.946666-136.106666c0 65.877333-43.264 122.88-102.741333 140.544-12.8 70.314667-60.416 203.434667-241.237333 203.434666zM233.472 786.517333a49.152 49.152 0 1 0 0 98.304 49.152 49.152 0 0 0 0-98.304z m0-687.786666a49.152 49.152 0 1 0 0 98.133333 49.152 49.152 0 0 0 0-98.133333z m491.349333 98.133333a49.152 49.152 0 1 0 0 98.304 49.152 49.152 0 0 0 0-98.218667z" p-id="5465" fill="#666666"></path></svg> </a>',
-        )
-          .append(commit_id)
+        $('<a class="commit_id"> </a>')
+          .append(
+            commit_icon + commit_id,
+          )
           .attr({
             href: commit_url,
             title: 'View commit on GitHub',
@@ -310,6 +320,7 @@ export default {
         );
         display(result, url);
       } catch (e) {
+        console.log(e);
         display_element.empty();
         display_element
           .hide()

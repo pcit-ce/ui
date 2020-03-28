@@ -2,7 +2,7 @@ import pcit from '@pcit/pcit-js';
 
 const { column_span_click } = require('../common');
 
-const build = require('../builds');
+import build from '../builds';
 const error_info = require('../error/error').error_info;
 
 function display(data, url) {

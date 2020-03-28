@@ -23,7 +23,10 @@ const show = () => {
           <a class="nav-link" target="_blank" href="//docs.ci.khs1994.com">Documentation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" target="_blank" href="//api.ci.khs1994.com">API</a>
+          <a class="nav-link" target="_blank" href="//docs.ci.khs1994.com/usage/security.html">Security</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="//docs.ci.khs1994.com/api/">API</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" target="_blank" href="https://github.com/pcit-ce/pcit">GitHub</a>

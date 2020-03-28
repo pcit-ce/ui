@@ -18,6 +18,9 @@ function getTime(time) {
   return date.getTime();
 }
 
+let Ansi_convert = require('ansi-to-html');
+let ansi_convert = new Ansi_convert();
+
 module.exports = {
   show: (log, env) => {
     // console.log('show log');
@@ -47,6 +50,9 @@ module.exports = {
 
     for (let pipeline in log_obj) {
       let log = log_obj[pipeline];
+      if(log === null){
+        log = '';
+      }
       let line = log.split('\n');
 
       let build_step_log = '';
@@ -55,6 +61,7 @@ module.exports = {
       let time;
 
       line.forEach((element, index) => {
+        // 遍历每行 log
         time = element.substr(0, 30);
         let content;
         if (time.substr(-1) === 'Z') {
@@ -69,10 +76,13 @@ module.exports = {
           content = element;
         }
 
+        content = ansi_convert.toHtml(content);
+
         let build_step_log_line = `<span class="build_log_item_line">${index +
           1}</span>`;
         let build_step_log_time = `<code class="build_log_item_time">${time}</code>`;
         let build_step_log_content = `<code class="build_log_item_content">${content}</code>`;
+
         build_step_log +=
           build_step_log_line +
           build_step_log_time +

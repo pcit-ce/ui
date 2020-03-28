@@ -4,7 +4,10 @@ const time = require('../time');
 const formatTime = time.formatTime;
 const formatTotal = time.formatTotal;
 
-module.exports = {
+import branch_icon from '../../icon/branch';
+import commit_icon from '../../icon/commit';
+
+export default {
   show: (data, url, job = false) => {
     // console.log(data);
     let display_element = $('#display');
@@ -20,6 +23,7 @@ module.exports = {
       begin_at = 0,
       finished_at: stopped_at,
       env_vars,
+      jobs,
     } = data;
 
     let status_color;
@@ -54,6 +58,12 @@ module.exports = {
 
     let div_element = $('<div class="build_data"></div>');
 
+    let job_id = null;
+
+    if(jobs.length === 1){
+       job_id = jobs[0]['id'];
+    }
+
     div_element
       .append(
         $('<div class="build_id"></div>')
@@ -71,7 +81,7 @@ module.exports = {
       // )
       .append(
         $(
-          '<a class="branch_url text-truncate"><i class="material-icons md-16">book</i> Branch </a>',
+          `<a class="branch_url text-truncate">${branch_icon} Branch </a>`,
         )
           .append(branch)
           .attr({
@@ -82,12 +92,14 @@ module.exports = {
       )
       .append(
         $('<div class="build_status"></div>')
-          .append($('<strong></strong>').append('#' + id + ' ' + build_status))
+          .append($('<strong></strong>').append(
+            '#' + (job_id ? `${id}-${job_id}` : id) + ' ' + build_status)
+          )
           .css('color', status_color),
       )
       .append(
         $(
-          '<a class="commit_url"><i class="material-icons md-16">linear_scale</i> Commit </a>',
+          `<a class="commit_url">${commit_icon} Commit </a>`,
         )
           .append(commit_id.slice(0, 7))
           .attr({

@@ -1,8 +1,8 @@
-const details = require('../log/details');
+import details from '../log/details';
 const list = require('../jobs/list');
 const log = require('../log');
 
-module.exports = {
+export default {
   show: (data, url) => {
     // console.log(data);
 

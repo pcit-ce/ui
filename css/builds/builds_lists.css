@@ -71,14 +71,15 @@
 }
 
 .builds_list .branch {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 400;
   width: auto;
   height: 50px;
   /*background: orange;*/
   /*float: left;*/
   text-align: left;
   position: absolute;
-  left: 60px;
+  left: 55px;
   top: 8px;
 }
 
@@ -90,7 +91,7 @@
   /*float: left;*/
   text-align: left;
   position: absolute;
-  left: 60px;
+  left: 55px;
   top: 53px;
   max-width: 10%;
 }
@@ -102,10 +103,11 @@
   /*background: yellow;*/
   position: absolute;
   /*float: left;*/
-  left: 190px;
+  left: 235px;
   padding-top: 6px;
   color: #666666;
   text-align: left;
+  top: 4px;
 }
 
 .builds_list .commit_url {
@@ -115,7 +117,7 @@
   /*float: left;*/
   position: absolute;
   /*left: 110px;*/
-  top: 60px;
+  top: 70px;
   margin-top: -10px;
   text-align: left;
   color: #666666;

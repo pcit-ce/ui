@@ -1,18 +1,17 @@
 language: node_js
 
 cache:
-  directories:
-    - node_modules
+  - node_modules
 
-pipeline:
+steps:
 
   install:
     image: khs1994/node:git
-    commands:
+    run:
       - npm install --registry=https://registry.npm.taobao.org --cache=/tmp/pcit_cache/npm
 
   script:
-    command:
+    run:
       - npm run build
       - mkdir -p ../public
       - cp -r ../public .
@@ -21,10 +20,10 @@ pipeline:
 
   deploy_s3:
     image: pcit/s3
-    when:
+    if:
       status: success
       event: ['push']
-    settings:
+    with:
       local_dir: public
       upload_dir: ui/nightly/${PCIT_COMMIT}
       region: 'us-east-1'
@@ -32,4 +31,4 @@ pipeline:
       secret_access_key: ${S3_SECRET_ACCESS_KEY}
       bucket: pcit
       endpoint: https://storage.khs1994.com
-      minio: true
+      use_path_style_endpoint: true

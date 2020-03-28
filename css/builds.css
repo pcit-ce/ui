@@ -1,8 +1,8 @@
 @import url('builds/pull_requests_list.css');
 @import 'builds/builds_lists.css';
 @import 'common/footer.css';
-@import 'builds/common.css';
 @import 'common/body.css';
+@import 'builds/common.css';
 @import 'builds/jobs_list.css';
 @import 'builds/settings.css';
 @import 'builds/requests.css';
@@ -198,7 +198,7 @@
     /*background: firebrick;*/
     position: absolute;
     left: 600px;
-    top: 60px;
+    top: 110px;
     width: 200px;
     height: 30px;
     color: #666666;
@@ -209,7 +209,7 @@
     /*background: cornsilk;*/
     position: absolute;
     left: 600px;
-    top: 110px;
+    top: 60px;
     width: 200px;
     height: 30px;
     color: #666666;

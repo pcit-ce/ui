@@ -1,6 +1,6 @@
 import pcit from '@pcit/pcit-js';
 
-const details = require('../log/details');
+import details from '../log/details';
 const log = require('../log');
 import { showBuildNav } from '../builds_history';
 

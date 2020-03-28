@@ -2,6 +2,7 @@ const { column_span_click } = require('../common');
 const error_info = require('../error/error').error_info;
 import pcit from '@pcit/pcit-js';
 // const pcit = require('@pcit/pcit-js');
+import branch_icon from '../../icon/branch';
 
 function display(data) {
   let display_element = $('#display')
@@ -21,7 +22,7 @@ function display(data) {
     // display_element.innerHeight(data.length * 20);
 
     $.each(data, function(num, branch) {
-      display_element.append(branch);
+      display_element.append(branch_icon+branch);
 
       $.each(status, function(id, status) {
         id = id.replace('k', '');
