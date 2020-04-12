@@ -15,7 +15,7 @@ module.exports.show = () => {
 
       <div class="developer col-md-3 col-sm-6 col-12">
         <div><strong>DEVELOPER</strong></div>
-        <div><a href="https://api.ci.khs1994.com" target="_blank">API</a></div>
+        <div><a href="https://docs.ci.khs1994.com/api/" target="_blank">API</a></div>
         <div><a href="https://ci.khs1994.com/issues" target="_blank">Community</a></div>
         <div><a href="https://ci.khs1994.com/blog" target="_blank">Blog</a></div>
         <div><a href="https://ci.khs1994.com/changelog" target="_blank">CHANGELOG</a></div>

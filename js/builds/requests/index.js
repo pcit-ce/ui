@@ -42,6 +42,10 @@ function display(data, url, append = false) {
       created_at,
     } = value;
 
+    if (!commit_id) {
+      return;
+    }
+
     commit_message = tag ? tag : commit_message;
 
     let color =

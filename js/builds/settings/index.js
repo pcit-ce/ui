@@ -117,7 +117,7 @@ function display(data, url, token) {
         )
         .append(
           $(
-            '<button class="delete btn btn-light btn-xs mb-2"></button>',
+            '<button class="delete btn btn-secondary btn-xs mb-2"></button>',
           ).append('Delete'),
         );
 
@@ -125,7 +125,7 @@ function display(data, url, token) {
     });
 
     env_el.append(() => {
-      return $('<form class="new_env form-inline"></form>')
+      return $('<form class="new_env"></form>')
         .append(
           $(
             '<input class="name form-control" type="text" placeholder="name" />',
@@ -133,7 +133,7 @@ function display(data, url, token) {
         )
         .append(
           $(
-            '<input class="value form-control" type="text" placeholder="value" />',
+            '<textarea class="value form-control" type="text" placeholder="value" rows="10"></textarea>',
           ),
         )
         .append(
@@ -141,7 +141,7 @@ function display(data, url, token) {
             '<label class="is_public"><input type="radio" name="is_public" value="0" /></label>',
           ).append('Public Value'),
         )
-        .append($('<button class="btn btn-light"></button>').append('Add'));
+        .append($('<button class="btn btn-secondary"></button>').append('Add'));
     });
   });
 

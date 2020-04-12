@@ -28,7 +28,7 @@
 .setting .env_list_item {
   height: 40px;
   position: relative;
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
   margin-bottom: 15px;
   margin-top: 20px;
 }
@@ -57,20 +57,16 @@
 }
 
 .setting .new_env .name {
-  width: 300px;
+  width: 50%;
 }
 
 .setting .new_env .value {
-  width: 300px;
-  margin-left: 50px;
+  width: 50%;
+  margin-top: 15px;
 }
 
 .setting .new_env .is_public {
-  position: absolute;
-  left: 700px;
 }
 
 .setting .new_env button {
-  position: absolute;
-  right: 0;
 }

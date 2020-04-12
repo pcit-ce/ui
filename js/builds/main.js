@@ -12,6 +12,10 @@ import navClick from './navClick';
 import showRepoTitle from './showRepoTitle';
 import headerHandler from './headerHandler';
 
+// import hljs from 'highlight.js/lib/highlight';
+// import json from 'highlight.js/lib/languages/json';
+// hljs.registerLanguage('javascript', json);
+
 header.show();
 footer.show();
 

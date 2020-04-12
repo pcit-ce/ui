@@ -53,8 +53,8 @@ function settings(data: any) {
       $('<p></p>')
         .append('使用 PCIT API 请访问')
         .append(
-          $('<a></a>').append('https://api.ci.khs1994.com').attr({
-            href: 'https://api.ci.khs1994.com',
+          $('<a></a>').append('https://docs.ci.khs1994.com/api/').attr({
+            href: 'https://docs.ci.khs1994.com/api/',
             target: '_blank',
           }),
         )

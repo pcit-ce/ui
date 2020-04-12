@@ -185,7 +185,7 @@ function display(data, url, append = false) {
           $('<button class="cancel_or_restart"></button>')
             .append(
               $('<i class="material-icons"></i>').append(
-                button_handle === 'cancel' ? 'highlignt_off' : 'refresh',
+                button_handle === 'cancel' ? 'highlight_off' : 'refresh',
               ),
             )
             .attr({

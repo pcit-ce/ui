@@ -242,7 +242,7 @@ function display(data, url, append = false) {
 
   display_element.append(ul_el).append(
     $(
-      '<button class="builds_list_more btn btn-success" type="button">More</button>',
+      '<button class="builds_list_more btn btn-outline-secondary" type="button">More</button>',
     ).attr({
       'data-toggle': 'tooltip',
       'data-placement': 'bottom',

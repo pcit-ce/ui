@@ -20,16 +20,27 @@ function getTime(time) {
 
 let Ansi_convert = require('ansi-to-html');
 let ansi_convert = new Ansi_convert();
+const JSONFormatter = require('json-formatter-js');
 
+const { Log: pcit_log } = require('@pcit/pcit-js');
+const { Artifacts: pcit_artifacts } = require('@pcit/pcit-js');
+
+const token = require('../../common/token');
+const pcit_token = token.getToken(location.pathname.split('/')[1]);
+
+let git_type = location.pathname.split('/')[1];
+let username = location.pathname.split('/')[2];
+let repo = location.pathname.split('/')[3];
+
+let delete_svg = require('../../icon/delete');
+
+//console.log(pcit_token);
 module.exports = {
-  show: (log, env) => {
+  show: (log, env, job_id = 0, config = null) => {
+    //console.log(typeof(env));
     // console.log('show log');
     if (!log) {
       log = '{"pending": "Build log is empty"}';
-    }
-
-    if (!env) {
-      env = 'this build not include global or matrix env';
     }
 
     let pre_el = $('<div class="build_log"></div>');
@@ -39,8 +50,6 @@ module.exports = {
     } catch (e) {
       log_obj = { log };
     }
-
-    log_obj = Object.assign({}, { env }, log_obj);
 
     if ($('.build_log').length) {
       // console.log('empty old log');
@@ -101,8 +110,8 @@ module.exports = {
       );
     }
 
-    if ($('.build_log').length) {
-      let job_id = location.pathname.split('/').pop();
+    if ($('.nav.nav-pills.card-header-pills').length) {
+      let job_or_build_id = location.pathname.split('/').pop();
       let arr = [];
 
       $('.build_log_item').on('toggle', null, (res) => {
@@ -114,7 +123,7 @@ module.exports = {
           history.replaceState('', '', `#${el_id}`);
         } else {
           arr[el_id] = undefined;
-          history.replaceState('', '', `${job_id}`);
+          history.replaceState('', '', `${job_or_build_id}`);
         }
       });
       return;
@@ -122,10 +131,10 @@ module.exports = {
 
     let display_el = $('#display');
 
-    display_el.append(pre_el);
+    // display_el.append(pre_el);
     // .innerHeight(pre_el.innerHeight() + 70);
 
-    let job_id = location.pathname.split('/').pop();
+    let job_or_build_id = location.pathname.split('/').pop();
     let arr = [];
 
     $('.build_log_item').on('toggle', null, (res) => {
@@ -137,7 +146,130 @@ module.exports = {
         history.replaceState('', '', `#${el_id}`);
       } else {
         arr[el_id] = undefined;
-        history.replaceState('', '', `${job_id}`);
+        history.replaceState('', '', `${job_or_build_id}`);
+      }
+    });
+
+    display_el.append(`
+<div class="card" style="margin-top: 20px">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link active" data-type=log>log</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-type=env>env</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-type=config>config</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-type=artifacts>artifacts</a>
+        </li>
+      </ul>
+</div>
+<div class="card-body" style="padding-left:0;padding-right:0;background-color: #24292e;">
+
+    </div>
+</div>
+`);
+
+    $('.card-header-pills .nav-link').on('click', null, (res) => {
+      //console.log(res);
+      $('.card-header-pills .nav-link').removeClass('active');
+      $(res.currentTarget).addClass('active');
+
+      if (res.currentTarget.dataset.type === 'log') {
+        $('.card-body')
+          .empty()
+          .append(
+            `
+<div class="btn-group log_handler" role="group" aria-label="log_handler" style="padding-left:10px">
+  <button type="button" class="btn btn-secondary" data-type="timestamps">Show timestamps</button>
+  <button type="button" class="btn btn-secondary" data-type="raw">
+    <a target="_blank" href="//${location.host}/api/job/${job_id}/log"
+    style="color:#fff;"
+    >View raw logs</a>
+  </button>
+  <button type="button" class="btn btn-secondary ${
+    pcit_token ? null : 'disabled'
+  }" data-type="remove">Remove Log</button>
+</div>
+`,
+          )
+          .append(pre_el);
+
+        $('.log_handler .btn.btn-secondary').on('click', null, (res) => {
+          if (res.currentTarget.dataset.type === 'timestamps') {
+            $('.build_log_item_time').toggle();
+          }
+
+          if (res.currentTarget.dataset.type === 'remove') {
+            new pcit_log(pcit_token, '').delete(job_id);
+          }
+        });
+      }
+
+      if (res.currentTarget.dataset.type === 'env') {
+        $('.card-body').empty()
+          .append(`<pre style="color: #f1f1f1;padding-left:10px">
+${
+  env !== 'null'
+    ? JSON.stringify(JSON.parse(env), null, 4)
+    : '<h5 class="card-title">this build not include global or matrix env</h5>'
+}
+</pre>
+    `);
+      }
+
+      if (res.currentTarget.dataset.type === 'config') {
+        //console.log(typeof(config));
+        const formatter = new JSONFormatter(JSON.parse(config), 3, {
+          theme: 'dark',
+        });
+        //console.log(formatter.render())
+        $('.card-body').empty().append(formatter.render());
+      }
+
+      if (res.currentTarget.dataset.type === 'artifacts') {
+        new pcit_artifacts('', '')
+          .list(git_type, username, repo, job_id)
+          .then((res) => {
+            let basename = '';
+            let size = `${size / 1024 / 1024} MB`;
+
+            $('.card-body')
+              .empty()
+              .append($('<ul class="list-group artifacts-list"></ul>'));
+
+            res.forEach((value, index) => {
+              $('.artifacts-list').append(`
+<li class="list-group-item">
+  <a style="color:#0366d6" href="/api/${git_type}/${username}/${repo}/jobs/${job_id}/artifacts/${
+                value.basename
+              }/tgz" target="_blank">
+          ${value.basename}
+  </a>
+
+  <div style="float: right">
+    <span>${(value.size / 1024 / 1024).toFixed(2)} MB </span>
+    <button type="button" class="btn btn-link" class="delete-artifact" data-name="${
+      value.basename
+    }" ${pcit_token ? null : 'hidden'}>${delete_svg}</button>
+  </div>
+</li>
+                  `);
+            });
+
+            $('.delete-artifact').on('click', null, (res) => {
+              const artifact_name = res.currentTarget.dataset.name;
+              new pcit_artifacts('', '')
+                .delete(git_type, username, repo, job_id, artifact_name)
+                .then((res) => {
+                  console.log(res);
+                });
+            });
+          });
       }
     });
   },

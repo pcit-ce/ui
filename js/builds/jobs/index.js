@@ -32,7 +32,7 @@ function display(job_data, build_data, url) {
   let { log: job_log, env_vars = null } = job_data;
 
   // display log
-  log.show(job_log, env_vars);
+  log.show(job_log, env_vars, job_id, build_data.config);
 
   // let column_el = $('#pull_requests');
 }
@@ -49,6 +49,7 @@ export default {
       let { build_id } = job_data;
       let build_data = await builds.find(build_id);
       display(job_data, build_data, url);
+      let build_config = build_data.config;
 
       // sse
       let sse = new EventSource(`${location.origin}/api/job/${job_id}?sse=1`);
@@ -57,7 +58,7 @@ export default {
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
-        log.show(job_log, env_vars);
+        log.show(job_log, env_vars, job_id, build_config);
 
         let { hash } = location;
 
@@ -71,7 +72,7 @@ export default {
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
-        log.show(job_log, env_vars);
+        log.show(job_log, env_vars, job_id, build_config);
 
         let { hash } = location;
 

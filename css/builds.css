@@ -58,9 +58,7 @@
 }
 
 #more_options {
-  color: #fff;
   border: 1px solid;
-  width: 105px;
   text-decoration: none;
 }
 
@@ -242,11 +240,8 @@ tr {
   white-space: pre-wrap;
   word-wrap: break-word;
   /* line-height: 30px; */
-  background: #24292e;
+  /* background: #24292e; */
   color: #f1f1f1;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
 }
 
 pre.build_log_item {
@@ -296,4 +291,25 @@ pre.build_log_item {
 
 .navMarginLeft {
   margin-left: 15px;
+}
+
+.json-formatter-dark {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-left: 10px;
+}
+
+button a:hover {
+  text-decoration: none;
+}
+
+.log_handler .btn-secondary {
+  background-color: #444444;
+  border-color: #444444;
+}
+
+.list-group.artifacts-list {
+  margin-left: 2%;
+  margin-right: 2%;
 }

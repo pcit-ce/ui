@@ -50,8 +50,6 @@ const show = () => {
           <a class="dropdown-item profile">Profile</a>
           <a class="dropdown-item settings">Settings</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item invite">邀请好友</a>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item logout">Sign out</a>
         </li>
 

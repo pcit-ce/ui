@@ -13,7 +13,7 @@ export default {
       return;
     }
 
-    let { jobs, build_id, build_status } = data;
+    let { jobs, build_id, build_status, config } = data;
 
     data.status = build_status;
 
@@ -29,8 +29,8 @@ export default {
     // 只有一个 job 直接展示日志
     if (jobs.length === 1) {
       data.id = build_id;
-      let { build_log, env_vars = null } = jobs[0];
-      log.show(build_log, env_vars);
+      let { build_log, id: job_id, env_vars = null } = jobs[0];
+      log.show(build_log, env_vars, job_id, config);
 
       return;
     }
