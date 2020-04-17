@@ -63,6 +63,7 @@ jQuery(document).ready(function () {
   showRepoTitle();
 
   if (url.getUrlWithArray().length === 6) {
+    // build or job
     type =
       url.getUrlWithArray().slice(-2)[0] === 'builds' ? 'buildNav' : 'jobNav';
   }
@@ -73,7 +74,7 @@ jQuery(document).ready(function () {
   navClick(type, false); // 渲染 display 页面
 
   if (url.getUrlWithArray().length === 4) {
-    // repo 页面
+    // repo 页面无需渲染按钮
     return;
   }
 

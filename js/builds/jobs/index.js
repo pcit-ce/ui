@@ -37,12 +37,28 @@ function display(job_data, build_data, url) {
   // let column_el = $('#pull_requests');
 }
 
+// 展开 step
+function open_step() {
+  let { hash } = location;
+
+  if (hash) {
+    $(`.build_log_item${hash}`).attr('open', true);
+  }
+}
+
 export default {
   handle: (url) => {
     let job_id = url.getUrlWithArray()[5];
 
     const jobs = new pcit('', '/api').jobs;
     const builds = new pcit('', '/api').builds;
+
+    // TODO: loading
+    $('#display').empty().append(`
+<div class="spinner-grow text-secondary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+`);
 
     (async () => {
       let job_data = await jobs.find(job_id);
@@ -60,11 +76,7 @@ export default {
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
         log.show(job_log, env_vars, job_id, build_config);
 
-        let { hash } = location;
-
-        if (hash) {
-          $(`.build_log_item${hash}`).attr('open', true);
-        }
+        open_step();
       };
 
       // close sse
@@ -74,11 +86,7 @@ export default {
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
         log.show(job_log, env_vars, job_id, build_config);
 
-        let { hash } = location;
-
-        if (hash) {
-          $(`.build_log_item${hash}`).attr('open', true);
-        }
+        open_step();
 
         sse.close();
       });

@@ -1,5 +1,5 @@
 import details from '../log/details';
-const list = require('../jobs/list');
+const job_list = require('./job_list');
 const log = require('../log');
 
 export default {
@@ -36,6 +36,6 @@ export default {
     }
 
     // 有多个 job ,展示 jobs 列表
-    list.show(data, url);
+    job_list.show(data, url);
   },
 };

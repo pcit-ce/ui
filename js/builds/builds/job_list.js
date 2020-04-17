@@ -1,8 +1,9 @@
 const common_status = require('../../common/status');
-const formatTotal = require('../time').formatTotal;
-// list builds all jobs
+const formatTotalTime = require('../time').formatTotal;
+const linux_ico = require('../../icon/os/linux');
 
 module.exports = {
+  // list one build all jobs
   show: (data, url) => {
     let display_el = $('#display');
 
@@ -48,7 +49,7 @@ module.exports = {
       if (null === finished_at) {
         runTotalTime = 'Build is ' + state;
       } else {
-        runTotalTime = 'Run ' + formatTotal(finished_at - started_at);
+        runTotalTime = 'Run ' + formatTotalTime(finished_at - started_at);
         runTotalTimeTitle =
           'Finished ' + new Date(finished_at * 1000).toLocaleString();
       }
@@ -60,9 +61,7 @@ module.exports = {
             .css('color', status_color);
         })
         .append(() => {
-          return $(
-            '<div class="job_os"><i class="material-icons md-16">computer</i> </div>',
-          ).append('Linux');
+          return $('<div class="job_os"></div>').append(linux_ico + ' x86_64');
         })
         .append(() => {
           return $(

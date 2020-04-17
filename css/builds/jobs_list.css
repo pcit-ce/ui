@@ -33,7 +33,7 @@
   position: absolute;
   left: 120px;
   height: 36px;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 @media screen and (min-width: 992px) {
@@ -50,9 +50,10 @@
 
   .job_list .job_run_time {
     /*background: gold;*/
-    width: 200px;
+    /* width: 200px; */
     position: absolute;
-    right: 200px;
+    /* right: 200px; */
+    left: 70%;
     height: 36px;
     padding-top: 5px;
   }

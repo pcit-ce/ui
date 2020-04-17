@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <div id="app">
+    <jumbotron></jumbotron>
+    <div class="container">
+      <spinner-grow v-if="loading"></spinner-grow>
+      <plugins v-else :plugins="plugins"></plugins>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -36,6 +36,7 @@ let config = {
     ad: path.resolve('./js/ad/main.js'),
     tongji: path.resolve('./js/tongji/mod.js'),
     vue: path.resolve('./js/vue/main.ts'),
+    plugins: path.resolve('./js/plugins/mod.js'),
   },
   output: {
     path: devMode
@@ -143,6 +144,14 @@ let config = {
       showErrors: true,
       chunks: ['tongji', 'index*'], // 只包括指定的 js
       minify: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./html/plugins/index.html'),
+      filename: path.resolve('../public/plugins/index.html'),
+      showErrors: true,
+      chunks: ['tongji', 'plugins'], // 只包括指定的 js
+      minify: true,
+      title: 'Plugins | PCIT',
     }),
     // 分离 css 文件
     // https://github.com/webpack-contrib/mini-css-extract-plugin

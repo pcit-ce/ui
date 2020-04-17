@@ -22,6 +22,8 @@ let Ansi_convert = require('ansi-to-html');
 let ansi_convert = new Ansi_convert();
 const JSONFormatter = require('json-formatter-js');
 
+let step_status_ico = require('./utils/step_status_ico');
+
 const { Log: pcit_log } = require('@pcit/pcit-js');
 const { Artifacts: pcit_artifacts } = require('@pcit/pcit-js');
 
@@ -51,6 +53,7 @@ module.exports = {
       log_obj = { log };
     }
 
+    // sse 调用
     if ($('.build_log').length) {
       // console.log('empty old log');
       pre_el = $('.build_log');
@@ -68,6 +71,7 @@ module.exports = {
 
       let startSec = 0;
       let time;
+      let status = 'running';
 
       line.forEach((element, index) => {
         // 遍历每行 log
@@ -83,6 +87,11 @@ module.exports = {
           // content is env
           time = '';
           content = element;
+        }
+
+        if (content.substr(0, 14) == ' ::exit-code::') {
+          let exit_code = content.substr(14);
+          status = exit_code == '0' ? 'success' : 'failure';
         }
 
         content = ansi_convert.toHtml(content);
@@ -104,7 +113,9 @@ module.exports = {
 
       pre_el.append(
         `<details class="build_log_item" id="${pipeline}">` +
-          `<summary><h5 style="display: inline">${pipeline}</h5>` +
+          `<summary>${step_status_ico(
+            status,
+          )} <h5 style="display: inline"> ${pipeline}</h5>` +
           `<span class="build_log_item_run_time">${run_time}</span></summary>` +
           `<pre class="build_log_item">${build_step_log}</pre></details>`,
       );
@@ -114,6 +125,7 @@ module.exports = {
       let job_or_build_id = location.pathname.split('/').pop();
       let arr = [];
 
+      // 将 step 加入到 url
       $('.build_log_item').on('toggle', null, (res) => {
         let el_id = res.currentTarget.id;
 
@@ -174,30 +186,15 @@ module.exports = {
 </div>
 `);
 
+    showLog(job_id, pcit_token, pre_el);
+
     $('.card-header-pills .nav-link').on('click', null, (res) => {
       //console.log(res);
       $('.card-header-pills .nav-link').removeClass('active');
       $(res.currentTarget).addClass('active');
 
       if (res.currentTarget.dataset.type === 'log') {
-        $('.card-body')
-          .empty()
-          .append(
-            `
-<div class="btn-group log_handler" role="group" aria-label="log_handler" style="padding-left:10px">
-  <button type="button" class="btn btn-secondary" data-type="timestamps">Show timestamps</button>
-  <button type="button" class="btn btn-secondary" data-type="raw">
-    <a target="_blank" href="//${location.host}/api/job/${job_id}/log"
-    style="color:#fff;"
-    >View raw logs</a>
-  </button>
-  <button type="button" class="btn btn-secondary ${
-    pcit_token ? null : 'disabled'
-  }" data-type="remove">Remove Log</button>
-</div>
-`,
-          )
-          .append(pre_el);
+        showLog(job_id, pcit_token, pre_el);
 
         $('.log_handler .btn.btn-secondary').on('click', null, (res) => {
           if (res.currentTarget.dataset.type === 'timestamps') {
@@ -274,3 +271,24 @@ ${
     });
   },
 };
+
+function showLog(job_id, pcit_token, pre_el) {
+  $('.card-body')
+    .empty()
+    .append(
+      `
+<div class="btn-group log_handler" role="group" aria-label="log_handler" style="padding-left:10px">
+  <button type="button" class="btn btn-secondary" data-type="timestamps">Show timestamps</button>
+  <button type="button" class="btn btn-secondary" data-type="raw">
+    <a target="_blank" href="//${location.host}/api/job/${job_id}/log"
+    style="color:#fff;"
+    >View raw logs</a>
+  </button>
+  <button type="button" class="btn btn-secondary ${
+    pcit_token ? null : 'disabled'
+  }" data-type="remove">Remove Log</button>
+</div>
+`,
+    )
+    .append(pre_el);
+}

@@ -4,6 +4,7 @@ const time = require('../time');
 const formatTime = time.formatTime;
 const formatTotal = time.formatTotal;
 
+import gpg_verified_icon from '../../icon/gpg_verified';
 import branch_icon from '../../icon/branch';
 import commit_icon from '../../icon/commit';
 
@@ -11,6 +12,13 @@ export default {
   show: (data, url, job = false) => {
     // console.log(data);
     let display_element = $('#display');
+
+    // TODO: loading
+    display_element.empty().append(`
+<div class="spinner-grow text-secondary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+`);
 
     let {
       id,
@@ -131,7 +139,9 @@ export default {
         $(
           '<div class="committer text-truncate"><i class="material-icons md-16">account_circle</i> </div>',
         )
-          .append(committer_name)
+          .append(
+            committer_name + (signed ? '&nbsp' + gpg_verified_icon : null),
+          )
           .attr(
             'title',
             signed
@@ -186,7 +196,7 @@ export default {
       display: 'none',
     });
 
-    display_element.append(div_element);
+    display_element.empty().append(div_element);
 
     div_element.fadeIn(500);
   },

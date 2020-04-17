@@ -55,6 +55,13 @@ function display(data) {
 
 export default {
   handle: (url) => {
+    // TODO: loading
+    $('#display').empty().append(`
+<div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+`);
+
     column_span_click('branches');
     const repo = new pcit('', '/api').repo;
 

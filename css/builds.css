@@ -130,7 +130,6 @@
     top: 15px;
     padding-left: 20px;
     font-size: 16px;
-    height: 50px;
     max-width: 40%;
   }
 
@@ -140,7 +139,7 @@
     height: 30px;
     position: absolute;
     left: 10px;
-    top: 50px;
+    top: 66px;
     padding-left: 50px;
     font-size: 15px;
     white-space: nowrap;
@@ -163,7 +162,7 @@
     width: auto;
     height: 30px;
     left: 10px;
-    top: 90px;
+    top: 115px;
     padding-left: 50px;
     font-size: 15px;
     max-width: 50%;
@@ -174,11 +173,12 @@
     position: absolute;
     height: 30px;
     width: auto;
-    left: 10px;
+    left: 5px;
     bottom: 50px;
     padding-left: 50px;
     font-size: 15px;
     max-width: 50%;
+    top: 160px;
   }
 
   .build_data .build_status {
@@ -187,7 +187,7 @@
     height: 30px;
     position: absolute;
     left: 600px;
-    top: 18px;
+    top: 15px;
     font-size: 15px;
     white-space: nowrap;
   }

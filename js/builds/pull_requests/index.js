@@ -8,6 +8,8 @@ const formatTotal = require('../time').formatTotal;
 import pcit from '@pcit/pcit-js';
 const builds = new pcit('', '').builds;
 
+import commit_message_icon from '../../icon/commit_message';
+
 function display(data, url, append = false) {
   let display_element = $('#display');
 
@@ -139,10 +141,8 @@ function display(data, url, append = false) {
             ),
         )
         .append(
-          $(
-            '<div class="commit_message text-truncate"><svg t="1583509372477" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="39924" width="20" height="20"><path d="M863.573333 102.4 160.426667 102.4C109.226667 102.4 68.266667 143.36 68.266667 197.973333l0 508.586667c0 51.2 40.96 95.573333 92.16 95.573333l191.146667 0c6.826667 0 13.653333 3.413333 17.066667 6.826667l75.093333 81.92c17.066667 20.48 40.96 30.72 68.266667 30.72s51.2-10.24 68.266667-30.72l75.093333-81.92c3.413333-6.826667 10.24-6.826667 17.066667-6.826667l191.146667 0c51.2 0 92.16-40.96 92.16-95.573333L955.733333 197.973333C955.733333 143.36 914.773333 102.4 863.573333 102.4zM887.466667 706.56c0 13.653333-10.24 27.306667-23.893333 27.306667l-191.146667 0c-27.306667 0-51.2 10.24-68.266667 30.72l-75.093333 81.92c-10.24 10.24-27.306667 10.24-34.133333 0l-75.093333-81.92c-17.066667-20.48-40.96-30.72-68.266667-30.72L160.426667 733.866667c-13.653333 0-23.893333-10.24-23.893333-27.306667L136.533333 197.973333C136.533333 180.906667 146.773333 170.666667 160.426667 170.666667l703.146667 0C877.226667 170.666667 887.466667 180.906667 887.466667 197.973333L887.466667 706.56z" p-id="39925" fill="#666666"></path><path d="M508.586667 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39926" fill="#666666"></path><path d="M720.213333 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39927" fill="#666666"></path><path d="M300.373333 436.906667m-61.44 0a1.8 1.8 0 1 0 122.88 0 1.8 1.8 0 1 0-122.88 0Z" p-id="39928" fill="#666666"></path></svg> </div>',
-          )
-            .append(commit_message.slice(0, 40))
+          $('<div class="commit_message text-truncate"></div>')
+            .append(commit_message_icon + '&nbsp' + commit_message.slice(0, 40))
             .attr('title', commit_message),
         )
         .append(
@@ -222,6 +222,13 @@ function display(data, url, append = false) {
 
 export default {
   handle: (url) => {
+    // TODO: loading
+    $('#display').empty().append(`
+<div class="spinner-grow text-secondary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+`);
+
     column_span_click('pull_requests');
 
     // $.ajax({
