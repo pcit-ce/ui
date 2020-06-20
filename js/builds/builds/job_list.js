@@ -1,6 +1,10 @@
 const common_status = require('../../common/status');
 const formatTotalTime = require('../time').formatTotal;
 const linux_ico = require('../../icon/os/linux');
+const clock_ico = require('../../icon/clock_cjs');
+const code_ico = require('../../icon/code');
+const cancel_icon = require('../../icon/cancel_cjs');
+const refresh_icon = require('../../icon/refresh_cjs');
 
 module.exports = {
   // list one build all jobs
@@ -64,16 +68,14 @@ module.exports = {
           return $('<div class="job_os"></div>').append(linux_ico + ' x86_64');
         })
         .append(() => {
-          return $(
-            '<div class="job_env_vars"><i class="material-icons md-16">code</i> </div>',
-          )
+          return $('<div class="job_env_vars"> </div>')
+            .append(code_ico)
             .append(env_vars)
             .attr('title', 'click to see more setting env');
         })
         .append(() => {
-          return $(
-            '<div class="job_run_time"><i class="material-icons md-16">alarm</i> </div>',
-          )
+          return $('<div class="job_run_time"> </div>')
+            .append(clock_ico)
             .append(runTotalTime)
             .attr({
               title: runTotalTimeTitle,
@@ -81,11 +83,7 @@ module.exports = {
         })
         .append(() => {
           return $('<button class="job_cancel_or_restart" type="button"/>')
-            .append(
-              $('<i class="material-icons"></i>').append(
-                button_handle === 'cancel' ? 'highlight_off' : 'refresh',
-              ),
-            )
+            .append(button_handle === 'cancel' ? cancel_icon : refresh_icon)
             .addClass('btn btn-link')
             .attr('handle', button_handle)
             .attr('title', button_title + ' job')

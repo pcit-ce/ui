@@ -14,6 +14,8 @@ let url_array = location.href.split('/');
 let git_type = url_array[4];
 // eslint-disable-next-line no-undef
 let token = Cookies.get(git_type + '_api_token');
+import toggle_on_icon from '../icon/toggle_on';
+import toggle_off_icon from '../icon/toggle_off';
 
 header.show();
 footer.show();
@@ -120,17 +122,21 @@ function list_repos(reposData: any) {
       })
       .css('display', 'inline');
 
-    let button = $('<i class="toggle col-6 col-md-2 material-icons"></i>')
+    let button = $('<button></button>')
       .addClass('open_or_close btn btn-link btn-sm')
       .attr('repo_name', repo_name);
 
     if (status === 1 + '') {
       button
-        .text('toggle_on')
+        .append(toggle_on_icon)
+        .attr('status', 'toggle_on')
         .attr('title', 'disable')
         .css('color', 'rgb(3,102,214)');
     } else {
-      button.text('toggle_off').attr('title', 'activate');
+      button
+        .append(toggle_off_icon)
+        .attr('status', 'toggle_off')
+        .attr('title', 'activate');
     }
 
     let settings = $(
@@ -551,7 +557,7 @@ $('#userinfo').click(function (event) {
 // append 添加元素绑定事件
 // https://www.cnblogs.com/liubaojing/p/8383960.html
 $('#repos').on('click', '.open_or_close', function () {
-  let status = $(this).text();
+  let status = $(this).attr('status');
   let repo = $(this).attr('repo_name');
   let that = $(this);
 
@@ -562,7 +568,12 @@ $('#repos').on('click', '.open_or_close', function () {
       dataType: 'json',
       contentType: 'application/json;charset=utf-8',
       success(data) {
-        that.text('toggle_off').css('color', 'black').attr('title', 'activate');
+        that
+          .empty()
+          .append(toggle_off_icon)
+          .attr('status', 'toggle_off')
+          .css('color', 'black')
+          .attr('title', 'activate');
         // console.log(data);
       },
     });
@@ -572,7 +583,9 @@ $('#repos').on('click', '.open_or_close', function () {
       url: ci_host + 'webhooks/' + git_type + '/' + repo + '/activate',
       success(data) {
         that
-          .text('toggle_on')
+          .empty()
+          .append(toggle_on_icon)
+          .attr('status', 'toggle_on')
           .css('color', 'rgb(3,102,214)')
           .attr('title', 'disable');
         // console.log(data);

@@ -195,16 +195,6 @@ module.exports = {
 
       if (res.currentTarget.dataset.type === 'log') {
         showLog(job_id, pcit_token, pre_el);
-
-        $('.log_handler .btn.btn-secondary').on('click', null, (res) => {
-          if (res.currentTarget.dataset.type === 'timestamps') {
-            $('.build_log_item_time').toggle();
-          }
-
-          if (res.currentTarget.dataset.type === 'remove') {
-            new pcit_log(pcit_token, '').delete(job_id);
-          }
-        });
       }
 
       if (res.currentTarget.dataset.type === 'env') {
@@ -291,4 +281,14 @@ function showLog(job_id, pcit_token, pre_el) {
 `,
     )
     .append(pre_el);
+
+  $('.log_handler .btn.btn-secondary').on('click', null, (res) => {
+    if (res.currentTarget.dataset.type === 'timestamps') {
+      $('.build_log_item_time').toggle();
+    }
+
+    if (res.currentTarget.dataset.type === 'remove') {
+      new pcit_log(pcit_token, '').delete(job_id);
+    }
+  });
 }

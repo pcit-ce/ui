@@ -11,6 +11,10 @@ import branch_icon from '../../icon/branch';
 import tag_icon from '../../icon/tag';
 import commit_icon from '../../icon/commit';
 import commit_message_icon from '../../icon/commit_message';
+import time_ago_icon from '../../icon/time_ago';
+import clock_icon from '../../icon/clock';
+import cancel_icon from '../../icon/cancel';
+import refresh_icon from '../../icon/refresh';
 
 export const showBuildNav = (build_id, trigger = false) => {
   $('#buildNav')
@@ -203,23 +207,20 @@ function display(data, url, append = false) {
           .css('color', status_color),
       )
       .append(
-        $(
-          '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
-        ).append(started_at),
+        $('<div class="build_time"> </div>')
+          .append(clock_icon)
+          .append(started_at),
       )
       .append(
-        $('<div><i class="material-icons md-16">event_note</i> </div>')
+        $('<div> </div>')
+          .append(time_ago_icon)
           .append(stopped_string)
           .addClass('build_time_ago')
           .attr('title', stopped_title),
       )
       .append(
         $('<button class="cancel_or_restart"></button>')
-          .append(
-            $('<i class="material-icons"></i>').append(
-              button_handle === 'cancel' ? 'highlight_off' : 'refresh',
-            ),
-          )
+          .append(button_handle === 'cancel' ? cancel_icon : refresh_icon)
           .attr({
             title: button_title + ' build',
             event_id: build_id,

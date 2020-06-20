@@ -9,6 +9,10 @@ import pcit from '@pcit/pcit-js';
 const builds = new pcit('', '').builds;
 
 import commit_message_icon from '../../icon/commit_message';
+import time_ago_icon from '../../icon/time_ago';
+import clock_icon from '../../icon/clock';
+const cancel_icon = require('../../icon/cancel_cjs');
+const refresh_icon = require('../../icon/refresh_cjs');
 
 function display(data, url, append = false) {
   let display_element = $('#display');
@@ -170,24 +174,19 @@ function display(data, url, append = false) {
             .css('color', status_color),
         )
         .append(
-          $(
-            '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
-          ).append(total_time),
+          $('<div class="build_time"> </div>')
+            .append(clock_icon)
+            .append(total_time),
         )
         .append(
-          $(
-            '<div class="build_time_ago"><i class="material-icons md-16">event_note</i> </div>',
-          )
+          $('<div class="build_time_ago"> </div>')
+            .append(time_ago_icon)
             .append(stopped_at)
             .attr('title', stopped_at_title),
         )
         .append(
           $('<button class="cancel_or_restart"></button>')
-            .append(
-              $('<i class="material-icons"></i>').append(
-                button_handle === 'cancel' ? 'highlight_off' : 'refresh',
-              ),
-            )
+            .append(button_handle === 'cancel' ? cancel_icon : refresh_icon)
             .attr({
               handle: button_handle,
               title: button_title + ' build',

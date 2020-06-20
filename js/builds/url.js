@@ -1,6 +1,22 @@
 const git = require('../common/git');
 const app = require('../common/app');
 
+function ltrimChar(str, char = '/') {
+  if (str.substr(-1) == char) {
+    str = str.substr(0, str.length - 1);
+  } else {
+    return str;
+  }
+
+  for (let index = 0; index < str.length; index++) {
+    str = ltrimChar(str);
+
+    if (str == str) {
+      return str;
+    }
+  }
+}
+
 const getPathname = () => {
   return location.pathname;
 };
@@ -12,7 +28,9 @@ const getHost = () => {
 
 const getUrlWithArray = () => {
   let url = getPathname();
+  url = ltrimChar(url);
 
+  history.replaceState(null, null, location.origin + url);
   return url.split('/');
 };
 

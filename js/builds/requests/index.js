@@ -3,6 +3,8 @@ const git = require('../../common/git');
 const error_info = require('../error/error').error_info;
 
 import pcit from '@pcit/pcit-js';
+import time_ago_icon from '../../icon/time_ago';
+import commit_message_icon from '../../icon/commit_message';
 
 function display(data, url, append = false) {
   let display_element = $('#display');
@@ -98,16 +100,14 @@ function display(data, url, append = false) {
 
         let day = time > 1 ? Math.round(time) : '1';
 
-        return $(
-          '<div class="created_at col-md-2"><i class="material-icons md-16">event_note</i> </div>',
-        )
+        return $('<div class="created_at col-md-2"> </div>')
+          .append(time_ago_icon)
           .append(day + ' days ago')
           .attr('title', new Date(created_at * 1000).toLocaleString());
       })
       .append(() => {
-        return $(
-          '<div class="commit_message col-md-3 text-truncate"><i class="material-icons md-16">all_inclusive</i> </div>',
-        )
+        return $('<div class="commit_message col-md-3 text-truncate"> </div>')
+          .append(commit_message_icon)
           .append(commit_message)
           .attr('title', commit_message);
       })

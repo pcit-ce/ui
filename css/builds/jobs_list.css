@@ -44,7 +44,7 @@
     /*background: yellow;*/
     position: absolute;
     left: 240px;
-    padding-top: 5px;
+    padding-top: 10px;
     height: 36px;
   }
 
@@ -55,7 +55,7 @@
     /* right: 200px; */
     left: 70%;
     height: 36px;
-    padding-top: 5px;
+    padding-top: 10px;
   }
 
   .job_list .job_cancel_or_restart {

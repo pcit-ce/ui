@@ -7,6 +7,11 @@ const formatTotal = time.formatTotal;
 import gpg_verified_icon from '../../icon/gpg_verified';
 import branch_icon from '../../icon/branch';
 import commit_icon from '../../icon/commit';
+import time_ago_icon from '../../icon/time_ago';
+import clock_icon from '../../icon/clock';
+import cancel_icon from '../../icon/cancel';
+import refresh_icon from '../../icon/refresh';
+import account_icon from '../../icon/account';
 
 export default {
   show: (data, url, job = false) => {
@@ -136,9 +141,8 @@ export default {
           .css('color', status_color),
       )
       .append(
-        $(
-          '<div class="committer text-truncate"><i class="material-icons md-16">account_circle</i> </div>',
-        )
+        $('<div class="committer text-truncate"> </div>')
+          .append(account_icon)
           .append(
             committer_name + (signed ? '&nbsp' + gpg_verified_icon : null),
           )
@@ -163,14 +167,13 @@ export default {
     div_element
       // 总用时
       .append(
-        $(
-          '<div class="build_time"><i class="material-icons md-16">alarm_on</i> </div>',
-        ).append('Total time 7 min 17 sec'),
+        $('<div class="build_time"> </div>')
+          .append(clock_icon)
+          .append('Total time 7 min 17 sec'),
       )
       .append(
-        $(
-          '<div class="build_time_ago"><i class="material-icons md-16">event_note</i> </div>',
-        )
+        $('<div class="build_time_ago"> </div>')
+          .append(time_ago_icon)
           .append(stopped_string)
           .attr({
             title: stopped_title,
@@ -178,11 +181,7 @@ export default {
       )
       .append(
         $('<button class="cancel_or_restart"></button>')
-          .append(
-            $('<i></i>')
-              .addClass('material-icons')
-              .append(button_handle === 'cancel' ? 'highlight_off' : 'refresh'),
-          )
+          .append(button_handle === 'cancel' ? cancel_icon : refresh_icon)
           .attr('handle', button_handle)
           .attr({
             title: button_title + (job ? ' job' : ' build'),

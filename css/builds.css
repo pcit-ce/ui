@@ -7,7 +7,6 @@
 @import 'builds/settings.css';
 @import 'builds/requests.css';
 @import 'repos.css';
-@import 'cdn/google-material-icons.css';
 @import 'builds/main_992.css';
 @import 'builds/builds_lists_992.css';
 @import 'builds/pr_992.css';
@@ -283,10 +282,6 @@ pre.build_log_item {
   float: right;
   margin-right: 10px;
   color: #959da5;
-}
-
-.material-icons {
-  color: #666666;
 }
 
 .navMarginLeft {

@@ -163,9 +163,9 @@ $(document).on('click', '.new_env button', function () {
         }),
       )
       .append(
-        $('<button class="delete btn btn-light btn-xs"></button>').append(
-          'Delete',
-        ),
+        $(
+          '<button class="delete btn btn-secondary btn-xs mb-2"></button>',
+        ).append('Delete'),
       );
 
     env_el.after(env_item_el);
