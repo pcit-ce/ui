@@ -32,6 +32,7 @@ export default {
       commit_message,
       branch,
       committer_name,
+      committer_username,
       compare,
       begin_at = 0,
       finished_at: stopped_at,
@@ -40,6 +41,8 @@ export default {
     } = data;
 
     let status_color;
+
+    committer_name = committer_name ? committer_name : committer_username;
 
     let {
       handle: button_handle,
