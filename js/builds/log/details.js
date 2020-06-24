@@ -146,9 +146,7 @@ export default {
       .append(
         $('<div class="committer text-truncate"> </div>')
           .append(account_icon)
-          .append(
-            committer_name + (signed ? '&nbsp' + gpg_verified_icon : null),
-          )
+          .append(committer_name + (signed ? '&nbsp' + gpg_verified_icon : ''))
           .attr(
             'title',
             signed

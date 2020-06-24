@@ -20,6 +20,7 @@ function display(job_data, build_data, url) {
   job_data.commit_id = build_data.commit_id;
   job_data.commit_message = build_data.commit_message;
   job_data.committer_name = build_data.committer_name;
+  job_data.committer_username = build_data.committer_username;
   job_data.status = job_data.state;
   job_data.branch = build_data.branch;
 
