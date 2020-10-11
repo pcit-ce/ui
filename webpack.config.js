@@ -48,7 +48,6 @@ let config = {
     // publicPath: CDN_URL + '/assets/',
     publicPath: devMode ? '/assets/' : '/assets/',
   },
-  devtool: 'none',
   devServer: {
     contentBase: '../public',
     historyApiFallback: true,
