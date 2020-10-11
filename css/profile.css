@@ -26,7 +26,7 @@ footer {
 }
 
 #details {
-  margin-top: 30px;
+  margin-top: 27px;
   /*margin-left: 600px;*/
   /*padding-left: 100px;*/
   padding-bottom: 17px;
@@ -116,7 +116,7 @@ footer {
 #repos .repo_item > a {
   text-decoration: none;
   line-height: 60px;
-  font-size: 25px;
+  font-size: 20px;
   color: rgb(3, 102, 214);
   white-space: nowrap;
   text-overflow: ellipsis;

@@ -9,7 +9,7 @@ const formatTime = (unixTime) => {
 
   // 秒
   if (diff < 0) {
-    return '';
+    return unixTime;
   }
 
   if (diff < 60) {
@@ -48,7 +48,7 @@ const formatTime = (unixTime) => {
 const formatTotal = (total) => {
   // 秒
   if (total < 0) {
-    return '';
+    return total;
   }
 
   if (total < 60) {

@@ -1,1 +1,4 @@
-export default `<svg t="1592660907877" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13901" width="22" height="22"><path d="M512 96C282.2 96 96 282.2 96 512s186.2 416 416 416c229.8 0 416-186.2 416-416S741.8 96 512 96zM512 893.4c-210.2 0-381.4-171-381.4-381.4 0-210.2 171-381.4 381.4-381.4 210.2 0 381.4 171 381.4 381.4C893.4 722.2 722.2 893.4 512 893.4z" p-id="13902"></path><path d="M512 512 320 512 320 546.6 546.6 546.6 546.6 256 512 256Z" p-id="13903"></path></svg> `;
+export default `<svg width="20" height="20" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
+<path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+</svg> `;

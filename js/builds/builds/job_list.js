@@ -25,7 +25,7 @@ module.exports = {
     $.each(jobs, (index, job) => {
       let { id, started_at, finished_at, state, env_vars = '' } = job;
 
-      if (env_vars) {
+      if (env_vars !== '') {
         let obj = JSON.parse(env_vars);
 
         for (let index in obj) {
@@ -47,13 +47,27 @@ module.exports = {
 
       let a_el = $('<a class="job_list"></a>');
 
-      let runTotalTime;
-      let runTotalTimeTitle;
+      let runTotalTimeTitle = `job is ${state}`;
 
-      if (null === finished_at) {
-        runTotalTime = 'Build is ' + state;
-      } else {
-        runTotalTime = 'Run ' + formatTotalTime(finished_at - started_at);
+      let runTotalTime = finished_at - started_at;
+
+      if (
+        isNaN(runTotalTime) ||
+        runTotalTime <= 0 ||
+        started_at === null ||
+        started_at === '0'
+      ) {
+        runTotalTime = state;
+      }
+
+      console.log(runTotalTime);
+
+      runTotalTime =
+        runTotalTime > 0
+          ? `Run ${formatTotalTime(runTotalTime)}`
+          : runTotalTime;
+
+      if (runTotalTime > 0) {
         runTotalTimeTitle =
           'Finished ' + new Date(finished_at * 1000).toLocaleString();
       }
@@ -68,10 +82,12 @@ module.exports = {
           return $('<div class="job_os"></div>').append(linux_ico + ' x86_64');
         })
         .append(() => {
-          return $('<div class="job_env_vars"> </div>')
-            .append(code_ico)
-            .append(env_vars)
-            .attr('title', 'click to see more setting env');
+          if (env_vars !== 'null') {
+            return $('<div class="job_env_vars"> </div>')
+              .append(code_ico)
+              .append(env_vars)
+              .attr('title', 'click to see more setting env');
+          }
         })
         .append(() => {
           return $('<div class="job_run_time"> </div>')

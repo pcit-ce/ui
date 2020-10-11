@@ -12,7 +12,7 @@
 @import 'builds/pr_992.css';
 
 #repo {
-  margin-top: 40px;
+  padding-top: 30px;
   /* margin-left: 15%; */
   color: rgb(3, 102, 214);
 }
@@ -22,7 +22,7 @@
 }
 
 .column {
-  margin-top: 40px;
+  padding-top: 40px;
   margin-right: 0;
   margin-left: 0;
 }

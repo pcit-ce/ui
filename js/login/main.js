@@ -7,25 +7,25 @@ header.show();
 
 // eslint-disable-next-line no-unused-vars
 function hello() {
-  document.location = 'https://' + location.host + '/login/hello.html';
+  document.location = '//' + location.host + '/login/hello.html';
 }
 
 function github() {
-  document.location = 'https://' + location.host + '/oauth/github/login';
+  document.location = '//' + location.host + '/oauth/github/login';
 }
 
 // eslint-disable-next-line no-unused-vars
 function coding() {
-  document.location = 'https://' + location.host + '/oauth/coding/login';
+  document.location = '//' + location.host + '/oauth/coding/login';
 }
 
 function gitee() {
-  document.location = 'https://' + location.host + '/oauth/gitee/login';
+  document.location = '//' + location.host + '/oauth/gitee/login';
 }
 
 // eslint-disable-next-line no-unused-vars
 function gogs() {
-  document.location = 'https://' + location.host + '/oauth/gogs/login';
+  document.location = '//' + location.host + '/oauth/gogs/login';
 }
 
 $('.github-login-button').on({

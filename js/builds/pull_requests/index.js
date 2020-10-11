@@ -80,8 +80,8 @@ function display(data, url, append = false) {
 
       let stopped_at_title;
 
-      if (null == stopped_at) {
-        stopped_at = 'Pending';
+      if (null == stopped_at || '0' === stopped_at) {
+        stopped_at = build_status;
       } else {
         let d;
         d = new Date(stopped_at * 1000);
@@ -224,7 +224,7 @@ export default {
     // TODO: loading
     $('#display').empty().append(`
 <div class="spinner-grow text-secondary" role="status">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only"></span>
 </div>
 `);
 
@@ -262,7 +262,7 @@ export default {
         : [];
 
       if (JSON.stringify(result) === '[]') {
-        alert('没有了呢');
+        alert('没有了哦');
 
         $('.pull_requests_list_more')
           .attr({
@@ -270,7 +270,7 @@ export default {
           })
           .removeClass('btn-success')
           .addClass('btn-light')
-          .text('没有了呢');
+          .text('没有了哦');
 
         return;
       }

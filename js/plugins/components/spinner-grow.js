@@ -7,7 +7,7 @@ export default Vue.component('spinner-grow', {
   props: [],
   template: `
 <div class="spinner-grow" role="status">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only"></span>
 </div>
 `,
 });

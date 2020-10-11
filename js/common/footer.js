@@ -34,7 +34,7 @@ module.exports.show = () => {
         <div><strong>PCIT Status</strong></div>
         <div><a href="https://ci.khs1994.com/status" target="_blank">PCIT Status</a></div>
         <div><a href="https://ci.khs1994.com/donate" target="_blank">Donate</a></div>
-        <div><a target="_blank" href="https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61">Kubernetes</a></div>
+        <div><a target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61">Kubernetes</a></div>
       </div>
 
       </div>

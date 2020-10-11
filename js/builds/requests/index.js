@@ -55,7 +55,12 @@ function display(data, url, append = false) {
         ? status.getColor('error')
         : status.getColor('success');
 
-    const className = build_status === 'skip' ? 'errored' : 'passed';
+    const className =
+      build_status === 'skip' ||
+      build_status === 'skipped' ||
+      build_status === 'misconfigured'
+        ? 'errored'
+        : 'passed';
 
     requests_el_item
       // .addClass(className)
@@ -129,9 +134,12 @@ function display(data, url, append = false) {
       .append(() => {
         let message =
           build_status === 'skip'
-            ? 'Build skipped via commit message'
+            ? 'Build skipped via commit message or repo settings'
+            : build_status === 'skipped'
+            ? 'Build skipped via commit message or repo settings'
+            : build_status === 'misconfigured'
+            ? '.pcit.yml is misconfigured, please check your repo .pcit.yml file'
             : 'Build created successfully';
-
         return $('<div class="reason col-md-3 text-truncate"></div>')
           .append(message.substring(0, 26))
           .attr({ title: message });
@@ -210,7 +218,7 @@ export default {
 
         display(result, url, true);
       } catch (e) {
-        alert('没有了呢');
+        alert('没有了哦');
 
         $('.requests_list_more')
           .attr({
@@ -218,7 +226,7 @@ export default {
           })
           .removeClass('btn-success')
           .addClass('btn-light')
-          .text('没有了呢');
+          .text('没有了哦');
       }
     })();
   },

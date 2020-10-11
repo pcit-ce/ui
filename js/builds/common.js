@@ -7,7 +7,8 @@ function mouseoutMethod(el) {
 
 function mouseoverMethod(el) {
   $(el).css({
-    color: 'green',
+    //color: 'green',
+    'border-bottom-color': '#d1d5da',
     'border-bottom-style': 'solid',
   });
 }
@@ -32,7 +33,10 @@ module.exports = {
   column_span_click: (id) => {
     let span_el = $('column > #' + id);
     span_el.css('color', 'green');
-    span_el.css('border-bottom-style', 'solid');
+    span_el.css({
+      'border-bottom-style': 'solid',
+      'border-bottom-color': 'green',
+    });
   },
   column_click_handle: (id) => {
     // build job 导航栏
@@ -94,6 +98,7 @@ module.exports = {
     $(`#${id}`).css({
       color: 'green',
       'border-bottom-style': 'solid',
+      'border-bottom-color': 'green',
     });
   },
   column_remove: () => {

@@ -13,7 +13,7 @@ export default Vue.component('jumbotron', {
     };
   },
   template: `
-<div class="jumbotron">
+<div class="container" style="margin-bottom:100px">
     <h1 class="display-4">PCIT Plugins</h1>
     <p class="lead">{{lead}}</p>
     <hr class="my-4">

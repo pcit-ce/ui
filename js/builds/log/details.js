@@ -21,7 +21,7 @@ export default {
     // TODO: loading
     display_element.empty().append(`
 <div class="spinner-grow text-secondary" role="status">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only"></span>
 </div>
 `);
 
@@ -34,7 +34,7 @@ export default {
       committer_name,
       committer_username,
       compare,
-      begin_at = 0,
+      started_at,
       finished_at: stopped_at,
       env_vars,
       jobs,
@@ -56,7 +56,7 @@ export default {
     let stopped_string;
 
     // console.log(build_status);
-    if (null === stopped_at) {
+    if (null === stopped_at || '0' === stopped_at) {
       stopped_string = 'This build is ' + build_status;
     } else {
       stopped_time = new Date(parseInt(stopped_at) * 1000);
@@ -76,9 +76,34 @@ export default {
 
     let job_id = null;
 
-    if (jobs && jobs.length === 1) {
-      job_id = jobs[0]['id'];
+    let total_time = stopped_at - started_at;
+
+    if (jobs) {
+      total_time = 0;
+
+      jobs.forEach((v, i, array) => {
+        let { started_at, finished_at } = v;
+        if (started_at === null || started_at === '0') {
+          return;
+        }
+        let t = finished_at - started_at;
+
+        total_time += t;
+      });
     }
+
+    console.log(total_time);
+
+    if (
+      isNaN(total_time) ||
+      total_time <= 0 ||
+      started_at === null ||
+      started_at === '0'
+    ) {
+      total_time = build_status;
+    }
+
+    console.log(total_time);
 
     div_element
       .append(
@@ -170,7 +195,9 @@ export default {
       .append(
         $('<div class="build_time"> </div>')
           .append(clock_icon)
-          .append('Total time 7 min 17 sec'),
+          .append(
+            total_time > 0 ? `Run ${formatTotal(total_time)}` : total_time,
+          ),
       )
       .append(
         $('<div class="build_time_ago"> </div>')

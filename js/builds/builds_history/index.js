@@ -82,6 +82,7 @@ function display(data, url, append = false) {
       event_type,
       id: build_id,
       branch,
+      committer_name,
       committer_username,
       commit_message,
       commit_id,
@@ -90,6 +91,11 @@ function display(data, url, append = false) {
       finished_at: stopped_at,
       tag,
     } = status;
+
+    committer_username =
+      committer_username === '' ? committer_name : committer_username;
+
+    let total_time = stopped_at - started_at;
 
     // commit_message = tag ? tag : commit_message;
     let commit_message_array;
@@ -130,8 +136,8 @@ function display(data, url, append = false) {
     let stopped_title;
     let stopped_string;
 
-    if (null == stopped_at) {
-      stopped_string = 'Pending';
+    if (null == stopped_at || '0' === stopped_at) {
+      stopped_string = build_status;
     } else {
       stopped_string = formatTime(stopped_at);
 
@@ -209,7 +215,7 @@ function display(data, url, append = false) {
       .append(
         $('<div class="build_time"> </div>')
           .append(clock_icon)
-          .append(started_at),
+          .append(total_time),
       )
       .append(
         $('<div> </div>')
@@ -277,7 +283,7 @@ export default {
     // TODO: loading
     display_element.empty().append(`
 <div class="spinner-grow text-secondary" role="status">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only"></span>
 </div>
 `);
 
@@ -344,18 +350,18 @@ export default {
         : [];
 
       if (JSON.stringify(result) === '[]') {
-        alert('没有了呢');
+        alert('没有了哦');
         $('.builds_list_more')
           .attr({
             disabled: 'true',
-            title: '没有了呢',
+            title: '没有了哦',
             'data-toggle': 'tooltip',
             'data-placement': 'bottom',
           })
           .removeClass('btn-success')
           // .addClass('btn-outline-dark')
           .addClass('btn-light')
-          .text('没有了呢');
+          .text('没有了哦');
         return;
       }
 

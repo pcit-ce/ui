@@ -10,9 +10,7 @@
   <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">-->
   <!--<script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>-->
   <!--<script src="https://cdn.bootcss.com/bootstrap/4.2.1/js/bootstrap.min.js" crossorigin="anonymous"></script>-->
-  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
-  <script src="https://lib.baomitu.com/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="https://lib.baomitu.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/5.0.0-alpha2/css/bootstrap.min.css" crossorigin="anonymous">
   <!-- <link href="https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons" rel="stylesheet"> -->
   <!-- <link rel="stylesheet" type="text/css" href="/assets/css/builds.css"> -->
   <link rel="shortcut icon" href="/ico/pcit.png" type="image/x-icon" />
@@ -34,15 +32,15 @@
 
   <div class="container">
 
-    <div class="column row">
-      <div id="current" class="text-center main">Current</div>
-      <div id="branches" class="text-center main navMarginLeft">Branches</div>
-      <div id="builds" class="text-center main navMarginLeft">Builds</div>
-      <div id="pull_requests" class="text-center main navMarginLeft">PRs</div>
-      <div id="buildNav" class="text-center main navMarginLeft"></div>
-      <div id="jobNav" class="text-center main navMarginLeft"></div>
+    <div class="column row" style="font-size: 14px;">
+      <div id="current" class="text-center main col-1">Current</div>
+      <div id="branches" class="text-center main col-1 navMarginLeft">Branches</div>
+      <div id="builds" class="text-center main col-1 navMarginLeft">Builds</div>
+      <div id="pull_requests" class="text-center col-1 main navMarginLeft">PRs</div>
+      <div id="buildNav" class="text-center main col-1 navMarginLeft"></div>
+      <div id="jobNav" class="text-center main col-1 navMarginLeft"></div>
 
-      <div class="btn-group more_options text-center ml-md-auto ml-auto" role="group">
+      <div class="btn-group more_options text-center ml-md-auto ml-auto col-auto" role="group">
         <button id="more_options" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           More options
         </button>
@@ -69,7 +67,7 @@
           <form>
             <div class="form-group">
               <label for="branches_list" class="col-form-label">Select Branch</label>
-              <select class="custom-select" id="branches_list">
+              <select class="form-select" id="branches_list">
               </select>
             </div>
             <div class="form-group ">
@@ -98,7 +96,8 @@
     </div>
   </div>
   <footer class="container"></footer>
-
+  <script src="https://lib.baomitu.com/popper.js/1.16.0/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://lib.baomitu.com/twitter-bootstrap/5.0.0-alpha2/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <!-- <script src='/assets/js/builds.js'></script> -->
 </body>
 

@@ -57,7 +57,7 @@ export default {
     // TODO: loading
     $('#display').empty().append(`
 <div class="spinner-grow text-secondary" role="status">
-  <span class="sr-only">Loading...</span>
+  <span class="sr-only"></span>
 </div>
 `);
 
@@ -72,6 +72,12 @@ export default {
       let sse = new EventSource(`${location.origin}/api/job/${job_id}?sse=1`);
 
       sse.onmessage = async function (evt) {
+        if (window.location.pathname.split('/')[4] !== 'jobs') {
+          sse.close();
+
+          return;
+        }
+
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);
@@ -82,6 +88,12 @@ export default {
 
       // close sse
       sse.addEventListener('close', (evt) => {
+        if (window.location.pathname.split('/')[4] !== 'jobs') {
+          sse.close();
+
+          return;
+        }
+
         let { data: job_data, lastEventId, readyState } = evt;
 
         let { build_log: job_log, env_vars = null } = JSON.parse(job_data);

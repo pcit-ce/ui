@@ -21,9 +21,9 @@ const showRepoTitle = () => {
             .append(git_format)
             .css({
               float: 'left',
-              width: '36px',
-              height: '36px',
-              'margin-top': '10px',
+              width: '24px',
+              height: '24px',
+              //'margin-top': '-6px',
             })
             .attr({
               title: 'View Repository on ' + git_format,
