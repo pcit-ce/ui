@@ -271,7 +271,7 @@ $('.trigger_build_modal_button').on('click', () => {
       history.pushState(
         { key_id: 'buildNav' },
         null,
-        url.getRepoFullNameUrl() + '/builds/' + res.build_id,
+        url.getRepoFullNameUrl() + '/builds',
       );
 
       location.reload();

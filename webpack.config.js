@@ -161,8 +161,8 @@ let config = {
   ],
   optimization: {
     minimize: true, //是否进行代码压缩
-    emitOnErrors: false, // 5.0
-    // noEmitOnErrors: true, // 4.0 //取代 new webpack.NoEmitOnErrorsPlugin()，编译错误时不打印输出资源。
+    emitOnErrors: false, // v5
+    // noEmitOnErrors: true, // v4 //取代 new webpack.NoEmitOnErrorsPlugin()，编译错误时不打印输出资源。
 
     // runtimeChunk: 'single',
     // v4 add, replace CommonsChunkPlugin
